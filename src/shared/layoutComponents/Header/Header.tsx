@@ -1,18 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logoSrc from "@/assets/images/phoenix.png";
 import { StyledLink } from "@/shared";
 import Link from "next/link";
 import Image from "next/image";
 import { linksDetails as links } from "@/shared";
+import { useMediaQuery } from "usehooks-ts";
+import { Drawer } from "./components";
 
 export const Header = () => {
-  const isSmallScreen = false;
+  const [isClient, setIsClient] = useState(false)
+  const isSmallScreen = useMediaQuery("(max-width: 768px)") && isClient;
   const currentUser = null;
+ 
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   return (
     <header className="shadow-with-border grow-0 text-black">
       <nav
-        className="relative z-[1000] flex  
+        className="relative flex  
           place-items-center justify-between p-6 lg:px-8 bg-gradient-to-b  from-indigo-900
           via-indigo-500 to-indigo-600 pr-0 [&_.MuiToolbar-root]:w-full"
       >
@@ -49,6 +57,11 @@ export const Header = () => {
             </div>
           </>
         )}
+        <Drawer
+          links={links}
+          currentUser={currentUser}
+          isSmallScreen={isSmallScreen}
+        />
       </nav>
     </header>
   );

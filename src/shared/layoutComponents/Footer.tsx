@@ -10,7 +10,7 @@ export const Footer = (): React.ReactNode => {
           <span className="text-black">Shops Finder</span>
         </Link>
       </div>
-      <div className="flex">
+      <div className="flex place-items-center gap-1">
         <MdEmail className="[&>path]:text-slate-800"/>
 
         <a href="mailto:alaa85a@gmail.com">
