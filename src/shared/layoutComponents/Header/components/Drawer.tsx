@@ -95,7 +95,7 @@ export const Drawer = ({ links, currentUser, isSmallScreen }: DrawerProps) => {
                   </div>
                 ) : (
                   <div className="my-2" onClick={() => setOpen(false)}>
-                    <StyledLink href={"/auth"}>{"Sign In"}</StyledLink>
+                    <StyledLink href={"/signin"}>{"Sign In"}</StyledLink>
                   </div>
                 )}
               </StyledList>

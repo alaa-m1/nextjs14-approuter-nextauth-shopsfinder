@@ -52,7 +52,7 @@ export const Header = () => {
                   <span>Sign Out</span>
                 </StyledLink>
               ) : (
-                <StyledLink href={"/auth"}>Sign In</StyledLink>
+                <StyledLink href={"/signin"}>Sign In</StyledLink>
               )}
             </div>
           </>
