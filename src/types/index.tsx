@@ -4,6 +4,10 @@ export type LinkInfo = {
   component?: string;
 };
 
+export type SideBarLinkInfo = LinkInfo & {
+  component?: string;
+};
+
 export type User={
   id: number;
   name: string;

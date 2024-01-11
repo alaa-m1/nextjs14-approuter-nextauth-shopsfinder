@@ -10,6 +10,9 @@
   .drawer-transform-active {
     width: 180px;
   }
+  .sidebar-transform-active {
+    width: 180px;
+  }
 }
 @layer components {
   .nav-bts {
