@@ -13,6 +13,12 @@
   .sidebar-transform-active {
     width: 180px;
   }
+  .line2-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
 }
 @layer components {
   .nav-bts {
