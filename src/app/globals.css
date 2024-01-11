@@ -7,14 +7,8 @@
     border: 1px soild #ccc;
     box-shadow: 0px 2px 8px;
   }
-  .transform-active {
+  .drawer-transform-active {
     width: 180px;
-  }
-  .transform-deactive {
-    width: 0px;
-    .logo-container img {
-      margin-left: 1.5rem;
-    }
   }
 }
 @layer components {

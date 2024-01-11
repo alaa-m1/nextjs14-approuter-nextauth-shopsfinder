@@ -1,21 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logoSrc from "@/assets/images/phoenix.png";
-import { StyledLink } from "@/shared";
+import { StyledLink, useSmallScreen } from "@/shared";
 import Link from "next/link";
 import Image from "next/image";
 import { linksDetails as links } from "@/shared";
-import { useMediaQuery } from "usehooks-ts";
 import { Drawer } from "./components";
 
 export const Header = () => {
-  const [isClient, setIsClient] = useState(false)
-  const isSmallScreen = useMediaQuery("(max-width: 768px)") && isClient;
+  const isSmallScreen = useSmallScreen();
   const currentUser = null;
- 
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
 
   return (
     <header className="shadow-with-border grow-0 text-black">
