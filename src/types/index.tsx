@@ -31,3 +31,7 @@ type Rating = {
   rate: number;
   count: number;
 };
+
+export type CategoriesRes = Array<string>;
+export type Category = { label: string; id: string };
+export type Categories = Array<Category>;
