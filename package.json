@@ -15,6 +15,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.0",
+    "react-loading-skeleton": "^3.3.1",
+    "react-spinners": "^0.13.8",
     "usehooks-ts": "^2.9.2"
   },
   "devDependencies": {
