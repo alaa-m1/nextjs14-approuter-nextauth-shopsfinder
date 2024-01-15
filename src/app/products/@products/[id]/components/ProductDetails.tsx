@@ -1,12 +1,14 @@
 import React from "react";
-import { getProduct } from "../actions";
+import { Product } from "@/types";
+import Image from "next/image";
+import { NoItemsFound } from "@/shared";
+
 type ProductDetailsProps = {
-  params: { id: string };
+  product: Product | null;
 };
-const Page = async ({ params }: ProductDetailsProps) => {
-  const product = await getProduct(params.id);
+export const ProductDetails = ({ product }: ProductDetailsProps) => {
   return product ? (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 h-full bg-white p-4">
       <div className="m-2">
         <h5 className="mb-2 text-xl font-medium leading-tight text-black">
           {product?.title}
@@ -18,12 +20,15 @@ const Page = async ({ params }: ProductDetailsProps) => {
           </span>
         </p>
       </div>
-      <div className="block rounded-lg bg-white shadow-md">
-        <img className="rounded-lg" src={product?.image} alt={product?.title} />
-      </div>
+      <Image
+        width="500"
+        height="500"
+        className=" w-[50vw] aspect-auto rounded-lg shadow-md"
+        src={product?.image}
+        alt={product?.title}
+      />
     </div>
   ) : (
-    <div>No items found</div>
+    <NoItemsFound />
   );
 };
-export default Page;
