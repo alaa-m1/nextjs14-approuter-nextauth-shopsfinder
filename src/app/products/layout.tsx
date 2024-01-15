@@ -8,7 +8,6 @@ const ProductsLayout = ({
   categories: React.ReactNode;
   products: React.ReactNode;
   modal: React.ReactNode;
-  children: React.ReactNode;
 }) => {
   return (
     <div className="flex flex-col gap-1">

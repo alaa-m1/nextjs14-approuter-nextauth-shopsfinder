@@ -1,10 +1,9 @@
 import React from "react";
 
-const ProductsLayout2 = ({
+const ParallelProductsLayout = ({
   children,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) => {
   return (
     <>
@@ -12,4 +11,4 @@ const ProductsLayout2 = ({
     </>
   );
 };
-export default ProductsLayout2;
+export default ParallelProductsLayout;
