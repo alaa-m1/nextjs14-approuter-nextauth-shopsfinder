@@ -22,7 +22,7 @@ type LinkComponentProps = LinkProps & {
 export const StyledLink = ({ children,active, ...props }: LinkComponentProps) => {
   const pathname = usePathname();
   const isActive = useMemo(
-    () => active || pathname === props.href,
+    () => active ?? pathname === props.href,
     [pathname, props.href, active]
   );
   return (

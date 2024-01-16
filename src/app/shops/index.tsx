@@ -1,5 +1,5 @@
 import React from "react";
-const Page = () => {
+const Shops = () => {
   return <div>Shops page ... Under construction</div>;
 };
-export default Page;
+export default Shops;
