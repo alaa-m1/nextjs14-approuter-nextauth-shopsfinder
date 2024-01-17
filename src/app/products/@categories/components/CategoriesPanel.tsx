@@ -23,7 +23,10 @@ export const CategoriesPanel = ({ categories }: CategoriesPanelProps) => {
   };
 
   const currentCategory = useMemo(
-    () => searchParams.get("category")?.toString() ?? "all",
+    () =>
+      searchParams.get("category")?.toString()
+        ? searchParams.get("category")?.toString()
+        : "all",
     [searchParams]
   );
 

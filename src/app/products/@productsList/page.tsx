@@ -10,7 +10,9 @@ type ProductsProps = {
 };
 export const revalidate = 1800; // revalidate at most every half hour
 const Page = async ({ searchParams }: ProductsProps) => {
-  const currentCategory = searchParams?.category ?? "all";
+  const currentCategory = searchParams?.category
+    ? searchParams?.category
+    : "all";
   const products = await getProductsByCategory(currentCategory);
   return (
     <>
