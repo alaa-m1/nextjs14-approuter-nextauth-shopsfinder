@@ -19,16 +19,20 @@ type LinkComponentProps = LinkProps & {
   style?: CSSProperties | undefined;
   active?: boolean;
 };
-export const StyledLink = ({ children,active, ...props }: LinkComponentProps) => {
+export const StyledLink = ({
+  children,
+  active,
+  ...props
+}: LinkComponentProps) => {
   const pathname = usePathname();
   const isActive = useMemo(
-    () => active ?? pathname === props.href,
+    () => active && pathname === props.href,
     [pathname, props.href, active]
   );
   return (
     <Link {...props}>
       <span
-        className={`text-[16px] text-white ${
+        className={`text-[15px] text-white ${
           isActive ? "font-bold" : "font-normal"
         }`}
       >
