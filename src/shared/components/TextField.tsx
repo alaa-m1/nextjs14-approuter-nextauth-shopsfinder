@@ -51,9 +51,8 @@ export const TextField = ({
           name={name}
           {...register(name)}
           {...props}
-          className={`py-2 pl-[22px] pr-[32px] my-[5px] border-solid border-[1px] border-[${
-            errors ? "#d32f2f" : "#ccc"
-          }] rounded-[5px] w-full box-border outline-none`}
+          style={{ borderColor: errors ? "#d32f2f" : "#ccc" }}
+          className={`py-2 pl-[22px] pr-[32px] my-[5px] border-solid border-[1px] rounded-[5px] w-full box-border outline-none`}
         />
         {(name === "password" || name === "confirmPassword") && (
           <div
