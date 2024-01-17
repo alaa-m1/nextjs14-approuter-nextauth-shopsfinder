@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
 import { FaGoogle } from "react-icons/fa6";
-import { FaEnvelopesBulk } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa6";
-import { FaRegStar } from "react-icons/fa6";
+import {
+  FaRegStar,
+  FaEnvelopesBulk,
+  FaGithub,
+  FaFacebookF,
+} from "react-icons/fa6";
 import { signIn } from "next-auth/react";
 
 type Provider = {
@@ -16,9 +18,9 @@ type Provider = {
 
 type SocialButtonsProps = {
   provider: Provider;
-  page: string;
+  // page: string;
   csrfToken: string;
-  index: number;
+  // index: number;
 };
 const SocialButton = ({
   provider,

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import { MdEmail } from "react-icons/md";
-import { MdLock } from "react-icons/md";
+import { MdEmail, MdLock } from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +14,6 @@ const UserSchema = z.object({
 
 type UserSchemaType = z.infer<typeof UserSchema>;
 type SignInProps = {
-  callbackUrl: string;
   csrfToken: string;
 };
 

@@ -1,9 +1,5 @@
 "use client";
-import { MdPerson } from "react-icons/md";
-import { MdBusiness } from "react-icons/md";
-import { MdEmail } from "react-icons/md";
-import { MdOutlinePhoneAndroid } from "react-icons/md";
-import { MdLock } from "react-icons/md";
+import { MdLock, MdBusiness, MdOutlinePhoneAndroid, MdEmail, MdPerson } from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";

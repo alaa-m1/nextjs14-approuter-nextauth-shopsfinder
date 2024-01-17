@@ -2,8 +2,7 @@
 import { ColoredDevider, LinkButton } from "@/shared";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { BsGoogle } from "react-icons/bs";
-import { BsFacebook } from "react-icons/bs";
+import { BsGoogle, BsFacebook } from "react-icons/bs";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();

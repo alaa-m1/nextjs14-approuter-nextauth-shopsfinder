@@ -6,8 +6,7 @@ import React, {
   useState,
 } from "react";
 import { MdClose } from "react-icons/md";
-import { FaEye } from "react-icons/fa6";
-import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Alert } from "./Alert";
 
 type TextFieldProps = DetailedHTMLProps<
