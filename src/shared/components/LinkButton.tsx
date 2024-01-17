@@ -1,25 +1,20 @@
-"use client"
-import { useRouter } from "next/navigation";
+"use client";
+import Link from "next/link";
 import React from "react";
 
-type LinkButtonProps = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
-> & {
-  to?: string;
-  label: string;
-};
-const LinkButton = ({ to, label, ...props }: LinkButtonProps) => {
-  const router = useRouter();
+type LinkButtonProps = React.ComponentProps<typeof Link>;
+const LinkButton = ({ children, className, ...props }: LinkButtonProps) => {
   return (
-    <button
-      onClick={() => {
-        to && router.push(to);
-      }}
-      {...props}
-    >
-      {label}
-    </button>
+    <div>
+      <Link
+        className={`inline-block min-h-[25px] w-auto max-w-[200px] text-ellipsis overflow-hidden px-2 rounded-md hover:underline transition-all duration-500 ${
+          className ?? ""
+        }`}
+        {...props}
+      >
+        {children}
+      </Link>
+    </div>
   );
 };
 
