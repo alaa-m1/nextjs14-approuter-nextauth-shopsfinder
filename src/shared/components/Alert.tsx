@@ -21,14 +21,14 @@ export const Alert = ({ severity, subLabel, children }: AlertProps) => {
       : "#000";
   console.log("alertColor=", alertColor);
   return (
-    <div className={`bg-[${alertColor}]  py-2 lg:px-2 w-[95%] rounded-lg`}>
-      <div
-        className={`px-2 bg-[${alertColor}] items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex`}
+    <div style={{backgroundColor:alertColor}} className={`py-2 lg:px-2 w-[95%] rounded-lg`}>
+      <div style={{backgroundColor:alertColor}}
+        className={`px-2 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex`}
         role="alert"
       >
         {subLabel && (
-          <span
-            className={`flex rounded-full border-[1px] border-gray-600 bg-[${alertColor}] mr-3 uppercase py-1 px-2 text-xs font-bold`}
+          <span style={{backgroundColor:alertColor}}
+            className={`flex rounded-full border-[1px] border-gray-600 mr-3 uppercase py-1 px-2 text-xs font-bold`}
           >
             {subLabel}
           </span>
