@@ -1,5 +1,6 @@
 import { baseUrl } from "@/shared";
 import { Products } from "@/types";
+import "server-only"
 
 export const getProductsByCategory = async (category: string): Promise<Products | null> => {
     try {

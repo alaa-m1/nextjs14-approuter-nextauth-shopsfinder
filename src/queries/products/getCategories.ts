@@ -1,5 +1,6 @@
 import { baseUrl } from "@/shared";
 import { CategoriesRes } from "@/types";
+import "server-only"
 
 export const getCategories = async (): Promise<CategoriesRes | null> => {
     // mimic a slow data fetching
