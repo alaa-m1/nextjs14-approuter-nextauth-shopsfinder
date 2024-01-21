@@ -9,4 +9,4 @@ export * from "./ErrorPanel";
 export * from "./Alert";
 export * from "./SocialButton";
 export * from "./TextField";
-export * from "./LoadingButton";
+export * from "./SubmitButton";

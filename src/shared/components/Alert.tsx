@@ -19,7 +19,6 @@ export const Alert = ({ severity, subLabel, children }: AlertProps) => {
       : severity === "warning"
       ? "#ED6C02"
       : "#000";
-  console.log("alertColor=", alertColor);
   return (
     <div style={{backgroundColor:alertColor}} className={`py-2 lg:px-2 w-[95%] rounded-lg`}>
       <div style={{backgroundColor:alertColor}}

@@ -1,3 +1,5 @@
+import { DefaultUser } from "next-auth";
+
 export type LinkInfo = {
   label: string;
   path: string;
@@ -8,12 +10,13 @@ export type SideBarLinkInfo = LinkInfo & {
   component?: string;
 };
 
-export type User = {
-  id: number;
-  name: string;
-  email: string;
-  mobile: string;
-};
+export type UserDetails =
+  | Omit<DefaultUser, "id">
+  | (DefaultUser & {
+      mobile?: string;
+      address?: string;
+    })
+  | undefined;
 
 export type Products = Array<Product>;
 export type Product = {
@@ -35,3 +38,14 @@ type Rating = {
 export type CategoriesRes = Array<string>;
 export type Category = { label: string; id: string };
 export type Categories = Array<Category>;
+
+
+export type Provider = {
+  id: string,
+  name: string,
+  type: string,
+  signinUrl: string,
+  callbackUrl: string
+};
+
+export type Providers=Array<Provider>

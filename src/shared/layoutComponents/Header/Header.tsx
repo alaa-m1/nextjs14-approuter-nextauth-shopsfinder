@@ -1,15 +1,17 @@
 "use client";
 import React from "react";
 import logoSrc from "@/assets/images/phoenix.png";
-import { StyledLink, useSmallScreen } from "@/shared";
+import { StyledLink, useSmallScreen, linksDetails as links } from "@/shared";
 import Link from "next/link";
 import Image from "next/image";
-import { linksDetails as links } from "@/shared";
 import { Drawer } from "./components";
+import { useSession, signOut } from "next-auth/react";
+import { UserDetails } from "@/types";
 
 export const Header = () => {
   const isSmallScreen = useSmallScreen();
-  const currentUser = null;
+  const { data: session } = useSession();
+  const currentUser: UserDetails = session?.user;
 
   return (
     <header className="shadow-with-border grow-0 text-black">
@@ -42,7 +44,7 @@ export const Header = () => {
             </div>
             <div className="flex px-2 grow-0 nav-bts">
               {currentUser ? (
-                <StyledLink href={"/"}>
+                <StyledLink href={"/"} onClick={() => signOut()}>
                   <span>Sign Out</span>
                 </StyledLink>
               ) : (
