@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ScaleLoader } from "react-spinners";
-import { LinkButton, LoadingButton, TextField } from "@/shared";
+import { LinkButton, SubmitButton, TextField } from "@/shared";
 
 const UserSchema = z.object({
   email: z.string().email("You must enter a valid Email"),
@@ -23,7 +23,7 @@ const Page = () => {
     formState: { errors, isSubmitting },
   } = useForm<UserSchemaType>({ resolver: zodResolver(UserSchema) });
   const onSubmit: SubmitHandler<UserSchemaType> = async () => {
-    console.log("Submit ....");
+    ("Submit ....");
   };
 
   return (
@@ -55,16 +55,16 @@ const Page = () => {
           autoComplete="off"
           defaultValue=""
         ></TextField>
-        <LoadingButton
+        <SubmitButton
           isLoading={isSubmitting}
-          loadingIndicator={<ScaleLoader color="#36d7b7" />}
+          loadingIndicator={<ScaleLoader color="#36d7b7" height={20}/>}
           variant="contained"
           color="primary"
           type="submit"
           className="w-[50%] mx-auto"
         >
           Sign In
-        </LoadingButton>
+        </SubmitButton>
       </form>
       <div className="[&_a]:no-underline">
         <LinkButton href="/forgetpassword" className="size-[15px]">

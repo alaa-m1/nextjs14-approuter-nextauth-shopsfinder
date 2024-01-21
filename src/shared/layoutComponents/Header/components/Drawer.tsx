@@ -1,16 +1,14 @@
 "use client";
-import React from "react";
-import { useState } from "react";
-import { MdMenu } from "react-icons/md";
+import React, { useState } from "react";
+import { MdMenu, MdClose } from "react-icons/md";
 import logoSrc from "@/assets/images/phoenix.png";
-import { LinkInfo, User } from "@/types";
+import { LinkInfo, UserDetails } from "@/types";
 import Image from "next/image";
 import { StyledLink } from "@/shared";
-import { MdClose } from "react-icons/md";
-
+import { signOut } from "next-auth/react";
 type DrawerProps = {
   links: Array<LinkInfo>;
-  currentUser: User | null;
+  currentUser: UserDetails;
   isSmallScreen: boolean;
 };
 
@@ -77,13 +75,10 @@ export const Drawer = ({ links, currentUser, isSmallScreen }: DrawerProps) => {
                 })}
 
                 {currentUser ? (
-                  <div
-                    onClick={() => {
-                      console.log("SignOut");
-                      setOpen(false);
-                    }}
-                  >
-                    <StyledLink href={"/"}>{"Sign Out"}</StyledLink>
+                  <div onClick={() => setOpen(false)}>
+                    <StyledLink href={"/"} onClick={() => signOut()}>
+                      {"Sign Out"}
+                    </StyledLink>
                   </div>
                 ) : (
                   <div className="my-2" onClick={() => setOpen(false)}>

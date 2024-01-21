@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
 import Link from "next/link";
-import { Alert, LoadingButton, TextField } from "@/shared";
+import { Alert, SubmitButton, TextField } from "@/shared";
 
 const UserSchema = z
   .object({
@@ -189,7 +189,7 @@ const Page = () => {
             </Alert>
           )}
         </div>
-        <LoadingButton
+        <SubmitButton
           isLoading={isSubmitting}
           loadingIndicator={<ScaleLoader color="#36d7b7" />}
           variant="contained"
@@ -198,7 +198,7 @@ const Page = () => {
           className="w-[50%] mx-auto"
         >
           Sign Up
-        </LoadingButton>
+        </SubmitButton>
       </form>
     </div>
   );

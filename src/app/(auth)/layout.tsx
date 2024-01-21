@@ -1,11 +1,7 @@
-"use client";
-import { ColoredDevider, LinkButton } from "@/shared";
-import { usePathname } from "next/navigation";
-import React from "react";
-import { BsGoogle, BsFacebook } from "react-icons/bs";
-
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  const pathName = usePathname();
+import { ColoredDevider, LoadingSpinner } from "@/shared";
+import React, { Suspense } from "react";
+import { AuthFooter, ProvidersPanel } from "./components";
+const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex h-full">
       <div className="m-auto w-[500px] min-h-[300px] shadow-md hover:shadow-lg">
@@ -19,47 +15,13 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             </span>
             <div className=" flex-grow bg-[#ccc] h-[2px] my-[7px] mx-[5px]" />
           </div>
-          <div className="grid grid-cols-2 justify-center justify-items-center gap-x-0.5 gap-y-2">
-            <div>
-              <button onClick={() => console.log("Sign in using Google")}>
-                <div className="flex flex-col items-center">
-                  <BsGoogle />
-                  Google
-                </div>
-              </button>
-            </div>
-            <div>
-              <button onClick={() => console.log("Sign in using Facebook")}>
-                <div className="flex flex-col items-center">
-                  <BsFacebook />
-                  <span> Facebook</span>
-                </div>
-              </button>
-            </div>
-          </div>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <ProvidersPanel />
+          </Suspense>
 
           <ColoredDevider />
-          {pathName === "/signup" ? (
-            <div className="w-full flex flex-row justify-left [#_button]:hover:bg-transparent">
-              <div className="w-auto size-5 text-black text-ellipsis overflow-hidden ">
-                If you already have an account &nbsp;
-              </div>
-              <LinkButton href="/signin" className="size-[15px]">
-                Sign In
-              </LinkButton>
-            </div>
-          ) : (
-            <div
-              className="w-full flex flex-row justify-left [#_button]:hover:bg-transparent"
-            >
-              <div className="w-auto size-5 text-black text-ellipsis overflow-hidden ">
-                If you do not have an account &nbsp;
-              </div>
-              <LinkButton href="/signup" className="size-[15px]">
-                Sign Up
-              </LinkButton>
-            </div>
-          )}
+          <AuthFooter />
         </div>
       </div>
     </div>
