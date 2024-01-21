@@ -34,7 +34,6 @@ export const TextField = ({
   const handleOnShowIconClick = () => {
     setShowPassword((p) => !p);
   };
-  console.log("errors=", errors);
   return (
     <div className="p-0 my-[10px]">
       <div className={`relative w-[90%] text-left`}>
