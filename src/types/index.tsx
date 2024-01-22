@@ -10,14 +10,6 @@ export type SideBarLinkInfo = LinkInfo & {
   component?: string;
 };
 
-export type UserDetails =
-  | Omit<DefaultUser, "id">
-  | (DefaultUser & {
-      mobile?: string;
-      address?: string;
-    })
-  | undefined;
-
 export type Products = Array<Product>;
 export type Product = {
   id: number;

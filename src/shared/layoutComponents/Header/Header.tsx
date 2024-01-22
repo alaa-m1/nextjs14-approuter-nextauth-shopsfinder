@@ -6,12 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Drawer } from "./components";
 import { useSession, signOut } from "next-auth/react";
-import { UserDetails } from "@/types";
+import { User } from "next-auth";
 
 export const Header = () => {
   const isSmallScreen = useSmallScreen();
   const { data: session } = useSession();
-  const currentUser: UserDetails = session?.user;
+  const currentUser: User | undefined = session?.user;
 
   return (
     <header className="shadow-with-border grow-0 text-black">
