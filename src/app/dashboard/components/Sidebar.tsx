@@ -68,14 +68,13 @@ export const Sidebar = ({
     </aside>
   ) : (
     <nav>
-      <ul className="list-none [&_li]:inline-block [&_li]:no-underline [&_li]:m-1 ">
+      <ul className="list-none flex flex-wrap w-full gap-4 m-1">
         {drawerLinks.map((link, index) => {
           if (link.label !== "")
             return (
               <StyledLink
                 key={index}
                 href={`/dashboard?p=${link.path}`}
-                style={{ width: "100%", padding: "8px 16px" }}
                 active={searchParams.get("p") === link.path}
               >
                 {link.label}
