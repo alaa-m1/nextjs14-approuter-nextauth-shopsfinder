@@ -1,4 +1,4 @@
-import { Account, NextAuthOptions, Profile, User } from "next-auth";
+import { Account, NextAuthOptions, Profile, Session, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import Auth0Provider from "next-auth/providers/auth0";
@@ -6,6 +6,7 @@ import clientPromise from "../mongoLib/mongodb";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { JWT } from "next-auth/jwt";
 import { Adapter } from "next-auth/adapters";
+
 export const authOptions: NextAuthOptions = {
     adapter: MongoDBAdapter(clientPromise),
     providers: [
@@ -32,17 +33,16 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async session({
             session,
-            user,
             token,
         }: {
-            session: any;
+            session: Session;
             user?: User;
             token: JWT;
         }) {
             if (session.user) {
-                session.user.accessToken = token.accessToken;
-                session.user.expires_at = token.expires_at;
-                session.user.userId = token.userId;
+                session.user.accessToken = token.accessToken as string;
+                session.user.expires_at = token.expires_at as string;
+                session.user.userId = token.userId as string;
             }
             return session;
         },
@@ -50,8 +50,6 @@ export const authOptions: NextAuthOptions = {
             token,
             user,
             account,
-            profile,
-            isNewUser,
         }: {
             token: JWT;
             user?: User | Adapter;

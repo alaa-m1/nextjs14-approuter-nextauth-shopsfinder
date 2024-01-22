@@ -1,4 +1,3 @@
-import { DefaultUser } from "next-auth";
 
 export type LinkInfo = {
   label: string;
