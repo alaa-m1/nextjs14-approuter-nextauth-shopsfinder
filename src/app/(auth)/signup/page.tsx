@@ -1,16 +1,22 @@
 "use client";
-import { MdLock, MdBusiness, MdOutlinePhoneAndroid, MdEmail, MdPerson } from "react-icons/md";
+import {
+  MdLock,
+  MdBusiness,
+  MdOutlinePhoneAndroid,
+  MdEmail,
+  MdPerson,
+} from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import validator from "validator";
+// import validator from "validator";
 import zxcvbn from "zxcvbn";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
-import Link from "next/link";
-import { Alert, SubmitButton, TextField } from "@/shared";
+import { SubmitButton, TextField } from "@/shared";
+import { TermsPanel } from "../components";
 
 const UserSchema = z
   .object({
@@ -30,14 +36,14 @@ const UserSchema = z
         new RegExp("^[a-zA-Z]+$"),
         "The last name must not contains any special characters"
       ),
-    address: z
-      .string()
-      .min(8, "The address must be at least 8 characters")
-      .max(100, "The address must be less than 100 characters"),
+    // address: z
+    //   .string()
+    //   .min(8, "The address must be at least 8 characters")
+    //   .max(100, "The address must be less than 100 characters"),
     email: z.string().email("You must enter a valid Email"),
-    mobile: z.string().refine(validator.isMobilePhone, {
-      message: "Please enter a valid phone number",
-    }),
+    // mobile: z.string().refine(validator.isMobilePhone, {
+    //   message: "Please enter a valid phone number",
+    // }),
     password: z
       .string()
       .min(8, "The password must be at least 8 characters")
@@ -45,7 +51,7 @@ const UserSchema = z
     confirmPassword: z.string(),
     accept: z.literal(true, {
       errorMap: () => ({
-        message: "You should accept terms and conditions before continuing",
+      message: "You should accept terms and conditions before continuing",
       }),
     }),
   })
@@ -66,14 +72,14 @@ const Page = () => {
     formState: { errors, isSubmitting },
   } = useForm<UserSchemaType>({ resolver: zodResolver(UserSchema) });
   const onSubmit: SubmitHandler<UserSchemaType> = async (formData) => {
-    console.log('Submit ...')
+    console.log("Submit ...");
     try {
       const { data } = await axios.post("/api/auth/signup", {
         ...formData,
       });
       reset();
       toast.success(data.message);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
@@ -114,7 +120,7 @@ const Page = () => {
           placeholder="Address"
           icon={<MdBusiness />}
           register={register}
-          errors={errors.address?.message}
+          errors=""
           disabled={isSubmitting}
         ></TextField>
         <TextField
@@ -132,7 +138,7 @@ const Page = () => {
           placeholder="Mobile number"
           icon={<MdOutlinePhoneAndroid />}
           register={register}
-          errors={errors.mobile?.message}
+          errors=""
           disabled={isSubmitting}
         ></TextField>
         <TextField
@@ -147,22 +153,35 @@ const Page = () => {
           autoComplete="off"
           defaultValue=""
         ></TextField>
-        {watch().password && watch().password.length > 0 && (
-          <div className="grid grid-cols-6 mb-[15px] ml-[10px]">
-            {Array.from(Array(5).keys()).map((item, index) => (
-              <div
-                key={index}
-                className={`bg-[${
-                  passwordScore <= 2
-                    ? "#f00"
-                    : passwordScore < 4
-                    ? "#ff0"
-                    : "#0f0"
-                }] h-[8px] rounded-[5px] mx-[5px] box-border`}
-              ></div>
-            ))}
-          </div>
-        )}
+        {watch().password &&
+          watch().password.length > 0 &&
+          !errors.password?.message && (
+            <div className="grid items-center grid-cols-6 mb-[15px] ml-[10px] m-[-10px]">
+              <div>
+                {passwordScore <= 2 ? (
+                  <span className="text-[#f00] font-bold">Weak</span>
+                ) : passwordScore < 4 ? (
+                  <span className="text-[#ff0] font-bold">Medium</span>
+                ) : (
+                  <span className="text-[#0f0] font-bold">Strong</span>
+                )}
+              </div>
+              {Array.from(Array(4).keys()).map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    backgroundColor:
+                      passwordScore <= 2
+                        ? "#f00"
+                        : passwordScore < 4
+                        ? "#ff0"
+                        : "#0f0",
+                  }}
+                  className={`h-[8px] rounded-[5px] mx-[5px] box-border`}
+                ></div>
+              ))}
+            </div>
+          )}
         <TextField
           name="confirmPassword"
           label="Confirm Password"
@@ -175,20 +194,7 @@ const Page = () => {
           autoComplete="off"
         ></TextField>
         <br />
-        <div className="text-left mb-[20px]">
-          <input type="checkbox" id="accept" {...register("accept")} />
-          <label htmlFor="id">
-            I accept &nbsp;
-            <Link href="/terms" className="no-underline">
-              terms and conditions
-            </Link>
-          </label>
-          {errors.accept && (
-            <Alert severity="error" className="mt-[2px]">
-              {errors.accept?.message}
-            </Alert>
-          )}
-        </div>
+        <TermsPanel register={register} error={errors.accept?.message} />
         <SubmitButton
           isLoading={isSubmitting}
           loadingIndicator={<ScaleLoader color="#36d7b7" />}

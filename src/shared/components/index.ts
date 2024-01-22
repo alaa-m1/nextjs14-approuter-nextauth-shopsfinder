@@ -10,3 +10,4 @@ export * from "./Alert";
 export * from "./SocialButton";
 export * from "./TextField";
 export * from "./SubmitButton";
+export * from "./Dialog";
