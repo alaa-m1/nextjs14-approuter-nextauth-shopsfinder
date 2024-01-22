@@ -14,7 +14,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         fullWidth={open}
         onCloseSideBar={(v) => setOpen(v)}
       />
-      <div className="bg-gray-100 flex-[8] p-4 rounded min-h-[300px]">
+      <div className="bg-gray-100 flex-[8] p-4 rounded min-h-[300px] overflow-auto">
         {children}
       </div>
     </div>
