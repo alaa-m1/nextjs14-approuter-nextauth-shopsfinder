@@ -7,6 +7,7 @@ type SubmitButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
+  disabled?: boolean;
   isLoading: boolean;
   loadingIndicator?: React.ReactNode;
   label?: string;
@@ -18,21 +19,22 @@ export const SubmitButton = ({
   variant = "contained",
   isLoading,
   loadingIndicator,
+  disabled,
   ...props
 }: SubmitButtonProps) => {
   const hasBg = useMemo(() => variant === "contained", [variant]);
   return (
     <button
       aria-disabled={isLoading}
-      disabled={isLoading}
+      disabled={isLoading || disabled}
       {...props}
       type="submit"
       className={classNames(
         "text-white overflow-hidden h-[40px] w-auto max-w-[200px] focus:ring-2  focus:ring-blue-500 font-medium rounded-md text-sm px-5 py-1 text-center  transition-all duration-300 inline-flex items-center",
         { "bg-blue-600": hasBg },
         { "ring-1 ring-blue-800": !hasBg },
-        { "hover:shadow-md": !isLoading },
-        { "hover:bg-blue-800": hasBg && !isLoading }
+        { "hover:shadow-md": !isLoading && !disabled },
+        { "hover:bg-blue-800": hasBg && !isLoading && !disabled }
       )}
     >
       <div className="flex place-items-center [&_svg]:size-1">
