@@ -1,12 +1,12 @@
 "use client";
 import { Alert, Dialog } from "@/shared";
 import React, { useState } from "react";
+import { UserSchemaType } from "../signup/page";
+import { UseFormRegister } from "react-hook-form";
 
 type TermsPanelProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: string | undefined;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: any;
+  register: UseFormRegister<UserSchemaType>;
 };
 export const TermsPanel = ({ error, register }: TermsPanelProps) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -17,9 +17,9 @@ export const TermsPanel = ({ error, register }: TermsPanelProps) => {
       <div className="text-left mb-[20px]">
         <input type="checkbox" id="accept" {...register("accept")} />
         <label htmlFor="id">
-          I accept &nbsp;
+          {" I accept * "}&nbsp;
           <button type="button" onClick={handleOpenDialog}>
-            terms and conditions
+            <span className="font-bold">{"terms and conditions"}</span>
           </button>
         </label>
         {error && (

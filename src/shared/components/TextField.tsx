@@ -8,15 +8,17 @@ import React, {
 import { MdClose } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Alert } from "./Alert";
+import { UseFormRegister } from "react-hook-form";
 
-type TextFieldProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
+type TextFieldProps = Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  "name"
 > & {
+  name: string;
   label: string;
   icon: JSX.Element;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: any;
+  register: UseFormRegister<any>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   errors: any;
 };
@@ -27,6 +29,7 @@ export const TextField = ({
   register,
   errors,
   type,
+  required,
   ...props
 }: TextFieldProps) => {
   const id = useId();
@@ -41,13 +44,12 @@ export const TextField = ({
           {icon}
         </div>
         <label htmlFor={`input-${id}`} className="ml-[5px]">
-          {label}
+          {label}&nbsp;{required && "*"}
         </label>
         <br />
         <input
           id={`input-${id}`}
           type={showPassword ? "text" : type}
-          name={name}
           {...register(name)}
           {...props}
           style={{ borderColor: errors ? "#d32f2f" : "#ccc" }}
@@ -55,9 +57,8 @@ export const TextField = ({
         />
         {(name === "password" || name === "confirmPassword") && (
           <div
-            className={`absolute bottom-3 right-[${
-              errors ? "35px" : "10px"
-            }] [&_svg]:p-0 [&_svg]:mb-[3px] [&_svg]:ml-[5px]`}
+            style={{ right: errors ? "35px" : "10px" }}
+            className={`absolute bottom-3 [&_svg]:p-0 [&_svg]:mb-[3px] [&_svg]:ml-[5px]`}
           >
             {showPassword ? (
               <FaEye onClick={handleOnShowIconClick} />
