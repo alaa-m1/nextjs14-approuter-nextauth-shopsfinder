@@ -14,6 +14,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ScaleLoader } from "react-spinners";
 import { SubmitButton, TextField } from "@/shared";
 import { GenderSelect, TermsPanel } from "../components";
+import validator from "validator";
 
 const UserSchema = z
   .object({
@@ -34,10 +35,15 @@ const UserSchema = z
         "The last name must not contains any special characters"
       ),
     email: z.string().email("You must enter a valid Email"),
-    mobile: z.string(),
-    // .refine(validator.isMobilePhone, {
-    //   message: "Please enter a valid phone number",
-    // }),
+    mobile: z.string().refine(
+      (value) => {
+        if (value) return validator.isMobilePhone(value);
+        return true;
+      },
+      {
+        message: "Please enter a valid phone number",
+      }
+    ),
     address: z.string(),
     gender: z.union([
       z.literal("male"),
@@ -136,7 +142,7 @@ const Page = () => {
           placeholder="Mobile number"
           icon={<MdOutlinePhoneAndroid />}
           register={register}
-          errors=""
+          errors={errors.mobile?.message}
           disabled={isSubmitting}
         ></TextField>
         <TextField
