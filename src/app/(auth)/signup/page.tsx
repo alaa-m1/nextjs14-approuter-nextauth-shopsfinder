@@ -14,7 +14,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { ScaleLoader } from "react-spinners";
 import { SubmitButton, TextField } from "@/shared";
 import { GenderSelect, TermsPanel } from "../components";
+import { toast } from "react-toastify";
 import validator from "validator";
+import { createNewUser } from "@/app/actions";
 
 const UserSchema = z
   .object({
@@ -74,10 +76,21 @@ const Page = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<UserSchemaType>({ resolver: zodResolver(UserSchema) });
+  const [loading, setLoading] = useState(true);
+  useEffect(() => setLoading(false), []);
+
   const onSubmit: SubmitHandler<UserSchemaType> = async (formData) => {
-    console.log("Submit formData=", formData);
+    const response = await createNewUser(formData);
+
+    if ([400, 500].includes(response.status)) {
+      toast.error(response.message);
+    } else {
+      toast.success(response.message);
+      reset();
+    }
   };
 
   const { password } = watch();
@@ -200,6 +213,7 @@ const Page = () => {
         <br />
         <TermsPanel register={register} error={errors.accept?.message} />
         <SubmitButton
+          disabled={loading}
           isLoading={isSubmitting}
           loadingIndicator={<ScaleLoader color="#36d7b7" />}
           variant="contained"
