@@ -10,7 +10,7 @@ export const AuthFooter = () => {
       <div className="w-auto size-5 text-black text-ellipsis overflow-hidden ">
         If you already have an account &nbsp;
       </div>
-      <LinkButton href="/signin" className="size-[15px]">
+      <LinkButton href="/signin" className="size-[15px] font-bold">
         Sign In
       </LinkButton>
     </div>
@@ -19,7 +19,7 @@ export const AuthFooter = () => {
       <div className="w-auto size-5 text-black text-ellipsis overflow-hidden ">
         If you do not have an account &nbsp;
       </div>
-      <LinkButton href="/signup" className="size-[15px]">
+      <LinkButton href="/signup" className="size-[15px] font-bold">
         Sign Up
       </LinkButton>
     </div>
