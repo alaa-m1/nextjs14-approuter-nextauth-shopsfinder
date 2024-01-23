@@ -3,6 +3,9 @@ import "../app/globals.css";
 import { Footer, Header } from "@/shared";
 import { Session } from "next-auth";
 import { NextAuthProvider } from "@/shared/appContainers";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function RootLayout({
   children,
   modal,
@@ -27,6 +30,18 @@ export default function RootLayout({
             <Footer />
           </NextAuthProvider>
         </div>
+        <ToastContainer
+          position="top-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </body>
     </html>
   );
