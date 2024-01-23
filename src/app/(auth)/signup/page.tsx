@@ -9,14 +9,11 @@ import {
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import validator from "validator";
 import zxcvbn from "zxcvbn";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import axios from "axios";
+import React, { useEffect, useMemo, useState } from "react";
 import { ScaleLoader } from "react-spinners";
 import { SubmitButton, TextField } from "@/shared";
-import { TermsPanel } from "../components";
+import { GenderSelect, TermsPanel } from "../components";
 
 const UserSchema = z
   .object({
@@ -25,7 +22,7 @@ const UserSchema = z
       .min(2, "The first name must be at least 2 characters")
       .max(32, "The first name must be less than 32 characters")
       .regex(
-        new RegExp("^[a-zA-Z]+$"),
+        /^[a-zA-Z]+$/,
         "The first name must not contains any special characters"
       ),
     lastName: z
@@ -33,17 +30,20 @@ const UserSchema = z
       .min(2, "The last name must be at least 2 characters")
       .max(32, "The last name must be less than 32 characters")
       .regex(
-        new RegExp("^[a-zA-Z]+$"),
+        /^[a-zA-Z]+$/,
         "The last name must not contains any special characters"
       ),
-    // address: z
-    //   .string()
-    //   .min(8, "The address must be at least 8 characters")
-    //   .max(100, "The address must be less than 100 characters"),
     email: z.string().email("You must enter a valid Email"),
-    // mobile: z.string().refine(validator.isMobilePhone, {
+    mobile: z.string(),
+    // .refine(validator.isMobilePhone, {
     //   message: "Please enter a valid phone number",
     // }),
+    address: z.string(),
+    gender: z.union([
+      z.literal("male"),
+      z.literal("female"),
+      z.literal("custom"),
+    ]),
     password: z
       .string()
       .min(8, "The password must be at least 8 characters")
@@ -51,7 +51,7 @@ const UserSchema = z
     confirmPassword: z.string(),
     accept: z.literal(true, {
       errorMap: () => ({
-      message: "You should accept terms and conditions before continuing",
+        message: "You should accept terms and conditions before continuing",
       }),
     }),
   })
@@ -60,7 +60,7 @@ const UserSchema = z
     path: ["confirmPassword"],
   });
 
-type UserSchemaType = z.infer<typeof UserSchema>;
+export type UserSchemaType = z.infer<typeof UserSchema>;
 
 const Page = () => {
   const [passwordScore, setPasswordScore] = useState(0);
@@ -68,30 +68,34 @@ const Page = () => {
     register,
     handleSubmit,
     watch,
-    reset,
     formState: { errors, isSubmitting },
   } = useForm<UserSchemaType>({ resolver: zodResolver(UserSchema) });
   const onSubmit: SubmitHandler<UserSchemaType> = async (formData) => {
-    console.log("Submit ...");
-    try {
-      const { data } = await axios.post("/api/auth/signup", {
-        ...formData,
-      });
-      reset();
-      toast.success(data.message);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      toast.error(error.response.data.message);
-    }
+    console.log("Submit formData=", formData);
   };
 
   const { password } = watch();
   useEffect(() => {
     const calculatePasswordStrengthScore = () => {
-      return zxcvbn(password ? password : "").score;
+      return zxcvbn(password ?? "").score;
     };
     setPasswordScore(calculatePasswordStrengthScore());
   }, [password]);
+
+  const passwordScoreColor = useMemo(() => {
+    if (passwordScore <= 2) return "#f00";
+    if (passwordScore < 4) return "#ff0";
+    return "#0f0";
+  }, [passwordScore]);
+
+  const PasswordScoreLabel = useMemo(() => {
+    if (passwordScore <= 2)
+      return <span className="text-[#f00] font-bold">Weak</span>;
+    if (passwordScore < 4)
+      return <span className="text-[#ff0] font-bold">Medium</span>;
+    return <span className="text-[#0f0] font-bold">Strong</span>;
+  }, [passwordScore]);
+
   return (
     <div className="w-full">
       <h4 className="text-gray-800 font-bold text-center">Sign Up</h4>
@@ -104,6 +108,7 @@ const Page = () => {
           register={register}
           errors={errors.firstName?.message}
           disabled={isSubmitting}
+          required
         ></TextField>
         <TextField
           name="lastName"
@@ -113,15 +118,7 @@ const Page = () => {
           register={register}
           errors={errors.lastName?.message}
           disabled={isSubmitting}
-        ></TextField>
-        <TextField
-          name="address"
-          label="Address"
-          placeholder="Address"
-          icon={<MdBusiness />}
-          register={register}
-          errors=""
-          disabled={isSubmitting}
+          required
         ></TextField>
         <TextField
           name="email"
@@ -131,6 +128,7 @@ const Page = () => {
           register={register}
           errors={errors.email?.message}
           disabled={isSubmitting}
+          required
         ></TextField>
         <TextField
           name="mobile"
@@ -142,6 +140,17 @@ const Page = () => {
           disabled={isSubmitting}
         ></TextField>
         <TextField
+          name="address"
+          label="Address"
+          placeholder="Address"
+          icon={<MdBusiness />}
+          register={register}
+          errors=""
+          disabled={isSubmitting}
+        ></TextField>
+        <GenderSelect label="Gender" register={register} />
+
+        <TextField
           name="password"
           label="Password"
           placeholder=""
@@ -151,31 +160,19 @@ const Page = () => {
           errors={errors.password?.message}
           disabled={isSubmitting}
           autoComplete="off"
+          required
           defaultValue=""
         ></TextField>
         {watch().password &&
           watch().password.length > 0 &&
           !errors.password?.message && (
             <div className="grid items-center grid-cols-6 mb-[15px] ml-[10px] m-[-10px]">
-              <div>
-                {passwordScore <= 2 ? (
-                  <span className="text-[#f00] font-bold">Weak</span>
-                ) : passwordScore < 4 ? (
-                  <span className="text-[#ff0] font-bold">Medium</span>
-                ) : (
-                  <span className="text-[#0f0] font-bold">Strong</span>
-                )}
-              </div>
-              {Array.from(Array(4).keys()).map((item, index) => (
+              <div>{PasswordScoreLabel}</div>
+              {Array.from(Array(4).keys()).map((_, index) => (
                 <div
                   key={index}
                   style={{
-                    backgroundColor:
-                      passwordScore <= 2
-                        ? "#f00"
-                        : passwordScore < 4
-                        ? "#ff0"
-                        : "#0f0",
+                    backgroundColor: passwordScoreColor,
                   }}
                   className={`h-[8px] rounded-[5px] mx-[5px] box-border`}
                 ></div>
@@ -192,6 +189,7 @@ const Page = () => {
           errors={errors.confirmPassword?.message}
           disabled={isSubmitting}
           autoComplete="off"
+          required
         ></TextField>
         <br />
         <TermsPanel register={register} error={errors.accept?.message} />
