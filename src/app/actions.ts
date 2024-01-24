@@ -4,6 +4,9 @@ import User from "@/utils/mongoLib/models/User";
 import bcrypt from "bcryptjs";
 import validator from "validator";
 import { UserSchemaType } from "./(auth)/signup/page";
+import { createActivationJWT } from "@/utils/authTokens";
+import sendCustomEmail from "@/utils/mailing/sendEmail";
+import { activateEmailTemplate } from "@/emailTemplate/activation";
 
 
 export async function createNewUser(formData: UserSchemaType) {
@@ -40,7 +43,21 @@ export async function createNewUser(formData: UserSchemaType) {
       password: cryptedPassword,
     });
     await newUser.save();
-    return { message: "Registration success. Please check your email for the activation message. (Under construction...)", status: 200 }
+
+    const activation_jwt = createActivationJWT({
+      id: newUser._id.toString(),
+    });
+
+    const url = `${process.env.BASE_URL}/activate/${activation_jwt}`;
+    await sendCustomEmail(
+      newUser.email,
+      newUser.name,
+      url,
+      "Activate your Shops Finder account",
+      activateEmailTemplate
+    );
+
+    return { message: "Registration success. Please check your email for the activation message.", status: 200 }
 
   } catch (error) {
     return { message: (error as Error).message, status: 500 }
