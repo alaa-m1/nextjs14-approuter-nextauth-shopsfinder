@@ -59,7 +59,7 @@ const UserSchema = z
     confirmPassword: z.string(),
     accept: z.literal(true, {
       errorMap: () => ({
-        message: "You should accept terms and conditions before continuing",
+        message: "You should accept terms and conditions",
       }),
     }),
   })
