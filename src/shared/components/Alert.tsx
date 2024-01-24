@@ -22,7 +22,7 @@ export const Alert = ({ severity, subLabel, children }: AlertProps) => {
   return (
     <div style={{backgroundColor:alertColor}} className={`py-2 lg:px-2 w-[95%] rounded-lg`}>
       <div style={{backgroundColor:alertColor}}
-        className={`px-2 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex`}
+        className={`px-2 items-center text-indigo-100 leading-none lg:rounded-full flex`}
         role="alert"
       >
         {subLabel && (
@@ -32,7 +32,7 @@ export const Alert = ({ severity, subLabel, children }: AlertProps) => {
             {subLabel}
           </span>
         )}
-        <div className="text-sm">{children}</div>
+        {children}
       </div>
     </div>
   );
