@@ -20,14 +20,9 @@ export default async function sendCustomEmail(
   const transporter = nodemailer.createTransport({
     port: Number(SMTP_PORT),
     host: SMTP_HOST,
-    secure:true,
     auth: {
       user: SMTP_EMAIL,
       pass: SMTP_PASSWORD,
-    },
-    tls: {
-      // do not fail on invalid certs
-      rejectUnauthorized: false,
     },
   });
 
@@ -38,14 +33,6 @@ export default async function sendCustomEmail(
   };
   const html = templateData(replacementVariables);
 
-  // verify connection configuration
-  transporter.verify(function (error) {
-    if (error) {
-      console.log(error);
-    }else {
-      console.log('Server is ready to take our messages');
-}
-  });
 
   // send the activation email
   const options = {
