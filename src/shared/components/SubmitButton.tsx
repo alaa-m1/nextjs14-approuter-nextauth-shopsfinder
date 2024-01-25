@@ -1,6 +1,6 @@
 "use client";
 import classNames from "classnames";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { RiseLoader } from "react-spinners";
 
 type SubmitButtonProps = React.DetailedHTMLProps<
@@ -22,28 +22,32 @@ export const SubmitButton = ({
   disabled,
   ...props
 }: SubmitButtonProps) => {
+
+  const [pageLoading, setPageLoading] = useState(true);
+  useEffect(() => setPageLoading(false), []);
+  
   const hasBg = useMemo(() => variant === "contained", [variant]);
   return (
     <button
       aria-disabled={isLoading}
-      disabled={isLoading || disabled}
+      disabled={isLoading || disabled || pageLoading}
       {...props}
       type="submit"
       className={classNames(
-        "text-white overflow-hidden h-[40px] w-auto max-w-[200px] focus:ring-2  focus:ring-blue-500 font-medium rounded-md text-sm px-5 py-1 text-center  transition-all duration-300 inline-flex items-center",
+        "text-white overflow-hidden h-[40px] w-[200px] max-w-[300px] focus:ring-2  focus:ring-blue-500 font-medium rounded-md text-sm px-5 py-1 text-center  transition-all duration-300 inline-flex items-center",
         { "bg-blue-600": hasBg },
         { "ring-1 ring-blue-800": !hasBg },
-        { "hover:shadow-md": !isLoading && !disabled },
-        { "hover:bg-blue-800": hasBg && !isLoading && !disabled }
+        { "hover:shadow-md": !isLoading && !disabled && !pageLoading},
+        { "hover:bg-blue-800": hasBg && !isLoading && !disabled && !pageLoading}
       )}
     >
-      <div className="flex place-items-center [&_svg]:size-1">
+      <div className="flex w-full justify-center [&_svg]:size-1">
         {isLoading && (
           <div>
             {loadingIndicator ?? <RiseLoader size="8" color="#36d7b7" />}
           </div>
         )}
-        <div className="text-gray-800 pl-1 ">{label ? label : "Submit"}</div>
+        <div className="text-gray-800 pl-1 flex place-items-center">{label ? label : "Submit"}</div>
       </div>
     </button>
   );
