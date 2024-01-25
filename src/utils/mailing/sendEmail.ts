@@ -29,17 +29,31 @@ export default async function sendCustomEmail(
   const html = templateData(replacementVariables);
 
 
-  // send the activation email
+  // verify the connection
+  await new Promise((resolve, reject) => {
+    transporter.verify((error, success) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(success);
+      }
+    });
+  });
+
+  //   send the activation email
   const options = {
     from: MAILING_EMAIL,
     to,
     subject,
     html,
   };
-
-  transporter.sendMail(options, (error) => {
-    if (error) {
-      throw new Error((error as Error).message);
-    }
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(options, (error, info) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(info);
+      }
+    });
   });
 }
