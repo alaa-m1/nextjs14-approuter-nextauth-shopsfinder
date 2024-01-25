@@ -1,11 +1,14 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdEmail, MdLock } from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ScaleLoader } from "react-spinners";
 import { LinkButton, SubmitButton, TextField } from "@/shared";
+import { toast } from "react-toastify";
+import { SignInResponse, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const UserSchema = z.object({
   email: z.string().email("You must enter a valid Email"),
@@ -18,12 +21,23 @@ const Page = () => {
   const {
     register,
     handleSubmit,
-    // watch,
-    // reset,
     formState: { errors, isSubmitting },
   } = useForm<UserSchemaType>({ resolver: zodResolver(UserSchema) });
-  const onSubmit: SubmitHandler<UserSchemaType> = async () => {
-    ("Submit ....");
+
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => setLoading(false), []);
+  const onSubmit: SubmitHandler<UserSchemaType> = async (formData) => {
+    const res: SignInResponse | undefined = await signIn("credentials", {
+      redirect: false,
+      email: formData.email,
+      password: formData.password,
+    });
+    if (res?.error) {
+      toast.error(res.error);
+    } else {
+      return router.push("/");
+    }
   };
 
   return (
@@ -41,7 +55,6 @@ const Page = () => {
           register={register}
           errors={errors.email?.message}
           disabled={isSubmitting}
-          autoComplete="off"
         ></TextField>
         <TextField
           name="password"
@@ -56,8 +69,9 @@ const Page = () => {
           defaultValue=""
         ></TextField>
         <SubmitButton
+          disabled={loading}
           isLoading={isSubmitting}
-          loadingIndicator={<ScaleLoader color="#36d7b7" height={20}/>}
+          loadingIndicator={<ScaleLoader color="#36d7b7" height={20} />}
           variant="contained"
           color="primary"
           type="submit"

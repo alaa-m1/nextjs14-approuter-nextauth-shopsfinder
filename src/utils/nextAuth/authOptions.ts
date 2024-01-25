@@ -2,10 +2,14 @@ import { Account, NextAuthOptions, Profile, Session, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import Auth0Provider from "next-auth/providers/auth0";
+import CredentialsProvider from "next-auth/providers/credentials"
 import clientPromise from "../mongoLib/mongodb";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { JWT } from "next-auth/jwt";
 import { Adapter } from "next-auth/adapters";
+import connectMongoDB from "../mongoLib/connectMongoDB";
+import { default as UserModel } from "@/utils/mongoLib/models/User";
+import bcrypt from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
     adapter: MongoDBAdapter(clientPromise),
@@ -23,6 +27,31 @@ export const authOptions: NextAuthOptions = {
             clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
             issuer: process.env.AUTH0_ISSUER as string,
         }),
+        CredentialsProvider({
+            name: "Credentials",
+            credentials: {
+                email: { label: "Email", type: "text", placeholder: "example@emailprovider.com", },
+                password: { label: "Password", type: "password" }
+            },
+            async authorize(credentials) {
+                await connectMongoDB();
+                const user = await UserModel.findOne({ email: credentials?.email });
+                if (!user) {
+                    throw new Error("Email is not existed");
+                }
+                const checkPassword = await bcrypt.compare(
+                    credentials!.password,
+                    user.password
+                );
+                if (!checkPassword) {
+                    throw new Error("Password is not correct");
+                }
+                if (!user.accountActivated) {
+                    throw new Error("Your account has not been activated, please check your email for the activation link");
+                }
+                return user;
+            },
+        })
     ],
     //  Not providing any secret or NEXTAUTH_SECRET will throw an error in production
     secret: process.env.NEXTAUTH_SECRET,
@@ -64,5 +93,8 @@ export const authOptions: NextAuthOptions = {
             }
             return token;
         },
+    },
+    pages: {
+        signIn: "/signin",
     },
 };
