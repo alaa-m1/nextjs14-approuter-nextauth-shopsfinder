@@ -48,7 +48,7 @@ export async function createNewUser(formData: UserSchemaType) {
       id: newUser._id.toString(),
     });
 
-    const url = `${process.env.BASE_URL}/activate/${activation_jwt}`;
+    const url = `${process.env.NEXTAUTH_URL}/activate/${activation_jwt}`;
     await sendCustomEmail(
       newUser.email,
       newUser.name,

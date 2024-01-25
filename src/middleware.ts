@@ -13,6 +13,6 @@ export async function middleware(request: NextRequest) {
   }
   if (pathname === "/dashboard") {
     if (!token)
-      return NextResponse.redirect(`${process.env.BASE_URL}/signin`);
+      return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/signin`);
   }
 }

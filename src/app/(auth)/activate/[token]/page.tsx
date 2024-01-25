@@ -14,7 +14,7 @@ const Page = async ({ params }: ActivateProps) => {
   );
   return (
     <>
-      {response.status && (
+      {response.message && (
         <div className="flex flex-col items-center justify-center gap-5 w-[500px] mt-[50px] mx-auto shadow-md m-4 p-4">
           {response.status === 500 && (
             <Alert severity="error">{messageItem}</Alert>
