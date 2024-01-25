@@ -28,24 +28,32 @@ export default async function sendCustomEmail(
   };
   const html = templateData(replacementVariables);
 
-  // verify connection configuration
-  transporter.verify(function (error) {
-    if (error) {
-      console.log(error);
-    }
+
+  // verify the connection configuration
+  await new Promise((resolve, reject) => {
+    transporter.verify((error, success) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(success);
+      }
+    });
   });
 
-  // send the activation email
   const options = {
     from: MAILING_EMAIL,
     to,
     subject,
     html,
   };
-
-  transporter.sendMail(options, (error) => {
-    if (error) {
-      throw new Error((error as Error).message);
-    }
+  // send the activation email
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(options, (error, info) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(info);
+      }
+    });
   });
 }
