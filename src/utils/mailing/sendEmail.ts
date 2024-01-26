@@ -4,7 +4,7 @@ import * as handlebars from "handlebars";
 export default async function sendCustomEmail(
   to: string,
   name: string,
-  activationLink: string,
+  link: string,
   subject: string,
   template: string
 ) {
@@ -22,9 +22,12 @@ export default async function sendCustomEmail(
   });
 
   const templateData = handlebars.compile(template);
+  const date=new Date()
+  const copyrights=`©${date.getFullYear()} ShopsFinder`
   const replacementVariables = {
     user_name: name,
-    activation_link: activationLink,
+    link,
+    copyrights
   };
   const html = templateData(replacementVariables);
 
