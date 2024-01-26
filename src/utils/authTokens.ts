@@ -5,3 +5,9 @@ export const createActivationJWT = (payload: string | object) => {
         expiresIn: '3d'
     });
 }
+
+export const createResetJWT = (payload: string | object) => {
+    return jwt.sign(payload, process.env.RESET_PASSWORD_TOKEN_SECRET!, {
+        expiresIn: '5H'
+    });
+}

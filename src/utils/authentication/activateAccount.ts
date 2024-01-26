@@ -15,7 +15,7 @@ export async function activateAccount(token: string) {
 
         const user = await User.findById(decodedToken.id);
         if (!user) {
-            throw new Error("Email is not existed, go to the signup page to register a new user");
+            return { message: "Email is not existed, go to the signup page to register a new user", status: 400 }
         }
         if (user.accountActivated) {
             return { message: "Your account has already been verified", status: 400 }
