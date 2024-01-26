@@ -27,4 +27,4 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Production Link
-Production link: [https://shops-finder-nextjs-i1ocia3wq-alaa-m1.vercel.app/](https://shops-finder-nextjs-i1ocia3wq-alaa-m1.vercel.app/).
+Production link: [https://shops-finder-nextjs.vercel.app/](https://shops-finder-nextjs.vercel.app/).
