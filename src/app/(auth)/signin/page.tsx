@@ -15,17 +15,17 @@ const UserSchema = z.object({
   password: z.string(),
 });
 
-type UserSchemaType = z.infer<typeof UserSchema>;
+type UserSignInSchemaType = z.infer<typeof UserSchema>;
 
 const Page = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<UserSchemaType>({ resolver: zodResolver(UserSchema) });
+  } = useForm<UserSignInSchemaType>({ resolver: zodResolver(UserSchema) });
 
   const router = useRouter();
-  const onSubmit: SubmitHandler<UserSchemaType> = async (formData) => {
+  const onSubmit: SubmitHandler<UserSignInSchemaType> = async (formData) => {
     const res: SignInResponse | undefined = await signIn("credentials", {
       redirect: false,
       email: formData.email,
@@ -70,9 +70,9 @@ const Page = () => {
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"
-        >
-          Sign In
-        </SubmitButton>
+          label="Sign In"
+          
+        />
       </form>
       <div className="[&_a]:no-underline">
         <LinkButton href="/forgetpassword" className="size-[15px]">
