@@ -5,7 +5,7 @@ import React from "react";
 
 export const AuthFooter = () => {
   const pathName = usePathname();
-  return pathName === "/signup" ? (
+  return pathName !== "/signin" ? (
     <div className="w-full flex flex-row justify-left [#_button]:hover:bg-transparent">
       <div className="w-auto size-5 text-black text-ellipsis overflow-hidden ">
         If you already have an account &nbsp;
