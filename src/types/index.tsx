@@ -1,11 +1,11 @@
-
 export type LinkInfo = {
   label: string;
   path: string;
   component?: string;
+  protected: boolean;
 };
 
-export type SideBarLinkInfo = LinkInfo & {
+export type SideBarLinkInfo = Omit<LinkInfo, "protected"> & {
   component?: string;
 };
 
@@ -30,13 +30,12 @@ export type CategoriesRes = Array<string>;
 export type Category = { label: string; id: string };
 export type Categories = Array<Category>;
 
-
 export type Provider = {
-  id: string,
-  name: string,
-  type: string,
-  signinUrl: string,
-  callbackUrl: string
+  id: string;
+  name: string;
+  type: string;
+  signinUrl: string;
+  callbackUrl: string;
 };
 
-export type Providers=Array<Provider>
+export type Providers = Array<Provider>;

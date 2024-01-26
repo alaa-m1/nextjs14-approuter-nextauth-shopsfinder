@@ -4,11 +4,11 @@ import User from "@/utils/mongoLib/models/User";
 import bcrypt from "bcryptjs";
 import validator from "validator";
 import { UserSchemaType } from "./(auth)/signup/page";
-import { createActivationJWT, createResetJWT } from "@/utils/authTokens";
 import sendCustomEmail from "@/utils/mailing/sendEmail";
 import { activateEmailTemplate } from "@/emailTemplate/activation";
 import { resetPasswordTemplate } from "@/emailTemplate/reserPassword";
 import jwt from "jsonwebtoken";
+import { createActivationJWT, createResetJWT } from "@/utils/authentication/authTokens";
 
 export async function createNewUser(formData: UserSchemaType) {
   try {

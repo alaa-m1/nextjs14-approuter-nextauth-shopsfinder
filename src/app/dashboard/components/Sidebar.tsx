@@ -1,8 +1,8 @@
 "uxs client";
 import React from "react";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import { StyledLink, sideBarLinksDetails } from "@/shared";
-import { LinkInfo } from "@/types";
+import { StyledLink, sideBarLinks } from "@/shared";
+import { SideBarLinkInfo } from "@/types";
 import { useSearchParams } from "next/navigation";
 
 type CustomDrawerProps = {
@@ -16,8 +16,8 @@ export const Sidebar = ({
   isSmallScreen,
   onCloseSideBar,
 }: CustomDrawerProps) => {
-  const drawerLinks: Array<LinkInfo> = [
-    ...sideBarLinksDetails,
+  const drawerLinks: Array<SideBarLinkInfo> = [
+    ...sideBarLinks,
     { path: "", label: "" },
   ];
   const searchParams = useSearchParams();
