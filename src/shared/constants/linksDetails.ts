@@ -1,14 +1,15 @@
 import { LinkInfo, SideBarLinkInfo } from "@/types";
 
 
-export const linksDetails: Array<LinkInfo> = [
-  { label: "Shops", path: "/" },
-  { label: "Products", path: "/products" },
-  { label: "Dashboard", path: "/dashboard" },
-  { label: "About", path: "/about" }
+export const NavLinks: Array<LinkInfo> = [
+  { label: "Home", path: "/" , protected:false},
+  { label: "Shops", path: "/shops", protected:true },
+  { label: "Products", path: "/products", protected:false },
+  { label: "Dashboard", path: "/dashboard", protected:true },
+  { label: "About", path: "/about", protected:false },
 ];
 
-export const sideBarLinksDetails: Array<SideBarLinkInfo> = [
+export const sideBarLinks: Array<SideBarLinkInfo> = [
   { label: "Profile", path: "profile" },
   { label: "settings", path: "settings" },
 ];

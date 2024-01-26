@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import logoSrc from "@/assets/images/phoenix.png";
-import { StyledLink, useSmallScreen, linksDetails as links } from "@/shared";
+import { StyledLink, useSmallScreen, NavLinks } from "@/shared";
 import Link from "next/link";
 import Image from "next/image";
 import { Drawer } from "./components";
@@ -35,11 +35,19 @@ export const Header = () => {
             </div>
             <div className="flex grow-[2] nav-bts">
               <div>
-                {links.map((link, index) => (
-                  <StyledLink key={index} href={link.path}>
-                    {link.label}
-                  </StyledLink>
-                ))}
+                {NavLinks.map((link, index) =>
+                  link.protected ? (
+                    currentUser ? (
+                      <StyledLink key={index} href={link.path}>
+                        {link.label}
+                      </StyledLink>
+                    ) : null
+                  ) : (
+                    <StyledLink key={index} href={link.path}>
+                      {link.label}
+                    </StyledLink>
+                  )
+                )}
               </div>
             </div>
             <div className="flex px-2 grow-0 nav-bts">
@@ -54,7 +62,7 @@ export const Header = () => {
           </>
         )}
         <Drawer
-          links={links}
+          links={NavLinks}
           currentUser={currentUser}
           isSmallScreen={isSmallScreen}
         />

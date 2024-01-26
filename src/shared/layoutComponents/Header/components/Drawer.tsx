@@ -15,7 +15,10 @@ type DrawerProps = {
 
 export const Drawer = ({ links, currentUser, isSmallScreen }: DrawerProps) => {
   const [open, setOpen] = useState(false);
-  const drawerLinks: Array<LinkInfo> = [...links, { path: "", label: "" }];
+  const drawerLinks: Array<LinkInfo> = [
+    ...links,
+    { path: "", label: "", protected: false },
+  ];
   return (
     <>
       {isSmallScreen ? (
@@ -63,7 +66,17 @@ export const Drawer = ({ links, currentUser, isSmallScreen }: DrawerProps) => {
               <div>
                 {drawerLinks.map((link, index) => {
                   if (link.label !== "")
-                    return (
+                    return link.protected ? (
+                      currentUser ? (
+                        <div
+                          className="my-2"
+                          key={index}
+                          onClick={() => setOpen(false)}
+                        >
+                          <StyledLink href={link.path}>{link.label}</StyledLink>
+                        </div>
+                      ) : null
+                    ) : (
                       <div
                         className="my-2"
                         key={index}
