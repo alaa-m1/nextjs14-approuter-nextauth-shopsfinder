@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MdEmail, MdLock } from "react-icons/md";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ScaleLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 import { LinkButton, SubmitButton, TextField } from "@/shared";
 import { toast } from "react-toastify";
 import { SignInResponse, signIn } from "next-auth/react";
@@ -15,19 +15,17 @@ const UserSchema = z.object({
   password: z.string(),
 });
 
-type UserSchemaType = z.infer<typeof UserSchema>;
+type UserSignInSchemaType = z.infer<typeof UserSchema>;
 
 const Page = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<UserSchemaType>({ resolver: zodResolver(UserSchema) });
+  } = useForm<UserSignInSchemaType>({ resolver: zodResolver(UserSchema) });
 
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  useEffect(() => setLoading(false), []);
-  const onSubmit: SubmitHandler<UserSchemaType> = async (formData) => {
+  const onSubmit: SubmitHandler<UserSignInSchemaType> = async (formData) => {
     const res: SignInResponse | undefined = await signIn("credentials", {
       redirect: false,
       email: formData.email,
@@ -69,16 +67,12 @@ const Page = () => {
           defaultValue=""
         ></TextField>
         <SubmitButton
-          disabled={loading}
           isLoading={isSubmitting}
-          loadingIndicator={<ScaleLoader color="#36d7b7" height={20} />}
+          loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"
-          color="primary"
-          type="submit"
-          className="w-[50%] mx-auto"
-        >
-          Sign In
-        </SubmitButton>
+          label="Sign In"
+          
+        />
       </form>
       <div className="[&_a]:no-underline">
         <LinkButton href="/forgetpassword" className="size-[15px]">

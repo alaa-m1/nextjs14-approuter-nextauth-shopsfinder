@@ -1,4 +1,4 @@
-export const activateEmailTemplate=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+export const resetPasswordTemplate=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
  <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@ export const activateEmailTemplate=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
   <meta name="x-apple-disable-message-reformatting">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="telephone=no" name="format-detection">
-  <title>Copy of (1) resetTemplate</title><!--[if (mso 16)]>
+  <title>resetTemplate</title><!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
     </style>
@@ -105,16 +105,16 @@ a[x-apple-data-detectors] {
                       <td align="center" style="padding:0;Margin:0;padding-top:20px;padding-bottom:30px"><h1 style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;font-size:30px;font-style:normal;font-weight:normal;color:#2C2C2C"><strong>Phoenix - Shops Finder</strong></h1></td>
                      </tr>
                      <tr>
-                      <td align="left" style="padding:0;Margin:0;padding-bottom:30px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">Dear {{user_name}},</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px"><br></p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">We welcome you as a new customer.</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">Thank you for using our services.</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px"><br></p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">Click on the activation link to activate your account.</p></td>
+                      <td align="left" style="padding:0;Margin:0;padding-bottom:30px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">Dear {{user_name}},</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px"><br></p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">Thank you for using our services.</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px"><br></p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">Click on the reset link to reset your password.</p></td>
                      </tr>
                      <tr>
                       <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="{{link}}" target="_blank" hidden>
 	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="{{link}}" 
-                style="height:41px; v-text-anchor:middle; width:209px" arcsize="50%" stroke="f"  fillcolor="#0b5394">
+                style="height:47px; v-text-anchor:middle; width:169px" arcsize="50%" stroke="f"  fillcolor="#0b5394">
 		<w:anchorlock></w:anchorlock>
-		<center style='color:#ffffff; font-family:Lexend, Arial, sans-serif; font-size:15px; font-weight:400; line-height:15px;  mso-text-raise:1px'>Activation Link</center>
+		<center style='color:#ffffff; font-family:Lexend, Arial, sans-serif; font-size:17px; font-weight:400; line-height:17px;  mso-text-raise:1px'>Reset Link</center>
 	</v:roundrect></a>
-<![endif]--><!--[if !mso]><!-- --><span class="msohide es-button-border" style="border-style:solid;border-color:#2CB543;background:#0b5394;border-width:0px;display:inline-block;border-radius:30px;width:auto;mso-hide:all"><a href="{{link}}" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:18px;display:inline-block;background:#0b5394;border-radius:30px;font-family:Lexend, Arial, sans-serif;font-weight:normal;font-style:normal;line-height:22px;width:auto;text-align:center;padding:10px 30px 10px 30px;mso-padding-alt:0;mso-border-alt:10px solid #0b5394">Activation Link</a></span><!--<![endif]--></td>
+<![endif]--><!--[if !mso]><!-- --><span class="msohide es-button-border" style="border-style:solid;border-color:#2CB543;background:#0b5394;border-width:0px;display:inline-block;border-radius:30px;width:auto;mso-hide:all"><a href="{{link}}" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:18px;display:inline-block;background:#0b5394;border-radius:30px;font-family:Lexend, Arial, sans-serif;font-weight:normal;font-style:normal;line-height:22px;width:auto;text-align:center;padding:10px 30px 10px 30px;mso-padding-alt:0;mso-border-alt:10px solid #0b5394">Reset Link</a></span><!--<![endif]--></td>
                      </tr>
                    </table></td>
                  </tr>
@@ -132,15 +132,15 @@ a[x-apple-data-detectors] {
                <table cellspacing="0" cellpadding="0" align="left" class="es-left" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
                  <tr>
                   <td class="es-m-p20b" align="left" style="padding:0;Margin:0;width:235px">
-                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="text-align:center;mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr>
-                      <td align="center" style="padding:0;Margin:0;padding-bottom:10px"><h1 style="text-align:center;Margin:0;line-height:22px;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;font-size:14px;font-style:normal;font-weight:normal;color:#2C2C2C">Developed by</h1></td>
+                      <td align="center" style="padding:0;Margin:0;padding-bottom:10px"><h1 style="text-align:center;Margin:0;line-height:17px;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;font-size:14px;font-style:normal;font-weight:normal;color:#2C2C2C">Developed by</h1></td>
                      </tr>
                      <tr>
-                      <td align="center" style="padding:0;Margin:0;padding-bottom:5px"><h1 style="text-align:center;Margin:0;line-height:22px;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;font-size:16px;font-style:normal;font-weight:normal;color:#2C2C2C"><strong>Alaa Mohammad</strong></h1><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Lexend, Arial, sans-serif;line-height:21px;color:#2C2C2C;font-size:14px">alaa85a@gmail.com</p></td>
+                      <td align="center" style="padding:0;Margin:0;padding-bottom:5px"><h1 style="text-align:center;Margin:0;line-height:19px;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;font-size:16px;font-style:normal;font-weight:normal;color:#2C2C2C"><strong>Alaa Mohammad</strong></h1><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;line-height:21px;color:#2C2C2C;font-size:14px">alaa85a@gmail.com</p></td>
                      </tr>
                      <tr>
-                      <td align="center" style="padding:0;Margin:0;padding-bottom:5px;padding-top:35px"><h1 style="text-align:center;Margin:0;line-height:17px;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;font-size:12px;font-style:normal;font-weight:normal;color:#2C2C2C">{{copyrights}}</h1></td>
+                      <td align="center" style="padding:0;Margin:0;padding-bottom:5px;padding-top:35px"><h1 style="text-align:center;Margin:0;line-height:17px;mso-line-height-rule:exactly;font-family:Montaga, Arial, serif;font-size:14px;font-style:normal;font-weight:normal;color:#2C2C2C">{{copyrights}}</h1></td>
                      </tr>
                    </table></td>
                  </tr>

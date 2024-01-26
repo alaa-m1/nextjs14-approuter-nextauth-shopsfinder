@@ -18,7 +18,7 @@ export const GenderSelect = ({
     <div className="p-0 my-[10px]">
       <div className={`relative w-[90%] text-left`}>
         <label htmlFor={"select-gender"} className="ml-[5px]">
-          {label}:&nbsp;{required && "*"}
+          {label}&nbsp;{required && "*"}
         </label>
         <br />
         <select

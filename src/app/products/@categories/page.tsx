@@ -1,8 +1,8 @@
 import _ from "lodash";
-import React from "react";
+import React, { Suspense } from "react";
 import { CategoriesPanel } from "./components";
 import { Categories } from "@/types";
-import { NoItemsFound } from "@/shared";
+import { LoadingSpinner, NoItemsFound } from "@/shared";
 import { getCategories } from "@/queries";
 
 const Page = async () => {
@@ -17,7 +17,9 @@ const Page = async () => {
       {categories.length === 0 ? (
         <NoItemsFound label="No Categories Found" />
       ) : (
-        <CategoriesPanel categories={categories} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <CategoriesPanel categories={categories} />
+        </Suspense>
       )}
     </>
   );
