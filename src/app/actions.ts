@@ -9,6 +9,7 @@ import { activateEmailTemplate } from "@/emailTemplate/activation";
 import { resetPasswordTemplate } from "@/emailTemplate/reserPassword";
 import jwt from "jsonwebtoken";
 import { createActivationJWT, createResetJWT } from "@/utils/authentication/authTokens";
+import { validateCsrfToken } from "@/utils/authentication/validateCsrfToken";
 
 export async function createNewUser(formData: UserSchemaType) {
   try {
@@ -102,8 +103,13 @@ export async function sendResetPasswordLink(formData: { email: string }) {
 type DecodedToken = {
   id: string;
 };
-export async function resetPassword(token: string, password: string) {
+export async function resetPassword(formData: FormData) {
   try {
+    const token=formData.get('userToken') as string
+    const password=formData.get('password') as string
+    if (!await validateCsrfToken()) {
+      return { message: "User cannot be verified", status: 400 }
+    }
     await connectMongoDB();
 
     const decodedToken = jwt.verify(

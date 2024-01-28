@@ -26,9 +26,10 @@ const UserSchema = z
 type ResetSchemaType = z.infer<typeof UserSchema>;
 
 type ResetPanelProps = {
-  token: string;
+  userToken: string;
+  csrfToken: string | undefined;
 };
-export const ResetPanel = ({ token }: ResetPanelProps) => {
+export const ResetPanel = ({ userToken,csrfToken }: ResetPanelProps) => {
   const [passwordScore, setPasswordScore] = useState(0);
   const {
     register,
@@ -38,8 +39,12 @@ export const ResetPanel = ({ token }: ResetPanelProps) => {
     formState: { errors, isSubmitting },
   } = useForm<ResetSchemaType>({ resolver: zodResolver(UserSchema) });
 
-  const onSubmit: SubmitHandler<ResetSchemaType> = async (formData) => {
-    const response = await resetPassword(token, formData.password);
+  const onSubmit: SubmitHandler<ResetSchemaType> = async (submitData) => {
+    const formData=new FormData()
+    formData.append("password", submitData.password)
+    formData.append("userToken", userToken)
+    formData.append("csrfToken", csrfToken!)
+    const response = await resetPassword(formData);
 
     if ([400, 500].includes(response.status)) {
       toast.error(response.message);
@@ -73,6 +78,7 @@ export const ResetPanel = ({ token }: ResetPanelProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{ margin: "5px 10px" }}>
+      <input type="hidden" name="csrfToken" defaultValue={"qweqweqweqwe"} />
       <TextField
         name="password"
         label="New Password"
@@ -82,7 +88,6 @@ export const ResetPanel = ({ token }: ResetPanelProps) => {
         register={register}
         errors={errors.password?.message}
         disabled={isSubmitting}
-        autoComplete="off"
         required
         defaultValue=""
       ></TextField>
