@@ -4,6 +4,8 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { StyledLink, sideBarLinks } from "@/shared";
 import { SideBarLinkInfo } from "@/types";
 import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { AdminInfo } from "./AdminInfo";
 
 type CustomDrawerProps = {
   fullWidth: boolean;
@@ -20,14 +22,15 @@ export const Sidebar = ({
     ...sideBarLinks,
     { path: "", label: "" },
   ];
+  const { data: session } = useSession();
   const searchParams = useSearchParams();
   return !isSmallScreen ? (
     <aside
-      className={`h-full mr-1 bg-[#ccc] transition-all duration-700 w-[20px] [&_span]:text-ellipsis [&_span]:text-nowrap ${
+      className={`h-full mr-1 bg-gray-500 rounded-sm shadow-sm transition-all duration-700 w-[20px] [&_span]:text-ellipsis [&_span]:text-nowrap ${
         fullWidth && "sidebar-transform-active"
       }`}
     >
-      <div className="flex justify-between m-1">
+      <div className="flex justify-between mx-1">
         <button
           id="toggle-sidebar"
           aria-label="toggle sidebar menu"
@@ -40,35 +43,36 @@ export const Sidebar = ({
             <MdArrowForwardIos className="text-white font-bold" />
           )}
         </button>
-        {fullWidth && (
-          <StyledLink href={"/dashboard"} style={{ width: "100%" }}>
-            User Dashboard
-          </StyledLink>
-        )}
       </div>
-      {fullWidth &&
-        drawerLinks.map((link, index) => {
-          if (link.label !== "")
-            return (
-              <div
-                key={index}
-                className="p-0 w-full [&_a]:inline-block [&_a]:w-full"
-              >
-                <StyledLink
-                  href={`/dashboard?p=${link.path}`}
-                  style={{ width: "100%", padding: "8px 16px" }}
-                  active={searchParams.get("p") === link.path}
+      {fullWidth && (
+        <div className="flex flex-col justify-center mt-2">
+          <div className="[&>div]:w-auto">
+          <AdminInfo imgSrc={session?.user.image} name={session?.user.name} verticalAlignment/>
+          </div>
+          {drawerLinks.map((link, index) => {
+            if (link.label !== "")
+              return (
+                <div
+                  key={index}
+                  className="p-0 w-full [&_a]:inline-block [&_a]:w-full"
                 >
-                  {link.label}
-                </StyledLink>
-              </div>
-            );
-          return <div key={index}>&nbsp;</div>;
-        })}
+                  <StyledLink
+                    href={`/dashboard?p=${link.path}`}
+                    style={{ width: "100%", padding: "8px 16px" }}
+                    active={searchParams.get("p") === link.path}
+                  >
+                    {link.label}
+                  </StyledLink>
+                </div>
+              );
+            return <div key={index}>&nbsp;</div>;
+          })}
+        </div>
+      )}
     </aside>
   ) : (
-    <nav>
-      <ul className="list-none flex flex-wrap w-full gap-4 m-1">
+    <nav className="flex h-auto p-[2px] bg-gray-500 rounded-sm shadow-sm m-1">
+      <ul className="list-none flex flex-wrap flex-grow w-full gap-4 m-1">
         {drawerLinks.map((link, index) => {
           if (link.label !== "")
             return (
@@ -80,9 +84,10 @@ export const Sidebar = ({
                 {link.label}
               </StyledLink>
             );
-          return <div key={index}>&nbsp;</div>;
+          return null;
         })}
       </ul>
+      <AdminInfo imgSrc={session?.user.image} name={session?.user.name} />
     </nav>
   );
 };
