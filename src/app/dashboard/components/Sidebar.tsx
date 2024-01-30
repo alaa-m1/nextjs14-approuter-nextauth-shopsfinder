@@ -1,11 +1,10 @@
-"uxs client";
+"use client";
 import React from "react";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import { StyledLink, sideBarLinks } from "@/shared";
+import { StyledLink, sideBarLinks, useUserInfo } from "@/shared";
 import { SideBarLinkInfo } from "@/types";
 import { useSearchParams } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { AdminInfo } from "./AdminInfo";
+import { AdminLogo } from "./AdminLogo";
 
 type CustomDrawerProps = {
   fullWidth: boolean;
@@ -22,11 +21,11 @@ export const Sidebar = ({
     ...sideBarLinks,
     { path: "", label: "" },
   ];
-  const { data: session } = useSession();
+  const { userInfo, status } = useUserInfo();
   const searchParams = useSearchParams();
   return !isSmallScreen ? (
     <aside
-      className={`h-full mr-1 bg-gray-500 rounded-sm shadow-sm transition-all duration-700 w-[20px] [&_span]:text-ellipsis [&_span]:text-nowrap ${
+      className={`h-full mr-1 px-1 bg-gray-500 rounded-sm shadow-sm transition-all duration-700 w-[20px] [&_span]:text-ellipsis [&_span]:text-nowrap ${
         fullWidth && "sidebar-transform-active"
       }`}
     >
@@ -47,7 +46,12 @@ export const Sidebar = ({
       {fullWidth && (
         <div className="flex flex-col justify-center mt-2">
           <div className="[&>div]:w-auto">
-          <AdminInfo imgSrc={session?.user.image} name={session?.user.name} verticalAlignment/>
+            <AdminLogo
+              imgSrc={userInfo.image}
+              name={userInfo.firstName + " " + userInfo.lastName}
+              verticalAlignment
+              isLoading={status==="loading"}
+            />
           </div>
           {drawerLinks.map((link, index) => {
             if (link.label !== "")
@@ -87,7 +91,11 @@ export const Sidebar = ({
           return null;
         })}
       </ul>
-      <AdminInfo imgSrc={session?.user.image} name={session?.user.name} />
+      <AdminLogo
+        imgSrc={userInfo.image}
+        name={userInfo.firstName + " " + userInfo.lastName}
+        isLoading={status==="loading"}
+      />
     </nav>
   );
 };
