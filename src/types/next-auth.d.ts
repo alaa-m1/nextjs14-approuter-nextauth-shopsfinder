@@ -1,21 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NextAuth from "next-auth"
+import { UserInfo } from "."
 
 declare module "next-auth" {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
   interface Session {
-    user: {
-      /** The user's postal address. */
-      address: string;
-      name: string;
-      email: string;
-      image: string;
-      id: string;
-      accessToken: string;
-      expires_at: string;
-      userId: string;
-    }
+    user: UserInfo
   }
+
 }

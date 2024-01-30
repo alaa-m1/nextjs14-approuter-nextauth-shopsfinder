@@ -92,7 +92,6 @@ export const authOptions: NextAuthOptions = {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           id: ((token.user as any)._id || (token.user as any).id).toString(),
         });
-        session.user.accessToken = token.accessToken as string;
         session.user.expires_at = token.expires_at as string;
         session.user = {
           ...session.user,

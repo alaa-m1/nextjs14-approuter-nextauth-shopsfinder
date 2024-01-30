@@ -13,6 +13,7 @@ import {
   createResetJWT,
 } from "@/utils/authentication/authTokens";
 import { validateCsrfToken } from "@/utils/authentication/validateCsrfToken";
+import { UserInfo } from "@/types";
 
 export async function createNewUser(formData: UserSchemaType) {
   try {
@@ -157,7 +158,7 @@ export async function resetPassword(formData: FormData) {
   }
 }
 
-export async function updateUserInfo(formData: Omit<UserSchemaType, "image">) {
+export async function updateUserInfo(formData: Omit<UserInfo, "image"| "provider">) {
   try {
     if (!(await validateCsrfToken())) {
       return { message: "User cannot be verified", status: 400 };
@@ -203,7 +204,6 @@ export async function updateUserInfo(formData: Omit<UserSchemaType, "image">) {
     return { message: (error as Error).message, status: 500 };
   }
 }
-
 export async function updateUserPassword(formData: {
   currentPassword: string;
   newPassword: string;
