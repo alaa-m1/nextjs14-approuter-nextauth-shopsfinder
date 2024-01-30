@@ -12,61 +12,67 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import React, { useEffect, useMemo, useState } from "react";
 import { BeatLoader } from "react-spinners";
-import { SubmitButton, TextField } from "@/shared";
-import { GenderSelect, TermsPanel } from "../components";
+import { GenderSelect, SubmitButton, TextField } from "@/shared";
+import { TermsPanel } from "../components";
 import { toast } from "react-toastify";
 import validator from "validator";
 import { createNewUser } from "@/app/actions";
+import { UserInfo } from "@/types";
+import { schemaForType } from "@/types/new-types.d";
 
-const UserSchema = z
-  .object({
-    firstName: z
-      .string()
-      .min(2, "The first name must be at least 2 characters")
-      .max(32, "The first name must be less than 32 characters")
-      .regex(
-        /^[a-zA-Z]+$/,
-        "The first name must not contains any special characters"
+const UserSchema = schemaForType<
+  Omit<UserInfo, "id" | "image" | "provider" | "userName">
+>()(
+  z
+    .object({
+      firstName: z
+        .string()
+        .min(2, "The first name must be at least 2 characters")
+        .max(32, "The first name must be less than 32 characters")
+        .regex(
+          /^[a-zA-Z]+$/,
+          "The first name must not contains any special characters"
+        ),
+      lastName: z
+        .string()
+        .min(2, "The last name must be at least 2 characters")
+        .max(32, "The last name must be less than 32 characters")
+        .regex(
+          /^[a-zA-Z]+$/,
+          "The last name must not contains any special characters"
+        ),
+      email: z.string().email("You must enter a valid Email"),
+      mobile: z.string().refine(
+        (value) => {
+          if (value) return validator.isMobilePhone(value);
+          return true;
+        },
+        {
+          message: "Please enter a valid phone number",
+        }
       ),
-    lastName: z
-      .string()
-      .min(2, "The last name must be at least 2 characters")
-      .max(32, "The last name must be less than 32 characters")
-      .regex(
-        /^[a-zA-Z]+$/,
-        "The last name must not contains any special characters"
-      ),
-    email: z.string().email("You must enter a valid Email"),
-    mobile: z.string().refine(
-      (value) => {
-        if (value) return validator.isMobilePhone(value);
-        return true;
-      },
-      {
-        message: "Please enter a valid phone number",
-      }
-    ),
-    address: z.string(),
-    gender: z.union([
-      z.literal("male"),
-      z.literal("female"),
-      z.literal("custom"),
-    ]),
-    password: z
-      .string()
-      .min(8, "The password must be at least 8 characters")
-      .max(60, "The password must be less than 60 characters"),
-    confirmPassword: z.string(),
-    accept: z.literal(true, {
-      errorMap: () => ({
-        message: "You should accept terms and conditions",
+      address: z.string(),
+      gender: z.union([
+        z.literal("male"),
+        z.literal("female"),
+        z.literal("custom"),
+      ]),
+      password: z
+        .string()
+        .min(8, "The password must be at least 8 characters")
+        .max(60, "The password must be less than 60 characters"),
+      confirmPassword: z.string(),
+      accept: z.literal(true, {
+        errorMap: () => ({
+          message: "You should accept terms and conditions",
+        }),
       }),
-    }),
-  })
-  .refine((formData) => formData.password === formData.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
+    })
+    .refine((formData) => formData.password === formData.confirmPassword, {
+      message: "Passwords do not match",
+      path: ["confirmPassword"],
+    })
+);
 
 export type UserSchemaType = z.infer<typeof UserSchema>;
 

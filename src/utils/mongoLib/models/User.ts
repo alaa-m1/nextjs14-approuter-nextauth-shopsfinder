@@ -1,9 +1,20 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  provider: {
     type: String,
     required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  userName: {
+    type: String,
   },
   email: {
     type: String,
@@ -18,7 +29,7 @@ const UserSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['male','female','custom']
+    enum: ["male", "female", "custom"],
   },
   password: {
     type: String,
@@ -40,6 +51,6 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-const User=mongoose.models.User || mongoose.model("User",UserSchema)
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
 
 export default User;

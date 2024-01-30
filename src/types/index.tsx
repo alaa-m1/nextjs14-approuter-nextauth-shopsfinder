@@ -39,3 +39,17 @@ export type Provider = {
 };
 
 export type Providers = Array<Provider>;
+
+export type UserInfo = {
+  provider: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  address: string;
+  email: string;
+  mobile: string;
+  image: string;
+  id: string;
+  gender: "custom" | "male" | "female";
+  expires_at?: string;
+};

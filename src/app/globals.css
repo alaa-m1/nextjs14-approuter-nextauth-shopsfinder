@@ -16,13 +16,16 @@
   .line2-clamp {
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
   }
 }
 @layer components {
   .nav-bts {
     @apply place-items-center justify-between delay-200 ease-in [&>div>a>span]:mx-[10px] [&>div>a>span]:transition-colors hover:[&>div>a>span]:text-[#e76712];
+  }
+  .fieldset-border {
+    @apply border border-solid border-gray-400 rounded-sm p-2 my-2;
   }
 }
 :root {

@@ -9,8 +9,6 @@ const MONGODB_URL = process.env.MONGODB_URL;
 async function connectMongoDB() {
   const options = {
     bufferCommands: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   };
   const mongoPromise = mongoose
     .connect(MONGODB_URL, options)

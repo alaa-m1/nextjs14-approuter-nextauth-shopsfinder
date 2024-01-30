@@ -8,7 +8,7 @@
   * Activate the account using a link sent via email
   * Reset the forgotten password
 * Fully Responsive Web Design using Tailwind CSS
-* User Dashboard (partially under construction)
+* User Dashboard
 * (Other features are still under construction)
 
 * To test this web application without signing up, you can use the following credentials:

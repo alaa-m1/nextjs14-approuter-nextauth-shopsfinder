@@ -1,8 +1,14 @@
-import React from 'react';
-const Page = () => {
+import React from "react";
+import { UserCard, UserProfile, UserSettings } from "./components";
+type DashboardProps = {
+  searchParams: { p: string };
+};
+const Page = ({ searchParams }: DashboardProps) => {
   return (
     <>
-      <div>Dashboard page ...</div>
+      {!searchParams.p && <UserCard />}
+      {searchParams.p?.toLocaleLowerCase() === "profile" && <UserProfile />}
+      {searchParams.p?.toLocaleLowerCase() === "settings" && <UserSettings />}
     </>
   );
 };
