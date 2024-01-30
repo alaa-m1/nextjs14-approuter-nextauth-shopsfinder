@@ -7,7 +7,7 @@ export const ProvidersPanel = async () => {
     res ? Object.values(res) : []
   );
   return (
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 justify-center justify-items-center gap-x-0.5 gap-y-2">
+    <div className="grid sm:grid-cols-2 justify-center justify-items-center gap-x-0.5 gap-y-2">
       {(providers || []).map((provider) => {
         if (provider.id !== "credentials")
           return (
