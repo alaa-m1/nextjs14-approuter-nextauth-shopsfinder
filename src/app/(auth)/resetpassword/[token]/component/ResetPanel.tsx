@@ -8,7 +8,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { SubmitButton, TextField } from "@/shared";
 import { toast } from "react-toastify";
-import { resetPassword } from "@/app/actions";
+import { resetPassword } from "@/app/actions/resetPassword";
 
 const UserSchema = z
   .object({

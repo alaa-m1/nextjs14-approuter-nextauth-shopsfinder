@@ -7,7 +7,7 @@ import { ScaleLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { SubmitButton, TextField } from "@/shared";
 import { MdEmail } from "react-icons/md";
-import { sendResetPasswordLink } from "@/app/actions";
+import { sendResetPasswordLink } from "@/app/actions/sendResetPasswordLink";
 const UserSchema = z.object({
   email: z.string().email("You must enter a valid Email"),
 });

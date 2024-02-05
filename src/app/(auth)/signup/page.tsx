@@ -16,9 +16,9 @@ import { GenderSelect, SubmitButton, TextField } from "@/shared";
 import { TermsPanel } from "../components";
 import { toast } from "react-toastify";
 import validator from "validator";
-import { createNewUser } from "@/app/actions";
 import { UserInfo } from "@/types";
 import { schemaForType } from "@/types/new-types.d";
+import { createNewUser } from "@/app/actions/createNewUser";
 
 const UserSchema = schemaForType<
   Omit<UserInfo, "id" | "image" | "provider" | "userName">

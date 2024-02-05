@@ -15,7 +15,7 @@ import {
 import { toast } from "react-toastify";
 import { schemaForType } from "@/types/new-types.d";
 import { UserInfo } from "@/types";
-import { updateUserPassword } from "@/app/actions";
+import { updateUserPassword } from "@/app/actions/updateUserPassword";
 
 const UserGeneralInfoSchema = schemaForType<{
   currentPassword: string;

@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { UserInfo } from "@/types";
 import { sizeInMB } from "@/utils/helpers";
 import { MdClose } from "react-icons/md";
-import { uploadProfilePhoto } from "@/app/actions";
+import { uploadProfilePhoto } from "@/app/actions/uploadProfilePhoto";
 import { useSession } from "next-auth/react";
 
 const UserGeneralInfoSchema = z.object({
