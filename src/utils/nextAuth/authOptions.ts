@@ -10,6 +10,8 @@ import connectMongoDB from "../mongoLib/connectMongoDB";
 import { default as UserModel } from "@/utils/mongoLib/models/User";
 import bcrypt from "bcryptjs";
 import { createUpdateJWT } from "../authentication/authTokens";
+import ProfilePhoto from "../mongoLib/models/ProfilePhoto";
+import { UserPhoto } from "@/types";
 
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise),
@@ -88,9 +90,16 @@ export const authOptions: NextAuthOptions = {
       token: JWT;
     }) {
       if (session.user) {
-        const user_id = createUpdateJWT({
+        const id = (
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          id: ((token.user as any)._id || (token.user as any).id).toString(),
+          (token.user as any)._id || (token.user as any).id
+        ).toString();
+        const user_id = createUpdateJWT({
+          id,
+        });
+
+        const photos: Array<UserPhoto> = await ProfilePhoto.find({
+          userId: id,
         });
         session.user.expires_at = token.expires_at as string;
         session.user = {
@@ -98,6 +107,12 @@ export const authOptions: NextAuthOptions = {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ...(token.user as any),
           id: user_id,
+          image: {
+            imgURL: photos[0]?.imgURL ? photos[0]?.imgURL : session.user.image,
+            publicId: photos[0]?.publicId ? photos[0]?.publicId : "",
+            updatedAt: photos[0]?.updatedAt ? photos[0]?.updatedAt : "",
+            createdAt: photos[0]?.createdAt ? photos[0]?.createdAt : "",
+          },
           _id: "",
         };
       }

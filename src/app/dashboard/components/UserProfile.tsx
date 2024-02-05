@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { UserGeneralInfo, UserPassword } from "./UserProfileComponents";
+import { UserGeneralInfo, UserProfilePhoto, UserPassword } from "./UserProfileComponents";
 import { LoadingSpinner, useUserInfo } from "@/shared";
 
 export const UserProfile = () => {
@@ -11,10 +11,11 @@ export const UserProfile = () => {
       {status === "loading" ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <div className="flex flex-col gap-1">
           <UserGeneralInfo userInfo={userInfo} />
+          <UserProfilePhoto userInfo={userInfo} />
           <UserPassword userInfo={userInfo} />
-        </>
+        </div>
       )}
     </div>
   );

@@ -10,7 +10,7 @@ export const UserCard = () => {
     <div className="flex flex-col items-center w-full h-full rounded-lg mt-2">
       <img
         className="w-[250px] aspect-auto bg-white rounded-t-lg hover:scale-105 hover:opacity-80 transition-all duration-700 "
-        src={userInfo.image}
+        src={userInfo.image.imgURL}
         alt={`${userInfo.firstName + " " + userInfo.lastName}`}
       />
       <div className="p-5 flex-grow">
