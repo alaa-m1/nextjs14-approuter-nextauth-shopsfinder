@@ -48,8 +48,14 @@ export type UserInfo = {
   address: string;
   email: string;
   mobile: string;
-  image: string;
+  image: UserPhoto;
   id: string;
   gender: "custom" | "male" | "female";
   expires_at?: string;
+};
+export type UserPhoto = {
+  publicId: string;
+  imgURL: string;
+  createdAt?: string;
+  updatedAt?: string;
 };

@@ -35,8 +35,8 @@ export const AdminLogo = ({
         className={`rounded-full ${
           verticalAlignment ? "w-[50px] h-[50px]" : "w-[40px] h-[40px]"
         } place-self-center hover:shadow-md`}
-        src={imgSrc ?? "/images/user-icon.png"}
-        alt={`${name ?? "user"}`}
+        src={imgSrc || "/images/user-icon.png"}
+        alt={`${name || "user"}`}
       />
     </div>
   );

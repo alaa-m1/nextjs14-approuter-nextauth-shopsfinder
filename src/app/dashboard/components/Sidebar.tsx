@@ -47,7 +47,7 @@ export const Sidebar = ({
         <div className="flex flex-col justify-center mt-2">
           <div className="[&>div]:w-auto">
             <AdminLogo
-              imgSrc={userInfo.image}
+              imgSrc={userInfo.image.imgURL}
               name={userInfo.firstName + " " + userInfo.lastName}
               verticalAlignment
               isLoading={status==="loading"}
@@ -92,7 +92,7 @@ export const Sidebar = ({
         })}
       </ul>
       <AdminLogo
-        imgSrc={userInfo.image}
+        imgSrc={userInfo.image.imgURL}
         name={userInfo.firstName + " " + userInfo.lastName}
         isLoading={status==="loading"}
       />
