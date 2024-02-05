@@ -2,14 +2,13 @@
 import React, { useState } from "react";
 import { MdMenu, MdClose } from "react-icons/md";
 import logoSrc from "@/assets/images/phoenix.png";
-import { LinkInfo } from "@/types";
+import { LinkInfo, UserInfo } from "@/types";
 import Image from "next/image";
 import { StyledLink } from "@/shared";
 import { signOut } from "next-auth/react";
-import { User } from "next-auth";
 type DrawerProps = {
   links: Array<LinkInfo>;
-  currentUser: User | undefined;
+  currentUser: UserInfo | undefined;
   isSmallScreen: boolean;
 };
 

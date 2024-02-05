@@ -16,9 +16,11 @@ export const useUserInfo = (): {
     mobile: session?.user?.mobile ?? "",
     email: session?.user?.email ?? "",
     gender: session?.user?.gender ?? "custom",
-    image: session?.user?.image ?? "/images/user-icon.png",
-    imagePublicId: session?.user?.imagePublicId ?? "",
-    imageUpdatedAt: session?.user?.imageUpdatedAt ?? "",
+    image: {
+      publicId: session?.user?.image.publicId ?? "",
+      imgURL: session?.user?.image.imgURL ?? "/images/user-icon.png",
+      ...session?.user?.image,
+    },
     expires_at: session?.expires ?? "0",
     id: session?.user?.id ?? "-1",
   };
