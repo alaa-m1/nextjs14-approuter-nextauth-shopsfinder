@@ -21,7 +21,7 @@ import validator from "validator";
 import { UserInfo } from "@/types";
 import { schemaForType } from "@/types/new-types.d";
 import { useSession } from "next-auth/react";
-import { updateUserInfo } from "@/app/actions";
+import { updateUserInfo } from "@/app/actions/updateUserInfo";
 
 const UserGeneralInfoSchema = schemaForType<
   Omit<UserInfo, "id" | "image" | "provider">

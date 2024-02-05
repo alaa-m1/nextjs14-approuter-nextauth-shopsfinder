@@ -59,3 +59,7 @@ export type UserPhoto = {
   createdAt?: string;
   updatedAt?: string;
 };
+
+export type DecodedToken = {
+  id: string;
+};
