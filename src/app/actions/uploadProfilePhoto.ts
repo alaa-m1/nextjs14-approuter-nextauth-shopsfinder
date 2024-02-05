@@ -98,7 +98,7 @@ export async function getUserPhoto(id: string) {
     }));
     return resources2;
   } catch (error) {
-    return { message: (error as Error).message, status: 500 };
+    return null;
   }
 }
 
