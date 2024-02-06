@@ -75,10 +75,15 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
       reset();
     }
   };
-
+  const testingAccount = userInfo.email === process.env.NEXT_PUBLIC_TESTING_EMAIL;
   return (
     <fieldset className="fieldset-border">
       <legend>Update profile photo</legend>
+      {testingAccount && (
+        <Alert severity="warning">
+          <span>{`Cannot update profile photo, becuase you are using your a testing account "${process.env.NEXT_PUBLIC_TESTING_EMAIL}"`}</span>
+        </Alert>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} style={{ margin: "5px 10px" }}>
         <div className="p-0 my-[10px]">
           <div className={`relative w-[90%] text-left`}>
@@ -109,7 +114,7 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"
           label="Save"
-          disabled={uploadedImages.length === 0}
+          disabled={uploadedImages.length === 0 || testingAccount}
         />
       </form>
     </fieldset>

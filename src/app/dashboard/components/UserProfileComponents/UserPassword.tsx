@@ -6,12 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import React, { useEffect, useMemo, useState } from "react";
 import { BeatLoader } from "react-spinners";
-import {
-  Alert,
-  SubmitButton,
-  TextField,
-  externalProviders
-} from "@/shared";
+import { Alert, SubmitButton, TextField, externalProviders } from "@/shared";
 import { toast } from "react-toastify";
 import { schemaForType } from "@/types/new-types.d";
 import { UserInfo } from "@/types";
@@ -88,9 +83,16 @@ export const UserPassword = ({ userInfo }: { userInfo: UserInfo }) => {
     return <span className="text-[#0f0] font-bold">Strong</span>;
   }, [passwordScore]);
   const canUpdate = !externalProviders.includes(userInfo.provider);
+  const testingAccount =
+    userInfo.email === process.env.NEXT_PUBLIC_TESTING_EMAIL;
   return (
     <fieldset className="fieldset-border">
       <legend>Update user password</legend>
+      {testingAccount && (
+        <Alert severity="warning">
+          <span>{`Cannot update user password, becuase you are using your a testing account "${process.env.NEXT_PUBLIC_TESTING_EMAIL}"`}</span>
+        </Alert>
+      )}
       {!canUpdate && (
         <Alert severity="warning">
           <span>{`Cannot update password, becuase you are  using your ${userInfo.provider} account to signin`}</span>
@@ -157,7 +159,7 @@ export const UserPassword = ({ userInfo }: { userInfo: UserInfo }) => {
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"
           label="Save"
-          disabled={!canUpdate}
+          disabled={!canUpdate || testingAccount}
         />
       </form>
     </fieldset>
