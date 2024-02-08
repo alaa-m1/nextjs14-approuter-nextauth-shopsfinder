@@ -171,7 +171,11 @@ const Page = () => {
           errors=""
           disabled={isSubmitting}
         ></TextField>
-        <GenderSelect label="Gender" register={register} />
+        <GenderSelect
+          label="Gender"
+          register={register}
+          disabled={isSubmitting}
+        />
 
         <TextField
           name="password"

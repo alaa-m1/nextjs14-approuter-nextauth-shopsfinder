@@ -109,7 +109,8 @@ export const UserGeneralInfo = ({ userInfo }: { userInfo: UserInfo }) => {
       reset();
     }
   };
-  const testingAccount = userInfo.email === process.env.NEXT_PUBLIC_TESTING_EMAIL;
+  const testingAccount =
+    userInfo.email === process.env.NEXT_PUBLIC_TESTING_EMAIL;
 
   return (
     <fieldset className="fieldset-border">
@@ -180,7 +181,11 @@ export const UserGeneralInfo = ({ userInfo }: { userInfo: UserInfo }) => {
           errors=""
           disabled={isSubmitting}
         ></TextField>
-        <GenderSelect label="Gender" register={register} />
+        <GenderSelect
+          label="Gender"
+          register={register}
+          disabled={isSubmitting}
+        />
         <SubmitButton
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
