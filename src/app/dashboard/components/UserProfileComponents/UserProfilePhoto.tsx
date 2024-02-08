@@ -56,9 +56,9 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
   const onSubmit: SubmitHandler<UserSchemaType> = async () => {
     const formData = new FormData();
 
-    formData.append("profilePhoto", uploadedImages[0]);
     formData.append("userId", userInfo.id);
     formData.append("imagePublicId", userInfo.image.publicId ?? "-1");
+    formData.append("profilePhoto", uploadedImages[0]);
 
     const response = await uploadProfilePhoto(formData);
     if ([400, 500].includes(response.status)) {
