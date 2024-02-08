@@ -22,12 +22,18 @@ const Page = () => {
     formState: { errors, isSubmitting },
   } = useForm<ForgetSchemaType>({ resolver: zodResolver(UserSchema) });
   const onSubmit: SubmitHandler<ForgetSchemaType> = async (formData) => {
-    const response = await sendResetPasswordLink(formData);
-    if ([400, 500].includes(response.status)) {
-      toast.error(response.message);
+    if (formData.email === process.env.NEXT_PUBLIC_TESTING_EMAIL) {
+      alert(
+        `Cannot update user password, becuase you are using your a testing account "${process.env.NEXT_PUBLIC_TESTING_EMAIL}"`
+      );
     } else {
-      toast.success(response.message);
-      reset();
+      const response = await sendResetPasswordLink(formData);
+      if ([400, 500].includes(response.status)) {
+        toast.error(response.message);
+      } else {
+        toast.success(response.message);
+        reset();
+      }
     }
   };
 
