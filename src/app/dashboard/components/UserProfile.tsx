@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
-import { UserGeneralInfo, UserProfilePhoto, UserPassword } from "./UserProfileComponents";
+import {
+  UserGeneralInfo,
+  UserProfilePhoto,
+  UserPassword,
+  UserDownloadInfo,
+} from "./UserProfileComponents";
 import { LoadingSpinner, useUserInfo } from "@/shared";
 
 export const UserProfile = () => {
@@ -15,6 +20,7 @@ export const UserProfile = () => {
           <UserGeneralInfo userInfo={userInfo} />
           <UserProfilePhoto userInfo={userInfo} />
           <UserPassword userInfo={userInfo} />
+          <UserDownloadInfo />
         </div>
       )}
     </div>
