@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { BeatLoader } from "react-spinners";
 import {
+  Alert,
   GenderSelect,
   SubmitButton,
   TextField,
@@ -108,10 +109,17 @@ export const UserGeneralInfo = ({ userInfo }: { userInfo: UserInfo }) => {
       reset();
     }
   };
+  const testingAccount =
+    userInfo.email === process.env.NEXT_PUBLIC_TESTING_EMAIL;
 
   return (
     <fieldset className="fieldset-border">
       <legend>Update user information</legend>
+      {testingAccount && (
+        <Alert severity="warning">
+          <span>{`Cannot update general information, becuase you are using your a testing account "${process.env.NEXT_PUBLIC_TESTING_EMAIL}"`}</span>
+        </Alert>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} style={{ margin: "5px 10px" }}>
         <TextField
           name="userName"
@@ -173,12 +181,17 @@ export const UserGeneralInfo = ({ userInfo }: { userInfo: UserInfo }) => {
           errors=""
           disabled={isSubmitting}
         ></TextField>
-        <GenderSelect label="Gender" register={register} />
+        <GenderSelect
+          label="Gender"
+          register={register}
+          disabled={isSubmitting}
+        />
         <SubmitButton
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"
           label="Save"
+          disabled={testingAccount}
         />
       </form>
     </fieldset>
