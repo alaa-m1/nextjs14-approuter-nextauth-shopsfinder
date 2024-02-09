@@ -4,38 +4,42 @@ import { mapUserInfo } from "@/utils/helpers";
 import React from "react";
 import { BsCardImage } from "react-icons/bs";
 import { BsJournalArrowDown } from "react-icons/bs";
+import { BsDownload } from "react-icons/bs";
 
 export const UserDownloadInfo = () => {
   const { userInfo } = useUserInfo();
-  //   const aRef = useRef<HTMLAnchorElement>(null);
-  //   useEffect(() => {
-  //     // console.log("useEffect run ......");
-  //     if (aRef.current) {
-  //       const bolbpart = mapUserInfo(userInfo);
 
-  //       const userBolb = new Blob([bolbpart.join("")], { type: "text/plain" });
-  //       aRef.current.href = URL.createObjectURL(userBolb);
-  //     }
-  //   }, [userInfo]);
   const handleDownloadInfo = () => {
     const link = document.createElement("a");
     link.download = `${userInfo.firstName} ${userInfo.lastName} - information.txt`;
     const bolbpart = mapUserInfo(userInfo);
     const userBolb = new Blob([bolbpart.join("")], { type: "text/plain" });
     link.href = URL.createObjectURL(userBolb);
-
     link.click();
-
     URL.revokeObjectURL(link.href);
   };
-  const handleDownloadPhoto = () => {
+  
+  const handleShowPhoto = () => {
     const link = document.createElement("a");
-    link.download = `${userInfo.firstName} ${userInfo.lastName} - photo.jpg`;
     link.href = userInfo.image.imgURL;
-
+    link.target="_blank"
+    link.rel="noopener noreferrer"
     link.click();
+  };
 
-    URL.revokeObjectURL(link.href);
+  const handleDownloadPhoto = async () => {
+    const nameOfDownload = `${userInfo.firstName} ${userInfo.lastName} - photo.jpg`;
+    const response = await fetch(userInfo.image.imgURL);
+
+    const blobImage = await response.blob();
+    const href = URL.createObjectURL(blobImage);
+    const anchorElement = document.createElement("a");
+    anchorElement.href = href;
+    anchorElement.download = nameOfDownload;
+    document.body.appendChild(anchorElement);
+    anchorElement.click();
+    document.body.removeChild(anchorElement);
+    window.URL.revokeObjectURL(href);
   };
   return (
     <fieldset className="fieldset-border p-2">
@@ -46,8 +50,18 @@ export const UserDownloadInfo = () => {
           className="text-blue-700 hover:underline"
         >
           <div className="flex flex-wrap gap-1">
-            <BsJournalArrowDown className="place-self-center"/>
+            <BsJournalArrowDown className="place-self-center" />
             &nbsp;Download profile information
+          </div>
+        </button>
+        <div></div>
+        <button
+          onClick={() => handleShowPhoto()}
+          className="text-blue-700 hover:underline"
+        >
+          <div className="flex flex-wrap gap-1">
+            <BsCardImage className="place-self-center" />
+            &nbsp;Show profile photo
           </div>
         </button>
         <button
@@ -55,20 +69,11 @@ export const UserDownloadInfo = () => {
           className="text-blue-700 hover:underline"
         >
           <div className="flex flex-wrap gap-1">
-            <BsCardImage className="place-self-center"/>
+            <BsDownload className="place-self-center" />
             &nbsp;Download profile photo
           </div>
         </button>
       </div>
-      {/* <a
-        download={`${userInfo.firstName} ${userInfo.lastName} - information.txt`}
-        href="#"
-        id="link"
-        ref={aRef}
-        className="text-blue-700 hover:underline"
-      >
-        Download information
-      </a> */}
     </fieldset>
   );
 };
