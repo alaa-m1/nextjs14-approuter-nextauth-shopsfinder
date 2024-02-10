@@ -68,6 +68,6 @@ export async function updateUserPassword(formData: {
       status: 200,
     };
   } catch (error) {
-    return { message: (error as Error).message, status: 500 };
-  }
+    console.log((error as Error).message);
+    return { message: "Password upload failed, please try later", status: 500 };  }
 }
