@@ -63,7 +63,7 @@ export const Sidebar = ({
                   <StyledLink
                     href={`/dashboard?p=${link.path}`}
                     style={{ width: "100%", padding: "8px 16px" }}
-                    active={searchParams.get("p") === link.path}
+                    active={searchParams?.get("p") === link.path}
                   >
                     {link.label}
                   </StyledLink>
@@ -83,7 +83,7 @@ export const Sidebar = ({
               <StyledLink
                 key={index}
                 href={`/dashboard?p=${link.path}`}
-                active={searchParams.get("p") === link.path}
+                active={searchParams?.get("p") === link.path}
               >
                 {link.label}
               </StyledLink>

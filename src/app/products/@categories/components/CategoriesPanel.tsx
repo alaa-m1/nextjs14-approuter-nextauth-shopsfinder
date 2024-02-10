@@ -13,7 +13,7 @@ export const CategoriesPanel = ({ categories }: CategoriesPanelProps) => {
   const { replace } = useRouter();
 
   const handleCategoryClick = (category: string) => {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams ?? "");
     if (category) {
       params.set("category", category);
     } else {
@@ -24,8 +24,8 @@ export const CategoriesPanel = ({ categories }: CategoriesPanelProps) => {
 
   const currentCategory = useMemo(
     () =>
-      searchParams.get("category")?.toString()
-        ? searchParams.get("category")?.toString()
+      searchParams?.get("category")?.toString()
+        ? searchParams?.get("category")?.toString()
         : "all",
     [searchParams]
   );
