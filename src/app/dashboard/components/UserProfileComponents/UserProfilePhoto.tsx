@@ -2,7 +2,7 @@
 import { SubmitHandler, UseFormReset, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { BeatLoader } from "react-spinners";
 import {
   ACCEPTED_IMAGE_TYPES,
@@ -45,6 +45,9 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<UserSchemaType>({
+    defaultValues: {
+      profilePhoto: undefined,
+    },
     resolver: zodResolver(UserGeneralInfoSchema),
   });
   const { profilePhoto } = watch();
@@ -75,7 +78,18 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
       reset();
     }
   };
-  const testingAccount = userInfo.email === process.env.NEXT_PUBLIC_TESTING_EMAIL;
+
+  const HandleResetInput = useCallback(() => {
+    reset({});
+    const inputElement = document.getElementById(
+      "profile-photo"
+    ) as HTMLInputElement;
+    if (inputElement) inputElement.value = "";
+  }, [reset]);
+
+  const testingAccount =
+    userInfo.email === process.env.NEXT_PUBLIC_TESTING_EMAIL;
+
   return (
     <fieldset className="fieldset-border">
       <legend>Update profile photo</legend>
@@ -106,7 +120,10 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
                 <span>{errors.profilePhoto?.message}</span>
               </Alert>
             )}
-            <ProfilePhotoCard uploadedImages={uploadedImages} reset={reset} />
+            <ProfilePhotoCard
+              uploadedImages={uploadedImages}
+              onResetInput={HandleResetInput}
+            />
           </div>
         </div>
         <SubmitButton
@@ -123,12 +140,10 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
 
 export const ProfilePhotoCard = ({
   uploadedImages,
-  reset,
+  onResetInput,
 }: {
   uploadedImages: Array<File>;
-  reset: UseFormReset<{
-    profilePhoto: FileList;
-  }>;
+  onResetInput: () => void;
 }) => {
   return uploadedImages.length > 0 ? (
     <div className="relative w-fit mt-2">
@@ -142,7 +157,7 @@ export const ProfilePhotoCard = ({
       ))}
       <button
         className="absolute top-[5px] right-[10px]"
-        onClick={() => reset({})}
+        onClick={() => onResetInput()}
       >
         <MdClose className="font-bold inline-block hover:bg-purple-200" />
       </button>
