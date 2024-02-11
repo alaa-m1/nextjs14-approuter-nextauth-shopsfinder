@@ -1,57 +1,37 @@
 "use server";
 import jwt from "jsonwebtoken";
 import { DecodedToken } from "@/types";
-import fs from "fs/promises";
-import path from "path";
-import { v4 as uId } from "uuid";
-import os from "os";
-import cloudinary from "cloudinary";
 import { revalidatePath } from "next/cache";
 import ProfilePhoto from "@/utils/mongoLib/models/ProfilePhoto";
+import { cloudinary } from "@/utils/uploader/cloudinary";
 
-cloudinary.v2.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-async function saveImageToLoacal(formData: FormData) {
+async function uploadImgaesToCloudinary(formData: FormData) {
+  const uploadFormData = new FormData();
   const file = formData.get("profilePhoto") as File;
-  const fileBufferPromise = file.arrayBuffer().then((data) => {
-    const buffer = Buffer.from(data);
-    const uniqueName = `${uId()}--${file.name}`;
-    const ext = file.type.split("/")[1];
-
-    const tempDir = os.tmpdir();
-    const uploadDir = path.join(tempDir, `/${uniqueName}.${ext}`);
-
-    fs.writeFile(uploadDir, buffer);
-    return { filePath: uploadDir, fileName: uniqueName };
+  uploadFormData.append("file", file);
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+    method: "POST",
+    body: uploadFormData,
   });
+  const data = await response.json();
 
-  return await fileBufferPromise;
-}
-
-async function uploadImgaesToCloudinary(newFile: {
-  filePath: string;
-  fileName: string;
-}) {
-  const photoPromise = cloudinary.v2.uploader.upload(newFile.filePath, {
-    folder: "shope_finder_upload",
-  });
-  return await photoPromise;
+  if (response.status !== 200) {
+    return {
+      message: "File upload failed, please try later",
+      status: 500,
+      imageUrl: "",
+      publicId: "",
+    };
+  }
+  return data;
 }
 
 export async function uploadProfilePhoto(formData: FormData) {
   try {
-    const newFile = await saveImageToLoacal(formData);
+    const photo = await uploadImgaesToCloudinary(formData);
+
     const id = formData.get("userId") as string;
     const imagePublicId = formData.get("imagePublicId") as string;
-
-    const photo = await uploadImgaesToCloudinary(newFile);
-
-    /////Remove files from tempDir after a successfull upload
-    fs.unlink(newFile.filePath);
 
     const decodedToken = jwt.verify(
       id,
@@ -77,7 +57,13 @@ export async function uploadProfilePhoto(formData: FormData) {
       status: 200,
     };
   } catch (error) {
-    return { message: (error as Error).message, status: 500, imageUrl: "", publicId:"" };
+    console.log((error as Error).message);
+    return {
+      message: "Photo upload failed, please try later",
+      status: 500,
+      imageUrl: "",
+      publicId: "",
+    };
   }
 }
 
@@ -108,9 +94,14 @@ export async function deletePhoto(publicId: string) {
       ProfilePhoto.findOneAndDelete({ publicId }),
       cloudinary.v2.uploader.destroy(publicId),
     ]);
-    await revalidate("/");
     return { message: "Delete image successfully", status: 200 };
   } catch (error) {
-    return { message: (error as Error).message, status: 500 };
+    console.log((error as Error).message);
+    return {
+      message: "Delete Photo failed, please try later",
+      status: 500,
+      imageUrl: "",
+      publicId: "",
+    };
   }
 }
