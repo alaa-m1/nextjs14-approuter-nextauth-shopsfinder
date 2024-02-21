@@ -26,11 +26,8 @@ export const SearchPanel = () => {
 
   const handleApplySearch = useCallback(() => {
     if (!searchValue) {
-      //   if (searchParams?.has("search")) searchParams?.delete("search");
-      //   searchParams?.set("search", searchValue);
       router.push(pathname + "?" + createQueryString("search", ""));
     } else {
-      //   searchParams.set("search", searchValue);
       router.push(pathname + "?" + createQueryString("search", searchValue));
     }
   }, [createQueryString, pathname, router, searchValue]);
@@ -39,7 +36,6 @@ export const SearchPanel = () => {
     () =>
       _.debounce((searchValue: string) => {
         if (!searchValue) {
-          //   if (searchParams?.has("search")) searchParams.delete("search");
           router.push(pathname + "?" + createQueryString("search", ""));
         } else {
           router.push(
@@ -60,7 +56,6 @@ export const SearchPanel = () => {
       const newSearch = e.target.value;
       setSearchValue(newSearch);
       if (_.isEmpty(newSearch)) {
-        // if (searchParams?.has("search")) searchParams.delete("search");
         router.push(pathname + "?" + createQueryString("search", ""));
       }
       handleDebouncedSearchChange(newSearch);

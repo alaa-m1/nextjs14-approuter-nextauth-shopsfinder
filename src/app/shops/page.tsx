@@ -1,12 +1,14 @@
-"use client"
-import React from "react";
+"use client";
+import React, { Suspense } from "react";
 import { SearchPanel, SearchResults } from "./components";
-
+import { LoadingSpinner } from "@/shared";
 const Page = () => {
   return (
     <div>
-      <SearchPanel />
-      <SearchResults/>
+      <Suspense fallback={<LoadingSpinner />}>
+        <SearchPanel />
+      </Suspense>
+      <SearchResults />
     </div>
   );
 };
