@@ -9,3 +9,5 @@ const Page = async ({ params }: ProductDetailsProps) => {
   return <ProductDetails product={product} />;
 };
 export default Page;
+
+

@@ -3,7 +3,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import _ from "lodash";
 const GRID_ITEMS_COUNT = 10;
-const Loading = () => {
+export const ProductsListLoadingSkeleton = () => {
   const gridItemsArray = Array(GRID_ITEMS_COUNT)
     .fill(0)
     .map((item) => ({ label: item, id: _.uniqueId() }));
@@ -20,4 +20,3 @@ const Loading = () => {
     </div>
   );
 };
-export default Loading;

@@ -5,7 +5,7 @@ import { Categories } from "@/types";
 import { LoadingSpinner, NoItemsFound } from "@/shared";
 import { getCategories } from "@/queries";
 
-const Page = async () => {
+export const CategoriesList = async () => {
   const categoriesRes = await getCategories();
   const categories: Categories = (categoriesRes ?? []).map((category) => ({
     label: category,
@@ -24,4 +24,3 @@ const Page = async () => {
     </>
   );
 };
-export default Page;

@@ -4,15 +4,11 @@ import { NoItemsFound } from "@/shared";
 import { getProductsByCategory } from "@/queries";
 
 type ProductsProps = {
-  searchParams?: {
-    category?: string;
-  };
+  category?: string;
 };
 export const revalidate = 1800; // revalidate at most every half hour
-const Page = async ({ searchParams }: ProductsProps) => {
-  const currentCategory = searchParams?.category
-    ? searchParams?.category
-    : "all";
+export const ProductsList = async ({ category }: ProductsProps) => {
+  const currentCategory = category || "all";
   const products = await getProductsByCategory(currentCategory);
   return (
     <>
@@ -25,4 +21,3 @@ const Page = async ({ searchParams }: ProductsProps) => {
     </>
   );
 };
-export default Page;

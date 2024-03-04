@@ -13,3 +13,5 @@ const Page = async ({ params }: ProductDetailsProps) => {
   );
 };
 export default Page;
+
+
