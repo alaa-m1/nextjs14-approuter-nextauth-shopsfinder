@@ -1,4 +1,4 @@
-# Shops Finder Next.js
+# Next.js14 AppRouter NextAuth ShopsFinder
 
 ## Some of the technologies and features included in this project:
 * Nextjs 14 with App Router
