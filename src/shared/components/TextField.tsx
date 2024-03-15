@@ -8,21 +8,19 @@ import React, {
 import { MdClose } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Alert } from "./Alert";
-import { UseFormRegister } from "react-hook-form";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
-type TextFieldProps = Omit<
+type TextFieldProps<T extends FieldValues> = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   "name"
 > & {
-  name: string;
+  name: Path<T>;
   label: string;
   icon: JSX.Element;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  errors: any;
+  register: UseFormRegister<T>;
+  errors: string | undefined;
 };
-export const TextField = ({
+export const TextField = <T extends FieldValues>({
   name,
   label,
   icon,
@@ -31,7 +29,7 @@ export const TextField = ({
   type,
   required,
   ...props
-}: TextFieldProps) => {
+}: TextFieldProps<T>) => {
   const id = useId();
   const [showPassword, setShowPassword] = useState(false);
   const handleOnShowIconClick = () => {

@@ -33,6 +33,7 @@ const Page = () => {
             title="Xing"
           />
           <ExternalLink url="https://github.com/alaa-m1" title="GitHub" />
+          <ExternalLink url="https://dev.to/alaa-m1" title="Dev.to" />
         </div>
       </div>
     </div>
