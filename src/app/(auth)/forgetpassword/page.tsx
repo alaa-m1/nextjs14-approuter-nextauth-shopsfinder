@@ -5,7 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ScaleLoader } from "react-spinners";
 import { toast } from "react-toastify";
-import { SubmitButton, TextField } from "@/shared";
+import { CustomButton, TextField } from "@/shared";
 import { MdEmail } from "react-icons/md";
 import { sendResetPasswordLink } from "@/app/actions/sendResetPasswordLink";
 const UserSchema = z.object({
@@ -52,7 +52,7 @@ const Page = () => {
           errors={errors.email?.message}
           disabled={isSubmitting}
         ></TextField>
-        <SubmitButton
+        <CustomButton
           isLoading={isSubmitting}
           loadingIndicator={<ScaleLoader color="#36d7b7" height={20} />}
           variant="contained"

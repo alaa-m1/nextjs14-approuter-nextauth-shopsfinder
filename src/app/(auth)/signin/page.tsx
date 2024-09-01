@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BeatLoader } from "react-spinners";
-import { LinkButton, SubmitButton, TextField } from "@/shared";
+import { LinkButton, CustomButton, TextField } from "@/shared";
 import { toast } from "react-toastify";
 import { SignInResponse, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -66,7 +66,7 @@ const Page = () => {
           autoComplete="off"
           defaultValue=""
         ></TextField>
-        <SubmitButton
+        <CustomButton
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"

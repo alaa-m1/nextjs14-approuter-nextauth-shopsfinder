@@ -3,7 +3,7 @@ import classNames from "classnames";
 import React, { useEffect, useMemo, useState } from "react";
 import { RiseLoader } from "react-spinners";
 
-type SubmitButtonProps = React.DetailedHTMLProps<
+type CustomButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
@@ -12,16 +12,18 @@ type SubmitButtonProps = React.DetailedHTMLProps<
   loadingIndicator?: React.ReactNode;
   label?: string;
   variant?: "contained" | "outlined";
+  icon?: React.ReactNode;
 };
 
-export const SubmitButton = ({
+export const CustomButton = ({
   label = "",
   variant = "contained",
   isLoading,
   loadingIndicator,
   disabled,
+  icon,
   ...props
-}: SubmitButtonProps) => {
+}: CustomButtonProps) => {
   const [pageLoading, setPageLoading] = useState(true);
   useEffect(() => setPageLoading(false), []);
 
@@ -29,6 +31,7 @@ export const SubmitButton = ({
   return (
     <button
       aria-disabled={isLoading}
+      aria-label="submit"
       disabled={isLoading || disabled || pageLoading}
       {...props}
       type="submit"
@@ -55,6 +58,7 @@ export const SubmitButton = ({
         <div className="text-gray-800 pl-1 flex place-items-center font-bold">
           {label || "Submit"}
         </div>
+        {icon ?? null}
       </div>
     </button>
   );

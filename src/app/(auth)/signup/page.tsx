@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import React, { useEffect, useMemo, useState } from "react";
 import { BeatLoader } from "react-spinners";
-import { GenderSelect, SubmitButton, TextField } from "@/shared";
+import { GenderSelect, CustomButton, TextField } from "@/shared";
 import { TermsPanel } from "../components";
 import { toast } from "react-toastify";
 import validator from "validator";
@@ -219,7 +219,7 @@ const Page = () => {
           required
         ></TextField>
         <TermsPanel register={register} error={errors.accept?.message} />
-        <SubmitButton
+        <CustomButton
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"

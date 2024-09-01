@@ -13,7 +13,7 @@ import { BeatLoader } from "react-spinners";
 import {
   Alert,
   GenderSelect,
-  SubmitButton,
+  CustomButton,
   TextField,
   externalProviders,
 } from "@/shared";
@@ -186,7 +186,7 @@ export const UserGeneralInfo = ({ userInfo }: { userInfo: UserInfo }) => {
           register={register}
           disabled={isSubmitting}
         />
-        <SubmitButton
+        <CustomButton
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"

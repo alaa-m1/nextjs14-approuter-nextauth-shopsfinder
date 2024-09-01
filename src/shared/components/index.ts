@@ -9,6 +9,7 @@ export * from "./ErrorPanel";
 export * from "./Alert";
 export * from "./SocialButton";
 export * from "./TextField";
-export * from "./SubmitButton";
+export * from "./CustomButton";
 export * from "./Dialog";
 export * from "./GenderSelect";
+export * from "./CustomIconButton";
