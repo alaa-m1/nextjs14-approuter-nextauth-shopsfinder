@@ -8,7 +8,7 @@ import {
   ACCEPTED_IMAGE_TYPES,
   Alert,
   MAX_IMAGE_SIZE,
-  SubmitButton,
+  CustomButton,
 } from "@/shared";
 import { toast } from "react-toastify";
 import { UserInfo } from "@/types";
@@ -126,7 +126,7 @@ export const UserProfilePhoto = ({ userInfo }: { userInfo: UserInfo }) => {
             />
           </div>
         </div>
-        <SubmitButton
+        <CustomButton
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"

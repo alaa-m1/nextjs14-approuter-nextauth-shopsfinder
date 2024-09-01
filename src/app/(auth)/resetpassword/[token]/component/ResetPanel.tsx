@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import React, { useEffect, useMemo, useState } from "react";
 import { BeatLoader } from "react-spinners";
-import { SubmitButton, TextField } from "@/shared";
+import { CustomButton, TextField } from "@/shared";
 import { toast } from "react-toastify";
 import { resetPassword } from "@/app/actions/resetPassword";
 
@@ -119,7 +119,7 @@ export const ResetPanel = ({ userToken,csrfToken }: ResetPanelProps) => {
         autoComplete="off"
         required
       ></TextField>
-      <SubmitButton
+      <CustomButton
         isLoading={isSubmitting}
         loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
         variant="contained"

@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import zxcvbn from "zxcvbn";
 import React, { useEffect, useMemo, useState } from "react";
 import { BeatLoader } from "react-spinners";
-import { Alert, SubmitButton, TextField, externalProviders } from "@/shared";
+import { Alert, CustomButton, TextField, externalProviders } from "@/shared";
 import { toast } from "react-toastify";
 import { schemaForType } from "@/types/new-types.d";
 import { UserInfo } from "@/types";
@@ -154,7 +154,7 @@ export const UserPassword = ({ userInfo }: { userInfo: UserInfo }) => {
           autoComplete="off"
           required
         ></TextField>
-        <SubmitButton
+        <CustomButton
           isLoading={isSubmitting}
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"
