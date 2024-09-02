@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import logoSrc from "@/assets/images/phoenix.png";
-import { StyledLink, useSmallScreen, NavLinks } from "@/shared";
+import { StyledLink, useSmallScreen, NavLinks, ThemeSwitcher } from "@/shared";
 import Link from "next/link";
 import Image from "next/image";
 import { Drawer } from "./components";
@@ -59,6 +59,7 @@ export const Header = () => {
                 <StyledLink href={"/signin"}>Sign In</StyledLink>
               )}
             </div>
+            <ThemeSwitcher/>
           </>
         )}
         <Drawer

@@ -2,24 +2,19 @@
 
 import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import { useTheme } from "next-themes";
 import React from "react";
 
 type NextAuthProvider = {
   children: React.ReactNode;
   session: Session;
 };
+
 export const NextAuthProvider = ({ children, session }: NextAuthProvider) => {
-  return <SessionProvider session={session}>{children}</SessionProvider>;
+  const { theme } = useTheme();
+  return (
+    <main className={theme==="dark"?"dark text-foreground bg-background":"light text-foreground bg-background"}>
+      <SessionProvider session={session}>{children}</SessionProvider>
+    </main>
+  );
 };
-
-import { createContext } from "react";
-
-export const ThemeContext = createContext({});
-
-export default function ThemeProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <ThemeContext.Provider value="dark">{children}</ThemeContext.Provider>;
-}
