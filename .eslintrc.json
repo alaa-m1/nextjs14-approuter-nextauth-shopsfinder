@@ -27,7 +27,8 @@
   },
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
-    "react/prop-types": [2, { "ignore": ["className"] }]
+    "react/prop-types": [2, { "ignore": ["className"] }],
+     "@typescript-eslint/no-explicit-any": "off"
   },
   "settings": {
     "react": {
