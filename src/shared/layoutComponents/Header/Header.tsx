@@ -4,11 +4,11 @@ import logoSrc from "@/assets/images/phoenix.png";
 import { StyledLink, useSmallScreen, NavLinks, ThemeSwitcher } from "@/shared";
 import Link from "next/link";
 import Image from "next/image";
-import { Drawer } from "./components";
+import { Drawer, LanguageMenu } from "./components";
 import { useSession, signOut } from "next-auth/react";
 import { UserInfo } from "@/types";
 
-export const Header = () => {
+export const Header = ({ lang }: { lang: string }) => {
   const isSmallScreen = useSmallScreen();
   const { data: session } = useSession();
   const currentUser: UserInfo | undefined = session?.user;
@@ -60,12 +60,14 @@ export const Header = () => {
               )}
             </div>
             <ThemeSwitcher/>
+            <LanguageMenu lang={lang} />
           </>
         )}
         <Drawer
           links={NavLinks}
           currentUser={currentUser}
           isSmallScreen={isSmallScreen}
+          lang={lang}
         />
       </nav>
     </header>

@@ -4,15 +4,17 @@ import { MdMenu, MdClose } from "react-icons/md";
 import logoSrc from "@/assets/images/phoenix.png";
 import { LinkInfo, UserInfo } from "@/types";
 import Image from "next/image";
-import { StyledLink } from "@/shared";
+import { StyledLink, ThemeSwitcher } from "@/shared";
 import { signOut } from "next-auth/react";
+import { LanguageMenu } from "./LanguageMenu";
 type DrawerProps = {
   links: Array<LinkInfo>;
   currentUser: UserInfo | undefined;
   isSmallScreen: boolean;
+  lang: string;
 };
 
-export const Drawer = ({ links, currentUser, isSmallScreen }: DrawerProps) => {
+export const Drawer = ({ links, currentUser, isSmallScreen, lang }: DrawerProps) => {
   const [open, setOpen] = useState(false);
   const drawerLinks: Array<LinkInfo> = [
     ...links,
@@ -86,7 +88,8 @@ export const Drawer = ({ links, currentUser, isSmallScreen }: DrawerProps) => {
                     );
                   return <div key={index}>&nbsp;</div>;
                 })}
-
+                <ThemeSwitcher />
+                <LanguageMenu lang={lang}/>
                 {currentUser ? (
                   <div onClick={() => setOpen(false)}>
                     <StyledLink href={"/"} onClick={() => signOut()}>
