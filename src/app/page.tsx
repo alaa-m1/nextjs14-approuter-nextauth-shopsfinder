@@ -1,14 +1,9 @@
 import React from "react";
-import { Metadata } from "next";
-import Home from "./home/page";
+import Home from "./[lang]/home/Home";
 
-export const metadata: Metadata = {
-  title: 'Shops Finder',
-  description: 'Shoping becomes easy with us',
-}
 
-export default function Page() {
+export default function Page({params}:Readonly<{params: { lang: string }}>) {
   return (
-    <Home/>
+    <Home lng={params.lang}/>
   )
 }
