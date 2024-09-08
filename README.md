@@ -2,7 +2,7 @@
 
 ## Some of the technologies and features included in this project:
 * Nextjs 14 with App Router
-* Route Groups, Dynamic Routes, Parallel Routes, Intercepting Routes, Route Handlers ...
+* Route Groups, Dynamic Routes, Parallel Routes, Intercepting Routes, Route Handlers, Theming, Internationalization ...
 * Fully authentication which includes:
   * Signin with NextAuth providers, credentials
   * Activate the account using a link sent via email
