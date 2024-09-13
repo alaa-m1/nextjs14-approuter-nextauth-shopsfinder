@@ -34,7 +34,7 @@ export const Header = ({ lang }: { lang: string }) => {
               </Link>
             </div>
             <div className="flex grow-[2] nav-bts">
-              <div>
+              <div className="flex gap-4">
                 {NavLinks.map((link, index) =>
                   link.protected ? (
                     currentUser ? (
