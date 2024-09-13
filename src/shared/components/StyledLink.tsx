@@ -1,7 +1,9 @@
 "use client";
 import React, { useMemo, CSSProperties } from "react";
-import Link, { LinkProps } from "next/link";
-import { usePathname } from "next/navigation";
+import { LinkProps } from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import classNames from "classnames";
+import { Button } from "@nextui-org/react";
 
 /**
  * Handle link
@@ -29,8 +31,10 @@ export const StyledLink = ({
     () => active ?? pathname === props.href,
     [pathname, props.href, active]
   );
+  const router=useRouter();
   return (
-    <Link {...props}>
+    <Button onClick={()=>{router.push(props.href)}} className={classNames("group bg-transparent flex gap-0 justify-center items-center"
+    )}>
       <span
         className={`text-[15px] text-white ${
           isActive ? "font-bold" : "font-normal"
@@ -38,6 +42,6 @@ export const StyledLink = ({
       >
         {children}
       </span>
-    </Link>
+    </Button>
   );
 };
