@@ -14,7 +14,6 @@ import { toast } from "react-toastify";
 import { sizeInMB } from "@/utils/helpers";
 import { MdClose } from "react-icons/md";
 import { revalidate, uploadProfileImage } from "./actions/cloudinaryActions";
-import { revalidatePath } from "next/cache";
 const UserGeneralInfoSchema = z.object({
   profileImage: z
     .custom<FileList>()
@@ -51,8 +50,9 @@ export const UserCloudinaryImage = () => {
     [profileImage]
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit: SubmitHandler<UserSchemaType> = async (data) => {
-    const FilesList = data.profileImage;
+    // const FilesList = data.profileImage;
 
     const formData = new FormData();
     for (const img of importedImages) {

@@ -6,7 +6,7 @@ import validator from "validator";
 import sendCustomEmail from "@/utils/mailing/sendEmail";
 import { activateEmailTemplate } from "@/emailTemplate/activation";
 import { createActivationJWT } from "@/utils/authentication/authTokens";
-import { UserSchemaType } from "../(auth)/signup/page";
+import { UserSchemaType } from "../[lang]/(auth)/signup/page";
 
 export async function createNewUser(formData: UserSchemaType) {
   try {

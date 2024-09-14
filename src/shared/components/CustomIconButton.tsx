@@ -11,9 +11,6 @@ type CustomIconButtonProps = React.DetailedHTMLProps<
 };
 
 export const CustomIconButton = ({
-  disabled,
-  label,
-  variant,
   icon,
   ...props
 }: CustomIconButtonProps) => {

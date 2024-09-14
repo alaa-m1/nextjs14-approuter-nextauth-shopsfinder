@@ -84,14 +84,15 @@ export async function uploadProfileImage(formData: FormData) {
   }
 }
 
-const delay = (delayInms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, delayInms));
-};
+// const delay = (delayInms: number) => {
+//   return new Promise((resolve) => setTimeout(resolve, delayInms));
+// };
 export async function revalidate(path: string) {
   revalidatePath(path);
 }
 export async function getAllPhotos() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { resources } = await cloudinary.v2.search
       .expression("folder:shope_finder_upload/*")
       .sort_by("created_at", "desc")

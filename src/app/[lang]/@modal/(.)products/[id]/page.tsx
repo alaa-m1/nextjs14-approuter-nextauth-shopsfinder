@@ -1,6 +1,6 @@
 import React from "react";
 import { getProductById } from "@/queries";
-import { ProductDetails, ProductModal } from "@/app/products/[id]/components";
+import { ProductDetails, ProductModal } from "@/app/[lang]/products/[id]/components";
 type ProductDetailsProps = {
   params: { id: string };
 };

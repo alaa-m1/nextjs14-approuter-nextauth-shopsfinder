@@ -1,2 +1,2 @@
-export * from "./NextAuthProvider";
+export * from "./AppRootProvider";
 export * from "./ThemeProvider";

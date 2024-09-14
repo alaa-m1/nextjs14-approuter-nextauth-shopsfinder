@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductModal } from "@/app/products/[id]/components";
+import { ProductModal } from "@/app/[lang]/products/[id]/components";
 import { ErrorPanel } from "@/shared";
 import React, { useEffect } from "react";
 
