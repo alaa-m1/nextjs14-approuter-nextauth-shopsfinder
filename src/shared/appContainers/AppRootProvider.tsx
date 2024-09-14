@@ -9,7 +9,7 @@ import { SessionProvider } from "next-auth/react";
 
 type NextAuthProvider = {
   children: React.ReactNode;
-  session: Session;
+  session: Session | null;
 };
 
 const RootProvider = ({ children, session }: NextAuthProvider) => {
