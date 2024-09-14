@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Cairo, Roboto } from "next/font/google";
 import "../globals.css";
 import React from "react";
-import { Footer, Header, NextAuthProvider, ThemeProvider } from "@/shared";
+import { AppRootProvider, Footer, Header, ThemeProvider } from "@/shared";
 import { Session } from "next-auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -53,7 +53,7 @@ export default function RootLayout({
     </Head>
       <body className={`${roboto.variable} ${cairo.variable}`}>
         <ThemeProvider>
-          <NextAuthProvider session={session}>
+          <AppRootProvider session={session}>
             <div className="relative flex min-h-[100vh] flex-col justify-between">
               <Header lang={params.lang}/>
               <div className="flex grow">
@@ -64,7 +64,7 @@ export default function RootLayout({
               </div>
               <Footer lng={params.lang}/>
             </div>
-          </NextAuthProvider>
+          </AppRootProvider>
         </ThemeProvider>
         <ToastContainer
           position="top-left"
