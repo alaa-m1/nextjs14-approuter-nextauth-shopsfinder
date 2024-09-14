@@ -1,6 +1,5 @@
 import React from "react";
-import { PhotoCard } from "./PhotoCard";
-import { deletePhoto, getAllPhotos } from "./actions/cloudinaryActions";
+import { getAllPhotos } from "./actions/cloudinaryActions";
 import { UserCloudinaryImage } from "./UserCloudinaryImage";
 import { PhotosList } from "./PhotosList";
 
