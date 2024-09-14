@@ -4,6 +4,7 @@ import { LinkProps } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import classNames from "classnames";
 import { Button } from "@nextui-org/react";
+import { useLanguage } from "../context/LanguageContext";
 
 /**
  * Handle link
@@ -27,14 +28,26 @@ export const StyledLink = ({
   ...props
 }: LinkComponentProps) => {
   const pathname = usePathname();
+  const { language } = useLanguage();
+
   const isActive = useMemo(
-    () => active ?? pathname === props.href,
-    [pathname, props.href, active]
+    () =>
+      active ??
+      pathname?.replace(`/${language}`, "") ===
+        (props.href === "/" ? "" : props.href),
+    [active, pathname, language, props.href]
   );
-  const router=useRouter();
+  const router = useRouter();
+  
   return (
-    <Button onClick={()=>{router.push(props.href)}} className={classNames("group bg-transparent flex gap-0 justify-center items-center"
-    )}>
+    <Button
+      onClick={() => {
+        router.push(props.href);
+      }}
+      className={classNames(
+        "group bg-transparent flex gap-0 justify-center items-center"
+      )}
+    >
       <span
         className={`text-[15px] text-white ${
           isActive ? "font-bold" : "font-normal"
