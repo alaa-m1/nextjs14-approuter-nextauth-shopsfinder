@@ -4,7 +4,9 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import ScreenshotMonitorIcon from "@mui/icons-material/ScreenshotMonitor";
 import { useTheme } from "next-themes";
-import { CustomIconButton } from "../components";
+import classNames from "classnames";
+import { useIsClient } from "../hooks/useIsClient";
+import { Button } from "@nextui-org/react";
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
@@ -17,12 +19,21 @@ export const ThemeSwitcher = () => {
   const handleThemeMenuClick = useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark");
   }, [setTheme, theme]);
-
+  const isClient = useIsClient();
   const themeButton = useMemo(
     () => (
-      <CustomIconButton
+      <Button
         onClick={handleThemeMenuClick}
-        icon={
+        className={classNames(
+          "px-2 border-none  hover:[&>svg]:text-[#e76712] hover:[&>svg]:transition-all hover:[&>svg]:duration-300",
+          { "[&>svg]:text-white": !isClient },
+          {
+            "[&>svg]:text-light-label [&>svg]:dark:text-dark-label":
+              isClient,
+          }
+        )}
+      >
+        {
           theme === "dark" ? (
             <DarkModeIcon sx={{ "& path": { color: "warning.main" } }} />
           ) : theme === "light" ? (
@@ -31,7 +42,7 @@ export const ThemeSwitcher = () => {
             <ScreenshotMonitorIcon />
           )
         }
-      />
+      </Button>
     ),
     [handleThemeMenuClick, theme]
   );
