@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import classNames from "classnames";
 import { Button } from "@nextui-org/react";
 import { useLanguage } from "../context/LanguageContext";
+import { useIsClient } from "usehooks-ts";
 
 /**
  * Handle link
@@ -38,7 +39,8 @@ export const StyledLink = ({
     [active, pathname, language, props.href]
   );
   const router = useRouter();
-  
+  const isClient = useIsClient();
+
   return (
     <Button
       onClick={() => {
@@ -49,9 +51,11 @@ export const StyledLink = ({
       )}
     >
       <span
-        className={`text-[15px] text-white ${
-          isActive ? "font-bold" : "font-normal"
-        }`}
+        className={classNames(
+          { "font-bold": isActive },
+          { "font-normal": !isActive },
+          { "text-light-label dark:text-dark-label": isClient }
+        )}
       >
         {children}
       </span>

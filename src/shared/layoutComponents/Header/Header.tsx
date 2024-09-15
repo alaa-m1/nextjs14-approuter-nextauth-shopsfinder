@@ -51,15 +51,17 @@ export const Header = ({ lang }: { lang: string }) => {
               </div>
             </div>
             <div className="flex px-2 grow-0 nav-bts">
-              {currentUser ? (
-                <StyledLink href={"/"} onClick={() => signOut()}>
-                  <span>Sign Out</span>
-                </StyledLink>
-              ) : (
-                <StyledLink href={"/signin"}>Sign In</StyledLink>
-              )}
+              <div>
+                {currentUser ? (
+                  <StyledLink href={"/"} onClick={() => signOut()}>
+                    <span>Sign Out</span>
+                  </StyledLink>
+                ) : (
+                  <StyledLink href={"/signin"}>{`Sign In`}</StyledLink>
+                )}
+              </div>
             </div>
-            <ThemeSwitcher/>
+            <ThemeSwitcher />
             <LanguageMenu lang={lang} />
           </>
         )}

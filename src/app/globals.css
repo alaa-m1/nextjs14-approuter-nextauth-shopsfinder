@@ -22,7 +22,7 @@
 }
 @layer components {
   .nav-bts {
-    @apply place-items-center justify-between delay-200 ease-in [&>div>a>span]:mx-[10px] [&>div>a>span]:transition-colors hover:[&>div>a>span]:text-[#e76712];
+    @apply place-items-center justify-between delay-200 ease-in [&>div>button>span]:mx-[10px] [&>div>button>span]:transition-colors hover:[&>div>button>span]:text-[#e76712];
   }
   .fieldset-border {
     @apply border border-solid border-gray-400 rounded-sm p-2 my-2;
