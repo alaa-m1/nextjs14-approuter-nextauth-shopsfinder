@@ -32,6 +32,22 @@ const config: Config = {
         lg: '976px',
         xl: '1440px',
       },
+      colors: {
+        light: {
+          bg: "#f4f0f0",
+          card: "#e3e1e1",
+          text: "#000",
+          label: "#0a2a4b",
+          primary: "#1976d2",
+        },
+        dark: {
+          bg: "#171717",
+          card: "#303030",
+          text: "#fff",
+          label: "#144e87",
+          primary: "#1565c0",
+        },
+      },
     },
     
     fontFamily: {
