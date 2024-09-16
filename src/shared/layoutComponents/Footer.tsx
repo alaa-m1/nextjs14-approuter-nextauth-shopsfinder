@@ -10,7 +10,7 @@ export const Footer = ({ lng }: FooterProps) => {
   const date = new Date();
   const copyrights = `©${date.getFullYear()} Shops Finder`;
   return (
-    <div className=" overflow-hidden flex flex-wrap grow-0 justify-around items-center h-[50px] shadow-with-border bg-[#1976d2]">
+    <div className=" overflow-hidden flex flex-wrap grow-0 justify-around items-center h-[50px] shadow-with-border bg-light-card dark:bg-dark-card">
       <div>
         <Link href={`/${lng}`}>
           <span className="text-black">{copyrights}</span>
