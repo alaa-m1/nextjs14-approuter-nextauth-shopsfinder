@@ -18,7 +18,8 @@ export const Header = ({ lang }: { lang: string }) => {
       <nav
         className="relative flex  
           place-items-center justify-between p-6 lg:px-8 bg-gradient-to-b  from-indigo-900
-          via-indigo-500 to-indigo-600 pr-0 [&_.MuiToolbar-root]:w-full"
+          via-indigo-500 to-indigo-600  dark:from-slate-900
+          dark:via-slate-500 dark:to-slate-600 pr-0 [&_.MuiToolbar-root]:w-full"
       >
         {isSmallScreen ? (
           <div className="grow-[1]">
