@@ -48,12 +48,12 @@ export default async function RootLayout({
             <div className="relative flex min-h-[100vh] flex-col justify-between">
               <Header lang={params.lang}/>
               <div className="flex grow">
-                <div className={`w-[100%]`}>
+                <div className={`w-[100%] p-2`}>
                   {children}
                   {modal}
                 </div>
               </div>
-              <Footer lng={params.lang}/>
+              <Footer lang={params.lang}/>
             </div>
           </AppRootProvider>
         </ThemeProvider>

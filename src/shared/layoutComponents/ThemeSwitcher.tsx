@@ -44,7 +44,7 @@ export const ThemeSwitcher = () => {
         }
       </Button>
     ),
-    [handleThemeMenuClick, theme]
+    [handleThemeMenuClick, isClient, theme]
   );
   if (!mounted) return null;
   return <>{themeButton}</>;
