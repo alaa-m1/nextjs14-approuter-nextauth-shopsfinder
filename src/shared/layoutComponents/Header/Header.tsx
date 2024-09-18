@@ -7,8 +7,14 @@ import Image from "next/image";
 import { Drawer, LanguageMenu } from "./components";
 import { useSession, signOut } from "next-auth/react";
 import { UserInfo } from "@/types";
+import { useIsClient } from "usehooks-ts";
 
 export const Header = ({ lang }: { lang: string }) => {
+	const isClient = useIsClient();
+	return <HeaderComponent lang={lang} key={isClient ? "1" : "0"} />;
+};
+
+export const HeaderComponent = ({ lang }: { lang: string }) => {
   const isSmallScreen = useSmallScreen();
   const { data: session } = useSession();
   const currentUser: UserInfo | undefined = session?.user;
