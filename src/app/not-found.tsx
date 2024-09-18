@@ -1,16 +1,78 @@
 import React from "react";
-import Link from "next/link";
-import { ColoredDevider } from "@/shared";
-const NotFound = () => {
-  return (
-    <div className="mx-auto mt-[150px] max-w-[600px] shadow-md hover:shadow-lg text-center py-[10px] text-black">
-      <div className="text-[16px] text-5xl text-blue-600 mb-2">404</div>
-      <div className="text-black uppercase">Page not Found</div>
-      <ColoredDevider />
-      <Link href="/" className="no-underline text-blue-950">
-        Home Page
-      </Link>
-    </div>
-  );
+import type { Metadata } from "next";
+import { Cairo, Roboto } from "next/font/google";
+import "./globals.css";
+import {
+  Footer,
+  AppRootProvider,
+  NotFoundSecion,
+  ThemeProvider,
+} from "@/shared";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Head from "next/head";
+import { dir } from "i18next";
+
+const roboto = Roboto({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+});
+
+const cairo = Cairo({
+  weight: ["400", "700"],
+  style: ["normal"],
+  subsets: ["arabic"],
+  display: "swap",
+  variable: "--font-cairo",
+});
+
+export const metadata: Metadata = {
+  title: "Beta-Cortex Web App",
+  description: "Web Applications, Mobile Applications, Blockchain Expert",
 };
-export default NotFound;
+
+export default function NotFound({
+  params,
+}: Readonly<{
+  params: { lang: string };
+}>) {
+  return (
+    <html lang={params?.lang ?? "ltr"} dir={dir(params?.lang ?? "ltr")}>
+      <Head>
+        <link rel="shortcut icon" href="@/assets/images/favicon.ico" />
+      </Head>
+      <body className={`${roboto.variable} ${cairo.variable}`}>
+        <ThemeProvider>
+          <AppRootProvider>
+            <div className="relative flex min-h-[100vh] flex-col justify-between">
+              {/* <Header lang={params.lang} /> */}
+              <div className="flex grow">
+                <div className={`w-[100%]`}>
+                  <NotFoundSecion />
+                </div>
+              </div>
+              <Footer lang={params?.lang ?? "ltr"} />
+            </div>
+          </AppRootProvider>
+        </ThemeProvider>
+        <ToastContainer
+          position="top-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </body>
+    </html>
+  );
+}
+
+
