@@ -50,7 +50,7 @@ export const Sidebar = ({
               imgSrc={userInfo.image.imgURL}
               name={userInfo.firstName + " " + userInfo.lastName}
               verticalAlignment
-              isLoading={status==="loading"}
+              isLoading={status === "loading"}
             />
           </div>
           {drawerLinks.map((link, index) => {
@@ -64,9 +64,8 @@ export const Sidebar = ({
                     href={`/dashboard?p=${link.path}`}
                     style={{ width: "100%", padding: "8px 16px" }}
                     active={searchParams?.get("p") === link.path}
-                  >
-                    {link.label}
-                  </StyledLink>
+                    label={link.label}
+                  />
                 </div>
               );
             return <div key={index}>&nbsp;</div>;
@@ -84,9 +83,8 @@ export const Sidebar = ({
                 key={index}
                 href={`/dashboard?p=${link.path}`}
                 active={searchParams?.get("p") === link.path}
-              >
-                {link.label}
-              </StyledLink>
+                label={link.label}
+              />
             );
           return null;
         })}
@@ -94,7 +92,7 @@ export const Sidebar = ({
       <AdminLogo
         imgSrc={userInfo.image.imgURL}
         name={userInfo.firstName + " " + userInfo.lastName}
-        isLoading={status==="loading"}
+        isLoading={status === "loading"}
       />
     </nav>
   );
