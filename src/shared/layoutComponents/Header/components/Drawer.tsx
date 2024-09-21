@@ -74,7 +74,7 @@ export const Drawer = ({ links, currentUser, isSmallScreen, lang }: DrawerProps)
                           key={index}
                           onClick={() => setOpen(false)}
                         >
-                          <StyledLink href={link.path}>{link.label}</StyledLink>
+                          <StyledLink href={link.path} label={link.label}/>
                         </div>
                       ) : null
                     ) : (
@@ -83,7 +83,7 @@ export const Drawer = ({ links, currentUser, isSmallScreen, lang }: DrawerProps)
                         key={index}
                         onClick={() => setOpen(false)}
                       >
-                        <StyledLink href={link.path}>{link.label}</StyledLink>
+                        <StyledLink href={link.path} label={link.label}/>
                       </div>
                     );
                   return <div key={index}>&nbsp;</div>;
@@ -92,13 +92,11 @@ export const Drawer = ({ links, currentUser, isSmallScreen, lang }: DrawerProps)
                 <LanguageMenu lang={lang}/>
                 {currentUser ? (
                   <div onClick={() => setOpen(false)}>
-                    <StyledLink href={"/"} onClick={() => signOut()}>
-                      {"Sign Out"}
-                    </StyledLink>
+                    <StyledLink href={"/"} onClick={() => signOut()} label={"signout"}/>
                   </div>
                 ) : (
                   <div className="my-2" onClick={() => setOpen(false)}>
-                    <StyledLink href={"/signin"}>{"Sign In"}</StyledLink>
+                    <StyledLink href={"/signin"} label={"signin"}/>
                   </div>
                 )}
               </div>
