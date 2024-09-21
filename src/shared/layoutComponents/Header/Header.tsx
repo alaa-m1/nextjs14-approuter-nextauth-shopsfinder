@@ -45,14 +45,11 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
                 {NavLinks.map((link, index) =>
                   link.protected ? (
                     currentUser ? (
-                      <StyledLink key={index} href={link.path}>
-                        {link.label}
-                      </StyledLink>
+                      <StyledLink key={index} href={link.path} label={link.label}/>
+                        
                     ) : null
                   ) : (
-                    <StyledLink key={index} href={link.path}>
-                      {link.label}
-                    </StyledLink>
+                    <StyledLink key={index} href={link.path} label={link.label}/>
                   )
                 )}
               </div>
@@ -60,11 +57,9 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
             <div className="flex px-2 grow-0 nav-bts">
               <div>
                 {currentUser ? (
-                  <StyledLink href={"/"} onClick={() => signOut()}>
-                    <span>Sign Out</span>
-                  </StyledLink>
+                  <StyledLink href={"/"} onClick={() => signOut()} label={'signout'}/>
                 ) : (
-                  <StyledLink href={"/signin"}>{`Sign In`}</StyledLink>
+                  <StyledLink href={"/signin"} label={'signin'}/>
                 )}
               </div>
             </div>

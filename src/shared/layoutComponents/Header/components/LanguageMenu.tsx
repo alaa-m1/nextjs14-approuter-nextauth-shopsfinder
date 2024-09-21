@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Dropdown,
   DropdownTrigger,
@@ -15,10 +15,20 @@ import { useSelectedLayoutSegments } from "next/navigation";
 import { useTranslation } from "@/app/i18n/client";
 import classNames from "classnames";
 import { useIsClient } from "usehooks-ts";
+import { useLanguage } from "@/shared/context/LanguageContext";
+
 export const LanguageMenu = ({ lang }: { lang: string }) => {
   const segments = useSelectedLayoutSegments();
   const { t } = useTranslation(lang);
-  const currentSegments = (segments ?? []).slice(1).join("/");
+  const { updateLanguage } = useLanguage();
+  useEffect(() => {
+    console.log('lang=',lang);
+    if (lang === "ar" || lang === "en") {
+      updateLanguage(lang);
+    }
+  }, [lang, updateLanguage]);
+
+  const currentSegments = (segments ?? []).join("/");
   const isClient = useIsClient();
   return (
     <Dropdown>
@@ -37,7 +47,10 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
           <MdOutlineLanguage size={22} />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions" className="p-[10px] rounded-sm bg-light-card dark:bg-dark-card">
+      <DropdownMenu
+        aria-label="Static Actions"
+        className="p-[10px] rounded-sm bg-light-card dark:bg-dark-card"
+      >
         {languages.map((l) => {
           return (
             <DropdownItem

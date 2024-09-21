@@ -2,5 +2,11 @@
   "title": "Hi there!",
   "language": "Language",
   "arabic":"Arabic",
-  "english":"English"
+  "english":"English",
+  "home":"Home",
+  "about":"About",
+  "products":"Products",
+  "signin":"Sign in",
+  "signout":"Sign out",
+"dashboard":"Dashboard"
 }

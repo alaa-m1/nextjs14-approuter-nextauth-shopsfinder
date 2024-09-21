@@ -1,11 +1,11 @@
 "use client";
 import React, { useMemo, CSSProperties } from "react";
-import { LinkProps } from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import Link, { LinkProps } from "next/link";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import { Button } from "@nextui-org/react";
 import { useLanguage } from "../context/LanguageContext";
 import { useIsClient } from "usehooks-ts";
+import { useTranslation } from "@/app/i18n/client";
 
 /**
  * Handle link
@@ -18,18 +18,21 @@ import { useIsClient } from "usehooks-ts";
  */
 
 type LinkComponentProps = LinkProps & {
-  children: React.ReactNode;
+  // children: React.ReactNode;
   href: string;
   style?: CSSProperties | undefined;
   active?: boolean;
+  label: string;
 };
 export const StyledLink = ({
-  children,
+  // children,
   active,
+  label,
   ...props
 }: LinkComponentProps) => {
   const pathname = usePathname();
   const { language } = useLanguage();
+  const {t}=useTranslation(language)
 
   const isActive = useMemo(
     () =>
@@ -38,16 +41,14 @@ export const StyledLink = ({
         (props.href === "/" ? "" : props.href),
     [active, pathname, language, props.href]
   );
-  const router = useRouter();
   const isClient = useIsClient();
 
   return (
-    <Button
-      onClick={() => {
-        router.push(props.href);
-      }}
+    <Link
+      {...props}
       className={classNames(
-        "group bg-transparent flex gap-0 justify-center items-center"
+        "group flex gap-0 justify-center items-center",
+        { "[&>span]:text-white [&>span]:dark:text-white": !isClient }
       )}
     >
       <span
@@ -57,8 +58,8 @@ export const StyledLink = ({
           { "text-light-label dark:text-dark-label": isClient }
         )}
       >
-        {children}
+        {t(label)}
       </span>
-    </Button>
+    </Link>
   );
 };
