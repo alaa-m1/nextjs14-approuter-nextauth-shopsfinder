@@ -9,7 +9,7 @@ export const ThemeProvider = ({
 }>) => {
   return (
     <NextUIProvider>
-      <NextThemesProvider attribute="class" defaultTheme="dark">
+      <NextThemesProvider attribute="class" defaultTheme="light">
         {children}
       </NextThemesProvider>
     </NextUIProvider>

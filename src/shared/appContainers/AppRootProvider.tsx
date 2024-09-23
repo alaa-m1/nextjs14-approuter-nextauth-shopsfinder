@@ -17,9 +17,9 @@ const RootProvider = ({ children, session }: NextAuthProvider) => {
   return (
     <main
       className={
-        theme === "light"
-          ? "light text-light-text bg-light-bg"
-          : "dark text-dark-text bg-dark-bg"
+        theme === "dark"
+          ? "dark text-dark-text bg-dark-bg"
+          : "light text-light-text bg-light-bg"
       }
     >
       <LanguageProvider>
