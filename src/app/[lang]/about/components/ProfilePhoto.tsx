@@ -1,7 +1,8 @@
 "use client"
 import React from "react";
 import styled from "styled-components";
-
+import imgSrc from "@/assets/images/Alaa.jpg"
+import Image from "next/image";
 export const ProfilePhoto = () => {
   return (
     <div className="relative overflow-hidden w-[350px] h-[340px] bg-[#eee]">
@@ -12,7 +13,7 @@ export const ProfilePhoto = () => {
         <BackgroundContainer3 />
         <BackgroundContainer4 />
       </ImageContainer>
-      <DevImage src={'/images/Alaa.jpg'} alt="Alaa Mohammad" className=""/>
+      <DevImage src={imgSrc} alt="Alaa Mohammad" className="dddd"/>
     </div>
   );
 };
@@ -78,7 +79,7 @@ const BackgroundContainer4 = styled.div`
   height: 260px;
   background-color: #eee;
 `;
-const DevImage = styled.img`
+const DevImage = styled(Image)`
   position: absolute;
   left: 10px;
   top: 0px;
