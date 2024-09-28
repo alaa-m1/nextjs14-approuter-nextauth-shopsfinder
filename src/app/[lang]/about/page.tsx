@@ -13,7 +13,7 @@ const Page = () => {
   I am self-motivated. I enjoy new challenges, collaborating with other developers and developing good software.`;
   return (
     <div className="h-full pt-[20px] py-[10px] text-black px-1 bg-[#eee]">
-      <div className="flex flex-col gap-3">
+      <div style={{direction:"ltr"}} className="flex flex-col gap-3">
         <div className="flex justify-center h-[340px] items-center">
           {isPageLoading ? <LoadingSpinner /> : <ProfilePhoto />}
         </div>
