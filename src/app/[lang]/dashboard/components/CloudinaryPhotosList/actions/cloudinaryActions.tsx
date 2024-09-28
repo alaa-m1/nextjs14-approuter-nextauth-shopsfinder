@@ -42,7 +42,6 @@ async function uploadImgaesToCloudinary(
   }>
 ) {
   const muliplePhotosPromise = newFiles.map((file) => {
-    console.log("cloudinary file.filePath=", file.filePath);
     return cloudinary.v2.uploader.upload(file.filePath, {
       folder: "shope_finder_upload",
     });
@@ -52,12 +51,10 @@ async function uploadImgaesToCloudinary(
 export async function uploadProfileImage(formData: FormData) {
   try {
     const newFiles = await saveImagesToLoacal(formData);
-    console.log("newFiles=", newFiles);
 
     const photos = await uploadImgaesToCloudinary(newFiles);
 
     // await revalidate("/");
-    // console.log("photos=", photos);
 
     /////Remove files from tempDir after a successfull upload
     newFiles.map((file) => fs.unlink(file.filePath));
@@ -71,7 +68,6 @@ export async function uploadProfileImage(formData: FormData) {
       });
       return newPhoto.save();
     });
-    console.log("newPhotos=", newPhotos);
     await Promise.all(newPhotos);
     // await Photo.insertMany(newPhotos)
 

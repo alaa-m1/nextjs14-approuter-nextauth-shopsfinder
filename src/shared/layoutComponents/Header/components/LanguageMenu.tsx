@@ -22,7 +22,6 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
   const { t } = useTranslation(lang);
   const { updateLanguage } = useLanguage();
   useEffect(() => {
-    console.log('lang=',lang);
     if (lang === "ar" || lang === "en") {
       updateLanguage(lang);
     }

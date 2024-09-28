@@ -5,7 +5,7 @@ import { deletePhoto } from "./actions/cloudinaryActions";
 import { isArray } from "lodash";
 
 export const PhotosList = ({ photos }: { photos: any }) => {
-  console.log("photos=", photos);
+
   const handleDeletePhoto = async (publicId: string) => {
     await deletePhoto(publicId);
   };
