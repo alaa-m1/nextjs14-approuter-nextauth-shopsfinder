@@ -8,7 +8,6 @@ export const PhotoCard = ({
   secure_url: string;
   onDeletePhoto: any;
 }) => {
-  console.log("secure_ur=", secure_url);
   const [isPending, startTransition]=useTransition()
   return (
     <div>
