@@ -10,13 +10,14 @@ import { UserInfo } from "@/types";
 import { useIsClient } from "usehooks-ts";
 
 export const Header = ({ lang }: { lang: string }) => {
-	const isClient = useIsClient();
-	return <HeaderComponent lang={lang} key={isClient ? "1" : "0"} />;
+  const isClient = useIsClient();
+  return <HeaderComponent lang={lang} key={isClient ? "1" : "0"} />;
 };
 
 export const HeaderComponent = ({ lang }: { lang: string }) => {
   const isSmallScreen = useSmallScreen();
   const { data: session } = useSession();
+  const isClient = useIsClient();
   const currentUser: UserInfo | undefined = session?.user;
 
   return (
@@ -30,39 +31,54 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
         {isSmallScreen ? (
           <div className="grow-[1]">
             <Link href="/">
-              <Image src={logoSrc} alt="Logo" />
+              <Image src={logoSrc} alt="Logo" className="mx-[2px]" />
             </Link>
           </div>
         ) : (
           <>
             <div className="grow-[1]">
               <Link href="/">
-                <Image src={logoSrc} alt="Logo" />
+                <Image src={logoSrc} alt="Logo" className="mx-[2px]" />
               </Link>
             </div>
-            <div className="flex grow-[2] nav-bts">
-              <div className="flex gap-4">
-                {NavLinks.map((link, index) =>
-                  link.protected ? (
-                    currentUser ? (
-                      <StyledLink key={index} href={link.path} label={link.label}/>
-                        
-                    ) : null
-                  ) : (
-                    <StyledLink key={index} href={link.path} label={link.label}/>
-                  )
-                )}
-              </div>
-            </div>
-            <div className="flex px-2 grow-0 nav-bts">
-              <div>
-                {currentUser ? (
-                  <StyledLink href={"/"} onClick={() => signOut()} label={'signout'}/>
-                ) : (
-                  <StyledLink href={"/signin"} label={'signin'}/>
-                )}
-              </div>
-            </div>
+            {isClient ? (
+              <>
+                <div className="flex grow-[2] nav-bts">
+                  <div className="flex gap-4">
+                    {NavLinks.map((link, index) =>
+                      link.protected ? (
+                        currentUser ? (
+                          <StyledLink
+                            key={index}
+                            href={link.path}
+                            label={link.label}
+                          />
+                        ) : null
+                      ) : (
+                        <StyledLink
+                          key={index}
+                          href={link.path}
+                          label={link.label}
+                        />
+                      )
+                    )}
+                  </div>
+                </div>
+                <div className="flex px-2 grow-0 nav-bts">
+                  <div>
+                    {currentUser ? (
+                      <StyledLink
+                        href={"/"}
+                        onClick={() => signOut()}
+                        label={"signout"}
+                      />
+                    ) : (
+                      <StyledLink href={"/signin"} label={"signin"} />
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : null}
             <ThemeSwitcher />
             <LanguageMenu lang={lang} />
           </>
