@@ -1,12 +1,27 @@
 {
   "title": "العنوان",
   "language": "اللغة",
-  "arabic":"العربية",
-  "english":"الانكليزية",
-  "home":"البداية",
-  "about":"حول عملنا",
-  "products":"استعراض المنتجات",
-  "signin":"تسجيل الدخول",
-  "signout":"تسجيل الخروج",
-  "dashboard":"لوحة التحكم"
+  "arabic": "العربية",
+  "english": "الانكليزية",
+  "home": "البداية",
+  "about": "حول عملنا",
+  "products": "استعراض المنتجات",
+  "signin": "تسجيل الدخول",
+  "signout": "تسجيل الخروج",
+  "dashboard": "لوحة التحكم",
+  "home_page": {
+    "info1": "بعض التقنيات والميزات المتضمنة في هذا المشروع:",
+    "info2": "نستخدم Nextjs 14 with App Router",
+    "info3": "كما تتضمن Route Groups, Dynamic Routes, Parallel Routes, Intercepting Routes, Route Handlers ...",
+    "fully_authentication": "المصادقة الكاملة والتي تتضمن:",
+    "nextauth_provider": "تسجيل الدخول باستخدام NextAuth-Providers، Credentials",
+    "activate_email": "تفعيل الحساب باستخدام الرابط المرسل عبر البريد الإلكتروني",
+    "reset_pass": "إعادة تعيين كلمة المرور المنسية",
+    "responsive_design": "تصميم ويب متجاوب بالكامل باستخدام Tailwind CSS",
+    "user_dashboard": "لوحة معلومات المستخدم",
+    "other_feat": "(الميزات الأخرى لا تزال قيد الإنشاء)",
+    "test_credentials": "لاختبار تطبيق الويب هذا دون الحاجة إلى التسجيل، يمكنك استخدام بيانات الاعتماد التالية:",
+    "email": "البريد الالكتروني",
+    "password": "كلمة السر"
+  }
 }
