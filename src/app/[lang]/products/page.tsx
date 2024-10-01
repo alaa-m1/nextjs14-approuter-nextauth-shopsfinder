@@ -10,6 +10,9 @@ type ProductsProps = {
     category?: string;
   };
 };
+
+export const dynamic = 'force-static'
+
 const Page = ({ searchParams }: ProductsProps) => {
   return (
     <div className="flex flex-col gap-1">
