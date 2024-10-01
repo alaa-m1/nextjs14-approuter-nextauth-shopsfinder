@@ -1,19 +1,23 @@
-"use client"
+"use client";
 import React from "react";
 import styled from "styled-components";
-import imgSrc from "@/assets/images/Alaa.jpg"
+import imgSrc from "@/assets/images/Alaa.jpg";
 import Image from "next/image";
-export const ProfilePhoto = () => {
+import { Color } from "@/types";
+
+export const ProfilePhoto = ({ bgColor }: { bgColor: Color }) => {
   return (
-    <div className="relative overflow-hidden w-[350px] h-[340px] bg-[#eee]">
+    <div
+      className={`relative overflow-hidden w-[350px] h-[340px] bg-[${bgColor}]`}
+    >
       <ImageContainerWithShadow />
       <ImageContainer>
-        <BackgroundContainer1 />
-        <BackgroundContainer2 />
-        <BackgroundContainer3 />
-        <BackgroundContainer4 />
+        <BackgroundContainer1 bgColor={bgColor} />
+        <BackgroundContainer2 bgColor={bgColor} />
+        <BackgroundContainer3 bgColor={bgColor} />
+        <BackgroundContainer4 bgColor={bgColor} />
       </ImageContainer>
-      <DevImage src={imgSrc} alt="Alaa Mohammad" className="dddd"/>
+      <DevImage src={imgSrc} alt="Alaa Mohammad" className="dddd" />
     </div>
   );
 };
@@ -47,37 +51,37 @@ const ImageContainer = styled.div`
   transition: all 0.5s ease;
 `;
 
-const BackgroundContainer1 = styled.div`
+const BackgroundContainer1 = styled.div<{ bgColor?: string }>`
   position: fixed;
   left: -50px;
   top: -249px;
   width: 350px;
   height: 250px;
-  background-color: #eee;
+  background-color: ${(props) => props.bgColor};
 `;
-const BackgroundContainer2 = styled.div`
+const BackgroundContainer2 = styled.div<{ bgColor?: string }>`
   position: fixed;
   left: -251px;
   top: 0px;
   width: 250px;
   height: 260px;
-  background-color: #eee;
+  background-color: ${(props) => props.bgColor};
 `;
-const BackgroundContainer3 = styled.div`
+const BackgroundContainer3 = styled.div<{ bgColor?: string }>`
   position: fixed;
   left: -100px;
   top: 251px;
   width: 500px;
   height: 250px;
-  background-color: #eee;
+  background-color: ${(props) => props.bgColor};
 `;
-const BackgroundContainer4 = styled.div`
+const BackgroundContainer4 = styled.div<{ bgColor?: string }>`
   position: fixed;
   left: 251px;
   top: 0px;
   width: 500px;
   height: 260px;
-  background-color: #eee;
+  background-color: ${(props) => props.bgColor};
 `;
 const DevImage = styled(Image)`
   position: absolute;
