@@ -3,19 +3,41 @@ import { ExternalLink, LoadingSpinner, usePageLoading } from "@/shared";
 import React from "react";
 import parse from "html-react-parser";
 import { ProfilePhoto } from "./components";
+import { useTheme } from "next-themes";
+import classNames from "classnames";
 
-const Page = () => {
+const Page = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  params: { lang },
+}: {
+  params: { lang: "en" | "ar" | "string" };
+}) => {
   const isPageLoading = usePageLoading();
+  const { theme } = useTheme();
+
   const ABOUT_ME = `<Strong>Hi, I'm Alaa Mohammad, I'm a senior frontend developer</Strong>.<br/>
   I have worked in frontend development fields over the last six years 💻. <br/>
   Before that I worked for over seven years as a software developer 🖥️.</br>
   <Strong>My principles:</Strong> Work hard 👨‍💻, be kind, exercise regularly and enjoy live with my family 👨‍👩‍👧‍👦.<br/>
   I am self-motivated. I enjoy new challenges, collaborating with other developers and developing good software.`;
   return (
-    <div className="h-full pt-[20px] py-[10px] text-black px-1 bg-[#eee]">
-      <div style={{direction:"ltr"}} className="flex flex-col gap-3">
+    <div
+      className={classNames(
+        "h-full pt-[20px] py-[10px] text-black px-1 bg-[#eee] dark:bg-[#303030]"
+      )}
+    >
+      <div
+        style={{ direction: "ltr" }}
+        className={classNames(
+          "flex flex-col gap-3 text-light-label dark:text-dark-primary"
+        )}
+      >
         <div className="flex justify-center h-[340px] items-center">
-          {isPageLoading ? <LoadingSpinner /> : <ProfilePhoto />}
+          {isPageLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <ProfilePhoto bgColor={theme === "light" ? "#eee" : "#303030"} />
+          )}
         </div>
         <div className="font-[18px]">{parse(ABOUT_ME)}</div>
         <p className="font-bold text-center">
