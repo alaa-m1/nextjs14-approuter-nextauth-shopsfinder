@@ -11,7 +11,7 @@ type ProductsProps = {
   };
 };
 
-export const dynamic = 'force-static'
+export const dynamic = 'force-dynamic'
 
 const Page = ({ searchParams }: ProductsProps) => {
   return (
