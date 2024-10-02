@@ -23,7 +23,7 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
   const { t } = useTranslation(lang);
   const { updateLanguage } = useLanguage();
   useEffect(() => {
-    if (lang === "ar" || lang === "en") {
+    if (lang === "ar" || lang === "en" || lang === "de") {
       updateLanguage(lang);
     }
   }, [lang, updateLanguage]);
@@ -64,6 +64,7 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
               >
                 {l === "ar" ? t("arabic") : ""}
                 {l === "en" ? t("english") : ""}
+                {l === "de" ? t("german") : ""}
               </Link>
             </DropdownItem>
           );
