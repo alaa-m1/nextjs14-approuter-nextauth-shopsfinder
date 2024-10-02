@@ -30,14 +30,14 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
       >
         {isSmallScreen ? (
           <div className="grow-[1]">
-            <Link href="/">
+            <Link href={`/${lang}`}>
               <Image src={logoSrc} alt="Logo" className="mx-[2px]" />
             </Link>
           </div>
         ) : (
           <>
             <div className="grow-[1]">
-              <Link href="/">
+              <Link href={`/${lang}`}>
                 <Image src={logoSrc} alt="Logo" className="mx-[2px]" />
               </Link>
             </div>
@@ -49,6 +49,7 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
                       link.protected ? (
                         currentUser ? (
                           <StyledLink
+                            lang={lang}
                             key={index}
                             href={link.path}
                             label={link.label}
@@ -56,6 +57,7 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
                         ) : null
                       ) : (
                         <StyledLink
+                          lang={lang}
                           key={index}
                           href={link.path}
                           label={link.label}
@@ -68,12 +70,18 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
                   <div>
                     {currentUser ? (
                       <StyledLink
-                        href={"/"}
+                        lang={lang}
+                        href={`/${lang}`}
                         onClick={() => signOut()}
                         label={"signout"}
+                        active={false}
                       />
                     ) : (
-                      <StyledLink href={"/signin"} label={"signin"} />
+                      <StyledLink
+                        lang={lang}
+                        href={"/signin"}
+                        label={"signin"}
+                      />
                     )}
                   </div>
                 </div>

@@ -10,7 +10,7 @@ const Page = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   params: { lang },
 }: {
-  params: { lang: "en" | "ar" | "string" };
+  params: { lang:  string };
 }) => {
   const isPageLoading = usePageLoading();
   const { theme } = useTheme();

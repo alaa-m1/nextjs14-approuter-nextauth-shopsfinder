@@ -4,13 +4,20 @@ import { useState } from "react";
 import { Sidebar } from "./components";
 import { LoadingSpinner, useSmallScreen } from "@/shared";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) => {
   const isSmallScreen = useSmallScreen();
   const [open, setOpen] = useState(true);
   return (
     <div className={`h-full flex ${isSmallScreen ? "flex-col" : ""}`}>
       <Suspense fallback={<LoadingSpinner />}>
         <Sidebar
+          lang={params.lang}
           isSmallScreen={isSmallScreen}
           fullWidth={open}
           onCloseSideBar={(v) => setOpen(v)}

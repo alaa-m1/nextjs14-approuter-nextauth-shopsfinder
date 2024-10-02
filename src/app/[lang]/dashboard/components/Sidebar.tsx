@@ -10,12 +10,14 @@ type CustomDrawerProps = {
   fullWidth: boolean;
   isSmallScreen: boolean;
   onCloseSideBar: (value: boolean) => void;
+  lang: string;
 };
 
 export const Sidebar = ({
   fullWidth,
   isSmallScreen,
   onCloseSideBar,
+  lang,
 }: CustomDrawerProps) => {
   const drawerLinks: Array<SideBarLinkInfo> = [
     ...sideBarLinks,
@@ -61,6 +63,7 @@ export const Sidebar = ({
                   className="p-0 w-full [&_a]:inline-block [&_a]:w-full"
                 >
                   <StyledLink
+                    lang={lang}
                     href={`/dashboard?p=${link.path}`}
                     style={{ width: "100%", padding: "8px 16px" }}
                     active={searchParams?.get("p") === link.path}
@@ -80,6 +83,7 @@ export const Sidebar = ({
           if (link.label !== "")
             return (
               <StyledLink
+                lang={lang}
                 key={index}
                 href={`/dashboard?p=${link.path}`}
                 active={searchParams?.get("p") === link.path}

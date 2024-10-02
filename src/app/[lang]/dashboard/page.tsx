@@ -4,6 +4,9 @@ import { PhotosPage } from "./components/CloudinaryPhotosList/PhotoPage";
 type DashboardProps = {
   searchParams: { p: string };
 };
+
+export const dynamic = 'force-dynamic'
+
 const Page = ({ searchParams }: DashboardProps) => {
   return (
     <>

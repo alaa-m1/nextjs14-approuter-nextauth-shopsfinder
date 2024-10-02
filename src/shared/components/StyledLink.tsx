@@ -22,17 +22,19 @@ type LinkComponentProps = LinkProps & {
   href: string;
   style?: CSSProperties | undefined;
   active?: boolean;
+  lang: string;
   label: string;
 };
 export const StyledLink = ({
   // children,
   active,
   label,
+  lang,
   ...props
 }: LinkComponentProps) => {
   const pathname = usePathname();
   const { language } = useLanguage();
-  const {t}=useTranslation(language)
+  const { t } = useTranslation(language);
 
   const isActive = useMemo(
     () =>
@@ -46,10 +48,10 @@ export const StyledLink = ({
   return (
     <Link
       {...props}
-      className={classNames(
-        "group flex gap-0 justify-center items-center",
-        { "[&>span]:text-white [&>span]:dark:text-white": !isClient }
-      )}
+      href={props.href === "/" ? `/${lang}` : `/${lang}${props.href}`}
+      className={classNames("group flex gap-0 justify-center items-center", {
+        "[&>span]:text-white [&>span]:dark:text-white": !isClient,
+      })}
     >
       <span
         className={classNames(

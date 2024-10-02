@@ -5,7 +5,7 @@ const Home = async ({ lng }: { lng: string }) => {
 
   return (
     <div className="flex flex-col p-1">
-      <h1 className="text-blue-900 mb-2 font-bold text-center">Shops Finder</h1>
+      {/* <h1 className="text-blue-900 mb-2 font-bold text-center">Shops Finder</h1> */}
       <div className="m-2">
         <h2 className="text-blue-800 font-bold text-lg">
           {t("home_page.info1")}
