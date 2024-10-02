@@ -1,0 +1,29 @@
+{
+  "language": "Sprache",
+  "arabic": "Arabisch",
+  "english": "Englisch",
+  "german": " Deutsch",
+  "home": "Heim",
+  "about": "Über uns",
+  "products": "Produkte",
+  "signin": "Anmelden",
+  "signout": "Abmelden",
+  "dashboard": "Armaturenbrett",
+  "home_page": {
+    "info1": "Einige der in diesem Projekt enthaltenen Technologien und Funktionen:",
+    "info2": "Nextjs 14 with App Router",
+    "info3": "Route Groups, Dynamic Routes, Parallel Routes, Intercepting Routes, Route Handlers ...",
+    "multiple_themes":"Unterstützt dunkle und helle Designs",
+    "multiple_languages":"Unterstützt mehrere Sprachen",
+    "fully_authentication": "Vollständige Authentifizierung, die Folgendes umfasst:",
+    "nextauth_provider": "Anmelden mit: NextAuth providers, credentials",
+    "activate_email": "Aktivierung des Accounts über einen per E-Mail zugesendeten Link",
+    "reset_pass": "Setzen Sie das vergessene Passwort zurück",
+    "responsive_design": "Vollständig responsives Webdesign mit Tailwind CSS",
+    "user_dashboard": "Benutzer-Dashboard",
+    "other_feat": "(Other features are still under construction)",
+    "test_credentials": "Um diese Webanwendung zu testen, ohne sich anzumelden, können Sie die folgenden Anmeldeinformationen verwenden:",
+    "email": "E-Mail",
+    "password": "Passwort"
+  }
+}

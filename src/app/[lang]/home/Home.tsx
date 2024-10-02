@@ -13,15 +13,18 @@ const Home = async ({ lng }: { lng: string }) => {
         <ul className="list-disc ml-3 [&_li]:mb-1">
           <li>{t("home_page.info2")}</li>
           <li>{t("home_page.info3")}</li>
+          <li>{t("home_page.multiple_themes")}</li>
+          <li>{t("home_page.multiple_languages")}</li>
           <li>{t("home_page.fully_authentication")}</li>
           <ul className="list-disc ml-3">
-            <li>{t("home_page.nextauth_provider")}</li>
-            <li>{t("home_page.activate_email")}</li>
-            <li>{t("home_page.reset_pass")}</li>
+            <li style={{margin:"0px 20px"}}>{t("home_page.nextauth_provider")}</li>
+            <li style={{margin:"0px 20px"}}>{t("home_page.activate_email")}</li>
+            <li style={{margin:"0px 20px"}}>{t("home_page.reset_pass")}</li>
           </ul>
           <li>{t("home_page.responsive_design")}</li>
           <li>{t("home_page.user_dashboard")}</li>
-          <li>{t("home_page.other_feat")}</li>
+
+          {/* <li>{t("home_page.other_feat")}</li> */}
         </ul>
       </div>
       <div className="m-1 shadow-sm hover:shadow-md w-fit p-1">
