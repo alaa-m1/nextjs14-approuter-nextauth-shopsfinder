@@ -14,7 +14,12 @@ type DrawerProps = {
   lang: string;
 };
 
-export const Drawer = ({ links, currentUser, isSmallScreen, lang }: DrawerProps) => {
+export const Drawer = ({
+  links,
+  currentUser,
+  isSmallScreen,
+  lang,
+}: DrawerProps) => {
   const [open, setOpen] = useState(false);
   const drawerLinks: Array<LinkInfo> = [
     ...links,
@@ -74,7 +79,11 @@ export const Drawer = ({ links, currentUser, isSmallScreen, lang }: DrawerProps)
                           key={index}
                           onClick={() => setOpen(false)}
                         >
-                          <StyledLink href={link.path} label={link.label}/>
+                          <StyledLink
+                            lang={lang}
+                            href={link.path}
+                            label={link.label}
+                          />
                         </div>
                       ) : null
                     ) : (
@@ -83,20 +92,29 @@ export const Drawer = ({ links, currentUser, isSmallScreen, lang }: DrawerProps)
                         key={index}
                         onClick={() => setOpen(false)}
                       >
-                        <StyledLink href={link.path} label={link.label}/>
+                        <StyledLink
+                          lang={lang}
+                          href={link.path}
+                          label={link.label}
+                        />
                       </div>
                     );
                   return <div key={index}>&nbsp;</div>;
                 })}
                 <ThemeSwitcher />
-                <LanguageMenu lang={lang}/>
+                <LanguageMenu lang={lang} />
                 {currentUser ? (
                   <div onClick={() => setOpen(false)}>
-                    <StyledLink href={"/"} onClick={() => signOut()} label={"signout"}/>
+                    <StyledLink
+                      lang={lang}
+                      href={"/"}
+                      onClick={() => signOut()}
+                      label={"signout"}
+                    />
                   </div>
                 ) : (
                   <div className="my-2" onClick={() => setOpen(false)}>
-                    <StyledLink href={"/signin"} label={"signin"}/>
+                    <StyledLink lang={lang} href={"/signin"} label={"signin"} />
                   </div>
                 )}
               </div>

@@ -8,7 +8,8 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
-import { MdOutlineLanguage } from "react-icons/md";
+// import { ImEarth } from "react-icons/im";
+import { RiGlobalLine } from "react-icons/ri";
 import { languages } from "@/app/i18n/settings";
 import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
@@ -43,7 +44,7 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
             }
           )}
         >
-          <MdOutlineLanguage size={22} />
+          <RiGlobalLine size={22} />
         </Button>
       </DropdownTrigger>
       <DropdownMenu
