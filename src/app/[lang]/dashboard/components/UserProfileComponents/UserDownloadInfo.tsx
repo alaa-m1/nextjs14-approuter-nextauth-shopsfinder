@@ -21,7 +21,7 @@ export const UserDownloadInfo = () => {
   
   const handleShowPhoto = () => {
     const link = document.createElement("a");
-    link.href = userInfo.image.imgURL;
+    link.href = userInfo.image.imgURL as string;
     link.target="_blank"
     link.rel="noopener noreferrer"
     link.click();
@@ -29,7 +29,7 @@ export const UserDownloadInfo = () => {
 
   const handleDownloadPhoto = async () => {
     const nameOfDownload = `${userInfo.firstName} ${userInfo.lastName} - photo.jpg`;
-    const response = await fetch(userInfo.image.imgURL);
+    const response = await fetch(userInfo.image.imgURL as string);
 
     const blobImage = await response.blob();
     const href = URL.createObjectURL(blobImage);
