@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import userImgSrc from "@/assets/images/user-icon.png";
 
 const UserSchema = new mongoose.Schema({
   provider: {
@@ -39,7 +40,7 @@ const UserSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: "/images/user-icon.png",
+    default: userImgSrc,
   },
   accountActivated: {
     type: Boolean,

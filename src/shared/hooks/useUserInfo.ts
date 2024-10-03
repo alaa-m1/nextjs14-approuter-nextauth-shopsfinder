@@ -3,6 +3,8 @@ import { getUserPhoto } from "@/app/actions/uploadProfilePhoto";
 import { UserInfo, UserPhoto } from "@/types";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import userImgSrc from "@/assets/images/user-icon.png";
+
 
 export const useUserInfo = (): {
   userInfo: UserInfo;
@@ -38,7 +40,7 @@ export const useUserInfo = (): {
     gender: session?.user?.gender ?? "custom",
     image: {
       publicId: userPhoto?.publicId ?? "",
-      imgURL: userPhoto?.imgURL ?? "/images/user-icon.png",
+      imgURL: userPhoto?.imgURL ?? userImgSrc,
       ...userPhoto,
     },
     expires_at: session?.expires ?? "0",
