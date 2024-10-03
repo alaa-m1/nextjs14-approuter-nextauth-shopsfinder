@@ -2,10 +2,10 @@ import { LoadingSpinner } from "@/shared";
 import Link from "next/link";
 import React from "react";
 import userImgSrc from "@/assets/images/user-icon.png";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 type AdminLogoProps = {
-  imgSrc: string | undefined;
+  imgSrc: string | StaticImageData | undefined;
   name: string | undefined;
   verticalAlignment?: boolean;
   isLoading: boolean;
