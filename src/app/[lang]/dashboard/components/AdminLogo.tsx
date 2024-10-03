@@ -1,6 +1,8 @@
 import { LoadingSpinner } from "@/shared";
 import Link from "next/link";
 import React from "react";
+import userImgSrc from "@/assets/images/user-icon.png";
+import Image from "next/image";
 
 type AdminLogoProps = {
   imgSrc: string | undefined;
@@ -31,12 +33,12 @@ export const AdminLogo = ({
           </Link>
         </span>
       </div>
-      <img
+      <Image
         className={`rounded-full ${
           verticalAlignment ? "w-[50px] h-[50px]" : "w-[40px] h-[40px]"
         } place-self-center hover:shadow-md`}
-        src={imgSrc || "/images/user-icon.png"}
-        alt={`${name || "user"}`}
+        src={imgSrc ?? userImgSrc}
+        alt={`${name ?? "user"}`}
       />
     </div>
   );

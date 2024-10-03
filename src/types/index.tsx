@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type LinkInfo = {
   label: string;
   path: string;
@@ -55,7 +57,7 @@ export type UserInfo = {
 };
 export type UserPhoto = {
   publicId: string;
-  imgURL: string;
+  imgURL: string | StaticImageData;
   createdAt?: string;
   updatedAt?: string;
 };
