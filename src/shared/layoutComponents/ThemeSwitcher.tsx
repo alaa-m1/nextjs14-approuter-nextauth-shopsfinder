@@ -23,9 +23,10 @@ export const ThemeSwitcher = () => {
   const themeButton = useMemo(
     () => (
       <Button
+        isIconOnly 
         onClick={handleThemeMenuClick}
         className={classNames(
-          "px-2 border-none  hover:[&>svg]:text-[#e76712] hover:[&>svg]:transition-all hover:[&>svg]:duration-300",
+          "px-2 border-none bg-transparent hover:[&>svg]:text-[#e76712] hover:[&>svg]:transition-all hover:[&>svg]:duration-300",
           { "[&>svg]:text-white": !isClient },
           {
             "[&>svg]:text-light-label [&>svg]:dark:text-dark-label":

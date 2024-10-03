@@ -34,10 +34,9 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
     <Dropdown>
       <DropdownTrigger>
         <Button
-          variant="bordered"
           isIconOnly
           className={classNames(
-            "px-2 border-none  hover:[&>svg]:text-[#e76712] hover:[&>svg]:transition-all hover:[&>svg]:duration-300",
+            "px-2 border-none bg-transparent  hover:[&>svg]:text-[#e76712] hover:[&>svg]:transition-all hover:[&>svg]:duration-300",
             { "[&>svg]:text-white": !isClient },
             {
               "[&>svg]:text-light-label [&>svg]:dark:text-dark-label": isClient,
