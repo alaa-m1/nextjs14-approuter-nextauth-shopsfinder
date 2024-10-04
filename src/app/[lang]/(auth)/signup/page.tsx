@@ -121,7 +121,9 @@ const Page = () => {
 
   return (
     <div className="w-full">
-      <h4 className="text-gray-800 font-bold text-center">Sign Up</h4>
+      <h4 className="font-bold text-center text-gray-800 dark:text-[#e76712]">
+        Sign Up
+      </h4>
       <form onSubmit={handleSubmit(onSubmit)} style={{ margin: "5px 10px" }}>
         <TextField
           name="firstName"

@@ -16,7 +16,7 @@ export const TermsPanel = ({ error, register }: TermsPanelProps) => {
     <>
       <div className="text-left mb-[20px]">
         <input type="checkbox" id="accept" {...register("accept")} />
-        <label htmlFor="accept">
+        <label htmlFor="accept" className="text-black dark:text-dark-text">
           {" I accept * "}&nbsp;
           <button type="button" onClick={handleOpenDialog}>
             <span className="font-bold">{"terms and conditions"}</span>

@@ -40,7 +40,9 @@ const Page = () => {
 
   return (
     <div className="w-full">
-      <h4 className="text-gray-800 font-bold text-center">Sign In</h4>
+      <h4 className=" font-bold text-center text-gray-800 dark:text-[#e76712]">
+        Sign In
+      </h4>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="my-[5px] mx-[10px] w-full"
@@ -71,11 +73,13 @@ const Page = () => {
           loadingIndicator={<BeatLoader color="#36d7b7" size={10} />}
           variant="contained"
           label="Sign In"
-          
         />
       </form>
       <div className="[&_a]:no-underline">
-        <LinkButton href="/forgetpassword" className="size-[15px]">
+        <LinkButton
+          href="/forgetpassword"
+          className="size-[15px] text-light-text dark:text-dark-text"
+        >
           Forget your password
         </LinkButton>
       </div>

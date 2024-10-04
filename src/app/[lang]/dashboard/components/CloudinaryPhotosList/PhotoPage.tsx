@@ -6,10 +6,10 @@ import { PhotosList } from "./PhotosList";
 export const PhotosPage = async () => {
   const photos = await getAllPhotos();
   return (
-    <>
+    <div>
       <UserCloudinaryImage />
 
-      <PhotosList photos={photos}/>
-    </>
+      <PhotosList photos={photos} />
+    </div>
   );
 };
