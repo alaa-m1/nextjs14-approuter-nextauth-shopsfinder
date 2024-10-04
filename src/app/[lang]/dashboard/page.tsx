@@ -1,6 +1,6 @@
 import React from "react";
 import { UserCard, UserProfile, UserSettings } from "./components";
-import { PhotosPage } from "./components/CloudinaryPhotosList/PhotoPage";
+// import { PhotosPage } from "./components/CloudinaryPhotosList/PhotoPage";
 type DashboardProps = {
   searchParams: { p: string };
 };
@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'
 const Page = ({ searchParams }: DashboardProps) => {
   return (
     <>
-    <PhotosPage/>
+    {/* <PhotosPage/> */}
     <br />
     <br />
     <br />
