@@ -10,7 +10,7 @@ const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
 
           <div className="flex justify-center mb-[10px] py-0 px-0.5 w-full">
             <div className="flex-grow bg-[#ccc] h-[2px] my-[7px] mx-[5px]" />
-            <span className="w-auto text-[#555] font-bold">
+            <span className="w-auto text-[#555] font-bold dark:text-dark-text">
               Or continue with
             </span>
             <div className=" flex-grow bg-[#ccc] h-[2px] my-[7px] mx-[5px]" />

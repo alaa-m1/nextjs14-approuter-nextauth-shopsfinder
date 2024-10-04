@@ -20,7 +20,9 @@ export const GenderSelect = ({
 }: GenderSelectProps) => {
   return (
     <div className="p-0 my-[10px]">
-      <div className={`relative w-[90%] text-left`}>
+      <div
+        className={`relative w-[90%] text-left text-gray-800 dark:text-dark-text`}
+      >
         <label htmlFor={"select-gender"} className="ml-[5px]">
           {label}&nbsp;{required && "*"}
         </label>

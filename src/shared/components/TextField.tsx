@@ -41,7 +41,10 @@ export const TextField = <T extends FieldValues>({
         <div className="absolute bottom-3 left-1 [&_svg]:p-0 [&_svg]:mb-1 [&_svg]:ml-1.1">
           {icon}
         </div>
-        <label htmlFor={`input-${id}`} className="ml-[5px]">
+        <label
+          htmlFor={`input-${id}`}
+          className="ml-[5px] text-light-text dark:text-dark-text"
+        >
           {label}&nbsp;{required && "*"}
         </label>
         <br />
