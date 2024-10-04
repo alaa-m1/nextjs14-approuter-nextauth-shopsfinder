@@ -23,7 +23,7 @@ const DashboardLayout = ({
           onCloseSideBar={(v) => setOpen(v)}
         />
       </Suspense>
-      <div className="bg-gray-100 flex-[8] p-4 rounded min-h-[300px] overflow-auto">
+      <div className="bg-gray-100  dark:bg-dark-bg flex-[8] p-4 rounded min-h-[300px] overflow-auto">
         {children}
       </div>
     </div>
