@@ -51,24 +51,28 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        await connectMongoDB();
-        const user = await UserModel.findOne({ email: credentials?.email });
-        if (!user) {
-          throw new Error("Email is not existed");
-        }
-        const checkPassword = await bcrypt.compare(
-          credentials!.password,
-          user.password
-        );
-        if (!checkPassword) {
-          throw new Error("Password is not correct");
-        }
-        if (!user.accountActivated) {
-          throw new Error(
-            "Your account has not been activated, please check your email for the activation link"
+        try {
+          await connectMongoDB();
+          const user = await UserModel.findOne({ email: credentials?.email });
+          if (!user) {
+            throw new Error("Email is not existed");
+          }
+          const checkPassword = await bcrypt.compare(
+            credentials!.password,
+            user.password
           );
+          if (!checkPassword) {
+            throw new Error("Password is not correct");
+          }
+          if (!user.accountActivated) {
+            throw new Error(
+              "Your account has not been activated, please check your email for the activation link"
+            );
+          }
+          return user;
+        } catch (error) {
+          console.log("The service is not avialable");
         }
-        return user;
       },
     }),
   ],

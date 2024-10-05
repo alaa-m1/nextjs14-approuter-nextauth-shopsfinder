@@ -3,7 +3,7 @@ import { LoadingSpinner, useUserInfo } from "@/shared";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-export const UserCard = () => {
+export const UserCard = ({lang}:{lang: string}) => {
   const { userInfo, status } = useUserInfo();
   return status === "loading" ? (
     <LoadingSpinner />
@@ -32,7 +32,7 @@ export const UserCard = () => {
         <div className="mt-2 text-center">
           <Link
             className="border-solid border-2 border-gray-500 rounded-md p-1 hover:shadow-md"
-            href={`/dashboard?p=profile`}
+            href={`/${lang}/dashboard?p=profile`}
           >
             Edit User Profile
           </Link>
