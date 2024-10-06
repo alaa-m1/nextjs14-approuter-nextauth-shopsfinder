@@ -1,5 +1,12 @@
 import { useTranslation } from "@/app/i18n";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: 'Shops Finder',
+  description: 'Shoping becomes easy with us',
+}
+
 const Home = async ({ lng }: { lng: string }) => {
   const { t } = await useTranslation(lng);
 
