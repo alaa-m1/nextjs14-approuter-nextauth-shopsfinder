@@ -47,7 +47,9 @@ export async function middleware(request: NextRequest) {
 
   // Redirect if lng in path is not supported
   if (!languages.some((loc) => pathname.startsWith(`/${loc}`)) && !pathname.startsWith('/_next')) {
+    if (pathname !== "/") {
     return NextResponse.redirect(new URL(`/${lng}${pathname}`, request.url));
+  }
   }
 
   // Set language in cookie if referer is present
