@@ -1,9 +1,10 @@
 import _ from "lodash";
-import React, { Suspense } from "react";
+import React from "react";
 import { CategoriesPanel } from "./components";
 import { Categories } from "@/types";
 import { LoadingSpinner, NoItemsFound } from "@/shared";
 import { getCategories } from "@/queries";
+import { useIsClient } from "usehooks-ts";
 
 export const CategoriesList = async () => {
   const categoriesRes = await getCategories();
@@ -11,15 +12,15 @@ export const CategoriesList = async () => {
     label: category,
     id: _.uniqueId(),
   }));
-
+  const isClient = useIsClient();
   return (
     <>
       {categories.length === 0 ? (
         <NoItemsFound label="No Categories Found" />
+      ) : isClient ? (
+        <CategoriesPanel categories={categories} />
       ) : (
-        <Suspense fallback={<LoadingSpinner />}>
-          <CategoriesPanel categories={categories} />
-        </Suspense>
+        <LoadingSpinner />
       )}
     </>
   );
