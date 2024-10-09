@@ -8,14 +8,14 @@ type ProductDetailsProps = {
 };
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
   return product ? (
-    <div className="flex flex-col gap-1 h-full bg-white p-4">
+    <div className="flex flex-col gap-1 h-full bg-white dark:bg-gray-900 p-4">
       <div className="m-2">
-        <h5 className="mb-2 text-xl font-medium leading-tight text-black">
+        <h5 className="mb-2 text-xl font-medium leading-tight text-black dark:text-white">
           {product?.title}
         </h5>
-        <p className="mb-4 text-base text-black">{product?.description}</p>
-        <p className="text-base text-black">
-          <span className="text-black">
+        <p className="mb-4 text-base text-black dark:text-white">{product?.description}</p>
+        <p className="text-bas">
+          <span className="text-black dark:text-white">
             Price: <span className="font-bold">{`${product?.price} $`}</span>
           </span>
         </p>

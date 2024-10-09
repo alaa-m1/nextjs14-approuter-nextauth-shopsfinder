@@ -10,7 +10,7 @@ export const Modal = ({ children }: ModalProps) => {
   return (
     <div
       role="dialog"
-      className="relative z-30"
+      className="relative z-30 bg-white dark:bg-gray-900"
       aria-labelledby="modal-title"
       aria-modal="true"
     >
@@ -20,7 +20,7 @@ export const Modal = ({ children }: ModalProps) => {
         onClick={handleOnClose}
       ></div>
 
-      <div className="fixed inset-16 z-31 overflow-y-auto bg-white shadow-md">
+      <div className="fixed inset-16 z-31 overflow-y-auto bg-white dark:bg-gray-900 shadow-md">
         <div className="m-3">
           {children}
           </div>
