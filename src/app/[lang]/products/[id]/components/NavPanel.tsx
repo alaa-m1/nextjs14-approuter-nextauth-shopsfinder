@@ -16,8 +16,8 @@ export const NavPanel = () => {
       <div>
         <button onClick={handleGoBack}>
           <div className="place-items-center">
-            <MdArrowBackIos className="font-bold inline-block" />{" "}
-            <span>Go Back</span>
+            <MdArrowBackIos className="font-bold inline-block text-black dark:text-white" />{" "}
+            <span className="text-black dark:text-white">Go Back</span>
           </div>
         </button>
       </div>

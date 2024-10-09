@@ -29,7 +29,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <div className="mt-2">
           <Link
-            className="border-solid border-2 border-gray-500 rounded-md p-1 hover:shadow-md"
+            className="border-solid border-2 border-gray-500 rounded-md p-1 hover:shadow-md dark:text-[#e76712]"
             href={`/products/${product.id}`}
           >
             Product Details
