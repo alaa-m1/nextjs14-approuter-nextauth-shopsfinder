@@ -10,7 +10,7 @@
   * Activate the account using a link sent via email
   * Reset the forgotten password
 * Fully Responsive Web Design using Tailwind CSS
-* User Dashboard
+* User Dashboard: User profile management 
 
 * To test this web application without signing up, you can use the following credentials:
   * Email: developerpro1000@gmail.com

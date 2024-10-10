@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
 import ScreenshotMonitorIcon from "@mui/icons-material/ScreenshotMonitor";
 import { useTheme } from "next-themes";
 import classNames from "classnames";
@@ -25,6 +25,8 @@ export const ThemeSwitcher = () => {
       <Button
         isIconOnly 
         onClick={handleThemeMenuClick}
+        disableRipple
+        disableAnimation
         className={classNames(
           "px-2 border-none bg-transparent hover:[&>svg]:text-[#e76712] hover:[&>svg]:transition-all hover:[&>svg]:duration-300",
           { "[&>svg]:text-white": !isClient },
@@ -36,9 +38,9 @@ export const ThemeSwitcher = () => {
       >
         {
           theme === "dark" ? (
-            <DarkModeIcon sx={{ "& path": { color: "warning.main" } }} />
+            <MdOutlineDarkMode size={24}/>
           ) : theme === "light" ? (
-            <LightModeIcon />
+            <MdOutlineLightMode size={24}/>
           ) : (
             <ScreenshotMonitorIcon />
           )
