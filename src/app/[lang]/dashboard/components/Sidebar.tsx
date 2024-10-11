@@ -21,7 +21,7 @@ export const Sidebar = ({
 }: CustomDrawerProps) => {
   const drawerLinks: Array<SideBarLinkInfo> = [
     ...sideBarLinks,
-    { path: "", label: "" },
+    { path: "", label: "", icon: null },
   ];
   const { userInfo, status } = useUserInfo();
   const searchParams = useSearchParams();
@@ -68,6 +68,7 @@ export const Sidebar = ({
                     style={{ width: "100%", padding: "8px 16px" }}
                     active={searchParams?.get("p") === link.path}
                     label={link.label}
+                    icon={link.icon}
                   />
                 </div>
               );
