@@ -8,6 +8,8 @@ import { Drawer, LanguageMenu } from "./components";
 import { useSession, signOut } from "next-auth/react";
 import { UserInfo } from "@/types";
 import { useIsClient } from "usehooks-ts";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export const Header = ({ lang }: { lang: string }) => {
   const isClient = useIsClient();
@@ -53,6 +55,7 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
                             key={index}
                             href={link.path}
                             label={link.label}
+                            icon={link.icon}
                           />
                         ) : null
                       ) : (
@@ -61,6 +64,7 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
                           key={index}
                           href={link.path}
                           label={link.label}
+                          icon={link.icon}
                         />
                       )
                     )}
@@ -75,12 +79,14 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
                         onClick={() => signOut()}
                         label={"signout"}
                         active={false}
+                        icon={<LogoutIcon fontSize="medium" />}
                       />
                     ) : (
                       <StyledLink
                         lang={lang}
                         href={"/signin"}
                         label={"signin"}
+                        icon={<LoginIcon fontSize="medium" />}
                       />
                     )}
                   </div>

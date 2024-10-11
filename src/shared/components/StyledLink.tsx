@@ -24,12 +24,14 @@ type LinkComponentProps = LinkProps & {
   active?: boolean;
   lang: string;
   label: string;
+  icon: React.ReactNode;
 };
 export const StyledLink = ({
   // children,
   active,
   label,
   lang,
+  icon,
   ...props
 }: LinkComponentProps) => {
   const pathname = usePathname();
@@ -49,7 +51,7 @@ export const StyledLink = ({
     <Link
       {...props}
       href={props.href === "/" ? `/${lang}` : `/${lang}${props.href}`}
-      className={classNames("group flex gap-0 justify-center items-center", {
+      className={classNames("group flex gap-0 justify-start items-center", {
         "[&>span]:text-white [&>span]:dark:text-white": !isClient,
       })}
     >
@@ -59,7 +61,9 @@ export const StyledLink = ({
           { "font-normal": !isActive },
           { "text-light-label dark:text-dark-label": isClient }
         )}
+        style={{display:"flex", justifyContent:"start", alignItems:"center"}}
       >
+        {icon}
         {t(label)}
       </span>
     </Link>
