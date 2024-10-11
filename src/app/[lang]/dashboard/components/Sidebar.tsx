@@ -89,6 +89,7 @@ export const Sidebar = ({
                 href={`/dashboard?p=${link.path}`}
                 active={searchParams?.get("p") === link.path}
                 label={link.label}
+                icon={link.icon}
               />
             );
           return null;
