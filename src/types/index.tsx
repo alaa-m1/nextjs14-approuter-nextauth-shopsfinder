@@ -5,6 +5,7 @@ export type LinkInfo = {
   path: string;
   component?: string;
   protected: boolean;
+  icon: React.ReactNode;
 };
 
 export type SideBarLinkInfo = Omit<LinkInfo, "protected"> & {
@@ -70,4 +71,4 @@ type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
 type HEX = `#${string}`;
 
-export type Color= RGB | RGBA | HEX
+export type Color = RGB | RGBA | HEX;

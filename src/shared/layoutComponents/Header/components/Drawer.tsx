@@ -7,6 +7,9 @@ import Image from "next/image";
 import { StyledLink, ThemeSwitcher } from "@/shared";
 import { signOut } from "next-auth/react";
 import { LanguageMenu } from "./LanguageMenu";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 type DrawerProps = {
   links: Array<LinkInfo>;
   currentUser: UserInfo | undefined;
@@ -23,7 +26,7 @@ export const Drawer = ({
   const [open, setOpen] = useState(false);
   const drawerLinks: Array<LinkInfo> = [
     ...links,
-    { path: "", label: "", protected: false },
+    { path: "", label: "", protected: false, icon: null },
   ];
   return (
     <>
@@ -83,6 +86,7 @@ export const Drawer = ({
                             lang={lang}
                             href={link.path}
                             label={link.label}
+                            icon={link.icon}
                           />
                         </div>
                       ) : null
@@ -96,6 +100,7 @@ export const Drawer = ({
                           lang={lang}
                           href={link.path}
                           label={link.label}
+                          icon={link.icon}
                         />
                       </div>
                     );
@@ -110,11 +115,17 @@ export const Drawer = ({
                       href={"/"}
                       onClick={() => signOut()}
                       label={"signout"}
+                      icon={<LogoutIcon fontSize="medium" />}
                     />
                   </div>
                 ) : (
                   <div className="my-2" onClick={() => setOpen(false)}>
-                    <StyledLink lang={lang} href={"/signin"} label={"signin"} />
+                    <StyledLink
+                      lang={lang}
+                      href={"/signin"}
+                      label={"signin"}
+                      icon={<LoginIcon fontSize="medium" />}
+                    />
                   </div>
                 )}
               </div>
