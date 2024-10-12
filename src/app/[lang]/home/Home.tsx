@@ -4,7 +4,7 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: 'Shops Finder',
-  description: 'Shoping becomes easy with us',
+  description: 'Shopping becomes easy with us',
 }
 
 const Home = async ({ lng }: { lng: string }) => {
