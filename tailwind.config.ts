@@ -60,10 +60,10 @@ const config: Config = {
       },
     },
 
-    fontFamily: {
-      sans: ["Graphik", "sans-serif"],
-      serif: ["Merriweather", "serif"],
-    },
+    // fontFamily: {
+    //   cairo: ["var(--font-cairo)"],
+    //   montserrat: ["var(--font-raleway)"],
+    // },
   },
   darkMode: "class",
   plugins: [nextui()],

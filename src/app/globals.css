@@ -28,10 +28,23 @@
     @apply border border-solid border-gray-400 rounded-sm p-2 my-2;
   }
 }
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --font-raleway: 'Raleway', Arial, sans-serif;
+  --font-cairo: 'Cairo', Arial, sans-serif;
+}
+
+
+body {
+  font-family: var(--font-raleway), Arial, sans-serif;
+}
+
+/* Apply Cairo when language is Arabic */
+html[lang='ar'] body {
+  font-family: var(--font-cairo), Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {

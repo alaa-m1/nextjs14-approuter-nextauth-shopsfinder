@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Cairo, Roboto } from "next/font/google";
+import { Cairo, Raleway } from "next/font/google";
 import "./globals.css";
 import {
   Footer,
@@ -13,25 +13,24 @@ import "react-toastify/dist/ReactToastify.css";
 import Head from "next/head";
 import { dir } from "i18next";
 
-const roboto = Roboto({
+
+const raleway = Raleway({
   weight: ["400", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-roboto",
+  variable: "--font-raleway",
 });
 
 const cairo = Cairo({
-  weight: ["400", "700"],
-  style: ["normal"],
   subsets: ["arabic"],
   display: "swap",
   variable: "--font-cairo",
 });
 
 export const metadata: Metadata = {
-  title: "Beta-Cortex Web App",
-  description: "Web Applications, Mobile Applications, Blockchain Expert",
+  title: 'Shops Finder',
+  description: 'Shopping becomes easy with us',
 };
 
 export default function NotFound({
@@ -44,11 +43,10 @@ export default function NotFound({
       <Head>
         <link rel="shortcut icon" href="@/assets/images/favicon.ico" />
       </Head>
-      <body className={`${roboto.variable} ${cairo.variable}`}>
+      <body className={`${raleway.variable} ${cairo.variable}`}>
         <ThemeProvider>
           <AppRootProvider>
             <div className="relative flex min-h-[100vh] flex-col justify-between">
-              {/* <Header lang={params.lang} /> */}
               <div className="flex grow">
                 <div className={`w-[100%]`}>
                   <NotFoundSecion />
