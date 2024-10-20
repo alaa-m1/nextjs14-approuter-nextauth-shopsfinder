@@ -41,7 +41,7 @@ export const Drawer = ({
           {open && (
             <div
               onClick={() => setOpen(false)}
-              className="fixed top-0 bottom-0 right-0 left-0 opacity-30 bg-[#ccc]"
+              className="fixed top-0 bottom-0 right-0 left-0 opacity-30 bg-[#ccc] z-[3]"
             ></div>
           )}
           <div

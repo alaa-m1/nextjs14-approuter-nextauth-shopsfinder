@@ -17,14 +17,14 @@ export const ProfilePhoto = ({ bgColor }: { bgColor: Color }) => {
         <BackgroundContainer3 bgColor={bgColor} />
         <BackgroundContainer4 bgColor={bgColor} />
       </ImageContainer>
-      <DevImage src={imgSrc} alt="Alaa Mohammad" className="dddd" />
+      <DevImage src={imgSrc} alt="Alaa Mohammad" />
     </div>
   );
 };
 
 const ImageContainerWithShadow = styled.div`
   position: absolute;
-  z-index: 101;
+  z-index: 2;
   top: 40px;
   left: 40px;
   transform: scale(1, 1);
@@ -42,7 +42,7 @@ const ImageContainerWithShadow = styled.div`
 `;
 const ImageContainer = styled.div`
   position: absolute;
-  z-index: 100;
+  z-index: 1;
   top: 40px;
   left: 40px;
   transform: scale(1, 1);
@@ -89,5 +89,6 @@ const DevImage = styled(Image)`
   top: 0px;
   position: absolute;
   width: 310px;
+  min-width: 310px;
   aspect-ratio: auto;
 `;
