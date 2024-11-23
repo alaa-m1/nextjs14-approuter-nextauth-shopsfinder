@@ -1,6 +1,6 @@
 import React from "react";
-import Home from "./home/Home";
 import { languages } from "../i18n/settings";
+import Home from "./(public_routes)/home/Home";
 
 
 export async function generateStaticParams() {
