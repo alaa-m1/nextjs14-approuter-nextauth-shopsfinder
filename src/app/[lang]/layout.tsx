@@ -70,7 +70,7 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
+  modal?: React.ReactNode;
   params: { lang: string };
 }>) {
   const session = await getSession();
