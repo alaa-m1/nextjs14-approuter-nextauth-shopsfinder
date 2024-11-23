@@ -1,13 +1,13 @@
 import React from "react";
 import { getProductById } from "@/queries";
-import { ProductDetails, ProductModal } from "@/app/[lang]/products/[id]/components";
+import { ProductDetails, ProductModal } from "../../../products/[id]/components";
 type ProductDetailsProps = {
   params: { id: string };
 };
 const Page = async ({ params }: ProductDetailsProps) => {
   const product = await getProductById(params.id);
   return (
-    <ProductModal>
+    <ProductModal >
       <ProductDetails product={product} />
     </ProductModal>
   );
