@@ -2,7 +2,7 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const protectedRoutes: Array<string> = ["/dashboard", "/shops", "/dashboard"]
+const protectedRoutes: Array<string> = ["/dashboard", "/shops"]
 
 const authRoutes: Array<string> = ["/signin", "/signup", "/resetpassword", "/forgetpassword", "/activate"]
 

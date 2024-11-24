@@ -7,7 +7,7 @@ type ProductDetailsProps = {
 const Page = async ({ params }: ProductDetailsProps) => {
   const product = await getProductById(params.id);
   return (
-    <ProductModal>
+    <ProductModal >
       <ProductDetails product={product} />
     </ProductModal>
   );
