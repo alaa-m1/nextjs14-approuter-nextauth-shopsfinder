@@ -1,17 +1,25 @@
 import { getToken } from "next-auth/jwt";
-import { NextResponse } from 'next/server';
-import acceptLanguage from 'accept-language';
-import { cookieName, fallbackLng, languages } from '@/app/i18n/settings';
-import type { NextRequest } from 'next/server';
+import { NextResponse } from "next/server";
+import acceptLanguage from "accept-language";
+import { cookieName, fallbackLng, languages } from "@/app/i18n/settings";
+import type { NextRequest } from "next/server";
 
 acceptLanguage.languages(languages);
 
 const protectedRoutes: Array<string> = ["/dashboard", "/shops", "/dashboard"];
-const authRoutes: Array<string> = ["/signin", "/signup", "/resetpassword", "/forgetpassword", "/activate"];
+const authRoutes: Array<string> = [
+  "/signin",
+  "/signup",
+  "/resetpassword",
+  "/forgetpassword",
+  "/activate",
+];
 
 export const config = {
   // matcher for both authentication and i18n
-  matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)'],
+  matcher: [
+    "/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)",
+  ],
 };
 
 export async function middleware(request: NextRequest) {
@@ -30,7 +38,8 @@ export async function middleware(request: NextRequest) {
 
   // Check if path is part of the protected routes
   if (protectedRoutes.includes(pathname)) {
-    if (!token) return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/signin`);
+    if (!token)
+      return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/signin`);
   }
 
   // i18n Language detection logic
@@ -39,23 +48,32 @@ export async function middleware(request: NextRequest) {
     lng = acceptLanguage.get(request.cookies.get(cookieName)?.value);
   }
   if (!lng) {
-    lng = acceptLanguage.get(request.headers.get('Accept-Language'));
+    lng = acceptLanguage.get(request.headers.get("Accept-Language"));
   }
   if (!lng) {
     lng = fallbackLng;
   }
 
   // Redirect if lng in path is not supported
-  if (!languages.some((loc) => pathname.startsWith(`/${loc}`)) && !pathname.startsWith('/_next')) {
+  if (
+    !languages.some(
+      (loc) =>
+        request.nextUrl.pathname.startsWith(`/${loc}`) &&
+        request.nextUrl.pathname?.split("/")?.[1] === loc
+    ) &&
+    !pathname.startsWith("/_next")
+  ) {
     if (pathname !== "/") {
-    return NextResponse.redirect(new URL(`/${lng}${pathname}`, request.url));
-  }
+      return NextResponse.redirect(new URL(`/${lng}${pathname}`, request.url));
+    }
   }
 
   // Set language in cookie if referer is present
-  if (request.headers.has('referer')) {
-    const refererUrl = new URL(request.headers.get('referer')!);
-    const lngInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`));
+  if (request.headers.has("referer")) {
+    const refererUrl = new URL(request.headers.get("referer")!);
+    const lngInReferer = languages.find((l) =>
+      refererUrl.pathname.startsWith(`/${l}`)
+    );
     const response = NextResponse.next();
     if (lngInReferer) {
       response.cookies.set(cookieName, lngInReferer);
