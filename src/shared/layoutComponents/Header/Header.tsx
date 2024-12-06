@@ -26,7 +26,7 @@ export const HeaderComponent = ({ lang }: { lang: string }) => {
     <header className="shadow-with-border grow-0 text-black">
       <nav
         className="relative flex  
-          place-items-center justify-between p-6 lg:px-8 bg-gradient-to-b  from-indigo-900
+          place-items-center justify-between p-6 px-2 lg:px-8 bg-gradient-to-b  from-indigo-900
           via-indigo-500 to-indigo-600  dark:from-slate-600
           dark:via-slate-400 dark:to-slate-500 pr-0 [&_.MuiToolbar-root]:w-full"
       >

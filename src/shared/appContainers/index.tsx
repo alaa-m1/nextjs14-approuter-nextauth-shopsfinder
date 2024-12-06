@@ -1,3 +1,3 @@
 export * from "./AppRootProvider";
 export * from "./ThemeProvider";
-export * from "./NotFoundSecion";
+export * from "./NotFoundSection";

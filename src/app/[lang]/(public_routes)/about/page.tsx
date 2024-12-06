@@ -10,7 +10,7 @@ const Page = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   params: { lang },
 }: {
-  params: { lang:  string };
+  params: { lang: string };
 }) => {
   const isPageLoading = usePageLoading();
   const { theme } = useTheme();
@@ -23,7 +23,7 @@ const Page = ({
   return (
     <div
       className={classNames(
-        "h-full pt-[20px] py-[10px] text-black px-1 bg-[#eee] dark:bg-[#303030]"
+        "h-full pt-[20px] py-[10px] px-2 text-black bg-[#eee] dark:bg-[#303030]"
       )}
     >
       <div
