@@ -4,7 +4,7 @@ import "./globals.css";
 import {
   Footer,
   AppRootProvider,
-  NotFoundSecion,
+  NotFoundSection,
   ThemeProvider,
 } from "@/shared";
 import { ToastContainer } from "react-toastify";
@@ -86,7 +86,7 @@ export default function NotFound({
             <div className="relative flex min-h-[100vh] flex-col justify-between">
               <div className="flex grow">
                 <div className={`w-[100%]`}>
-                  <NotFoundSecion />
+                  <NotFoundSection />
                 </div>
               </div>
               <Footer lang={params?.lang ?? "ltr"} />
