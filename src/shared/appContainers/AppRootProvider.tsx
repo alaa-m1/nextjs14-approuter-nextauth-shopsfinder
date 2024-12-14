@@ -1,7 +1,6 @@
 "use client";
 
 import { Session } from "next-auth";
-import { useTheme } from "next-themes";
 import React from "react";
 import { LanguageProvider } from "../context/LanguageContext";
 import { useIsClient } from "usehooks-ts";
@@ -13,13 +12,10 @@ type NextAuthProvider = {
 };
 
 const RootProvider = ({ children, session }: NextAuthProvider) => {
-  const { theme } = useTheme();
   return (
     <main
       className={
-        theme === "dark"
-          ? "dark text-dark-text bg-dark-bg"
-          : "light text-light-text bg-light-bg"
+        "light text-light-text bg-light-bg dark:text-dark-text dark:bg-dark-bg"
       }
     >
       <LanguageProvider>
