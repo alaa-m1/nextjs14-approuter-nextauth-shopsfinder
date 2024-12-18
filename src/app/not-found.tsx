@@ -78,7 +78,7 @@ export default function NotFound({
   return (
     <html lang={params?.lang ?? "ltr"} dir={dir(params?.lang ?? "ltr")}>
       <Head>
-        <link rel="shortcut icon" href="@/assets/images/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <body className={`${raleway.variable} ${cairo.variable}`}>
         <ThemeProvider>

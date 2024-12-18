@@ -49,7 +49,9 @@ export async function generateMetadata({ params }: any) {
   return {
     metadataBase: new URL(process.env.NEXTAUTH_URL!),
     title,
-
+    icons: {
+      icon: '/favicon.ico',
+    },
     description,
     openGraph: {
       title,
@@ -77,7 +79,7 @@ export default async function RootLayout({
   return (
     <html lang={params.lang} dir={dir(params.lang)}>
       <Head>
-        <link rel="shortcut icon" href="@/assets/images/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
       <body className={`${raleway.variable} ${cairo.variable}`}>
         <ThemeProvider>
