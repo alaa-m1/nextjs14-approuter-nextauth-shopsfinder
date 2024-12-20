@@ -36,7 +36,7 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
   const isClient = useIsClient();
 
   return (
-    <Dropdown>
+    <Dropdown className="bg-light-card dark:bg-dark-card">
       <DropdownTrigger>
         <Button
           isIconOnly
@@ -53,7 +53,7 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
       </DropdownTrigger>
       <DropdownMenu
         aria-label="Static Actions"
-        className="p-[10px] rounded-sm bg-light-card dark:bg-dark-card"
+        className="p-1 rounded-sm"
       >
         {languages.map((l) => (
           <DropdownItem
@@ -63,7 +63,7 @@ export const LanguageMenu = ({ lang }: { lang: string }) => {
           >
             <Link
               href={`/${l}/${currentSegments}`}
-              className="block w-full h-full p-1"
+              className="block w-full h-full p-2"
             >
               {l === "ar" ? t("arabic") : ""}
               {l === "en" ? t("english") : ""}
