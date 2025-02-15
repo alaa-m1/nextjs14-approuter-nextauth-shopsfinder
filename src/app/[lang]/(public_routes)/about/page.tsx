@@ -42,7 +42,7 @@ const Page = ({
         <div className="font-[18px]">{parse(ABOUT_ME)}</div>
         <p className="font-bold text-center">
           Senior Frontend Developer | React - JavaScript - TypeScript - Next.js
-          - Test Automation | Software Developer
+          - | Jest - RTL - Test Automation | Software Developer
         </p>
 
         <div style={{ display: "flex", justifyContent: "space-around" }}>
